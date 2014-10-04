@@ -90,7 +90,7 @@ keystone.set('email tests', require('./routes/emails'));
 keystone.set('cloudinary config', { cloud_name: 'infocinc', api_key: '655169756497565', api_secret: 'QxP2mwbDScSoP5im1Rz4OnXqtQI' });
 
 keystone.set('nav', {
-//	'posts': ['posts', 'post-categories'],
+	'posts': ['posts', 'post-categories'],
 	'users': 'users'
 });
 
