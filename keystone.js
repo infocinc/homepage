@@ -31,6 +31,8 @@ keystone.init({
 	'mongo' : "mongodb://localhostf" || process.env.MONGOHQ_URL
 });
 
+keystone.set('cloudinary config', 'cloudinary://655169756497565:QxP2mwbDScSoP5im1Rz4OnXqtQI@infocinc');
+
 // Load your project's Models
 
 keystone.import('models');
@@ -50,7 +52,6 @@ keystone.set('locals', {
 
 keystone.set('routes', require('./routes'));
 
-keystone.set('cloudinary config', 'cloudinary://655169756497565:QxP2mwbDScSoP5im1Rz4OnXqtQI@infocinc');
 
 // Setup common locals for your emails. The following are required by Keystone's
 // default email templates, you may remove them if you're using your own.
