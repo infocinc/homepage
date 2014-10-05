@@ -31,7 +31,6 @@ keystone.init({
 	'mongo' : process.env.MONGOHQ_URL
 });
 
-keystone.set('cloudinary config', 'cloudinary://655169756497565:QxP2mwbDScSoP5im1Rz4OnXqtQI@infocinc');
 
 // Load your project's Models
 
