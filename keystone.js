@@ -28,7 +28,7 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
 	'cookie secret': ']>.N%h]>4H_e=(Sifsks!NUPe_tsv=qAGZbqNfI_`B%h:T^JL2r^~)GOdf3/-XU;',
-	'mongo' : "mongodb://localhost" || process.env.MONGOHQ_URL
+	'mongo' : "mongodb://localhostf" || process.env.MONGOHQ_URL
 });
 
 // Load your project's Models
@@ -50,9 +50,10 @@ keystone.set('locals', {
 
 keystone.set('routes', require('./routes'));
 
+keystone.set('cloudinary config', 'cloudinary://655169756497565:QxP2mwbDScSoP5im1Rz4OnXqtQI@infocinc');
+
 // Setup common locals for your emails. The following are required by Keystone's
 // default email templates, you may remove them if you're using your own.
-
 keystone.set('email locals', {
 	logo_src: '/images/logo-email.gif',
 	logo_width: 194,
@@ -87,7 +88,6 @@ keystone.set('email rules', [{
 keystone.set('email tests', require('./routes/emails'));
 
 // Configure the navigation bar in Keystone's Admin UI
-keystone.set('cloudinary config', { cloud_name: 'infocinc', api_key: '655169756497565', api_secret: 'QxP2mwbDScSoP5im1Rz4OnXqtQI' });
 
 keystone.set('nav', {
 	'posts': ['posts', 'post-categories'],
