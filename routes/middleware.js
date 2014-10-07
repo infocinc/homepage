@@ -23,11 +23,14 @@ var _ = require('underscore'),
 
 exports.initLocals = function(req, res, next) {
 	
+
 	var locals = res.locals;
-	
-	locals.navLinks = [
-		{ label: 'Home',		key: 'home',		href: '/' },
-		{ label: 'Blog',		key: 'blog',		href: '/blog' }
+	locals.navLinks = [		
+		{ key: 'home',		href: '/welcome.html' },
+		{ key: 'blog',		href: '/blog' },
+		{ key: 'services',    href: '/services.html'},
+		{ key: 'contact',		href: '/contact.html' },
+		{ key: 'about',		href: '/about.html' }
 	];
 	
 	locals.user = req.user;

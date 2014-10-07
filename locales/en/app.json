@@ -1,0 +1,15 @@
+{
+    "app": {
+        "sronly": "Toggle Navigation",
+        "switchlng": "fr",
+        "switchlng-label": "Français",
+        "signout": "Sign out",
+        "signin" : "Sign in",
+        "home" : "HOME",
+        "blog" : "BLOG",
+        "services" : "SERVICES",
+        "contact" : "CONTACT",
+        "about" : "ABOUT",
+        "menu" : "Menu"
+    }
+}

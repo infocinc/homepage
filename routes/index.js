@@ -20,12 +20,18 @@
 
 var _ = require('underscore'),
 	keystone = require('keystone'),
+	i18n = require("i18next"),
 	middleware = require('./middleware'),
 	importRoutes = keystone.importer(__dirname);
+	
+
 
 // Common Middleware
+keystone.pre('routes',i18n.handle);
+
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
+
 
 // Import Route Controllers
 var routes = {
@@ -34,14 +40,20 @@ var routes = {
 
 // Setup Route Bindings
 exports = module.exports = function(app) {
-	
+		
 	// Views
+
+//	app.use('/:lang/*', setlocal);
+
 	app.get('/', routes.views.index);
+
+	app.get('/welcome.html', function(req,res) {
+		res.redirect(301,'/?setLng=en-US');
+	});
+
 	app.get('/blog/:category?', routes.views.blog);
 	app.get('/blog/post/:post', routes.views.post);
 	
-	
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
-	
 };

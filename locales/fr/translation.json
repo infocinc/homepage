@@ -1,0 +1,15 @@
+{
+    "app": {
+        "sronly": "Bascule Navigation",
+        "english": "english",
+        "french": "french",
+        "signout": "Déconnexion",
+        "signin" : "Connexion",
+        "home" : "Accueil",
+        "blog" : "Blog",
+        "services" : "Services",
+        "contact" : "Contact",
+        "about" : "À propos",
+        "menu" : "Menu"
+    }
+}

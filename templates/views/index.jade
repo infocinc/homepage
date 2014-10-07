@@ -1,23 +1,68 @@
 extends ../layouts/default
 
+block css
+	link(href="/styles/site/home.min.css", rel="stylesheet")
 block content
-	.container: .jumbotron
-		img(src='/images/logo.svg', width='160')
-		h1 Welcome
-		p This is your new <a href='http://keystonejs.com', target='_blank'>KeystoneJS</a> website.
-		p It includes the latest versions of
-			| <a href='http://getbootstrap.com/' target='_blank'>Bootstrap</a>
-			| and <a href='http://www.jquery.com/' target='_blank'>jQuery</a>.
-		p Visit the <a href='http://keystonejs.com/guide' target='_blank'>Getting Started</a> guide to learn how to customise it.
-		hr
-		if user && user.canAccessKeystone
-			p
-				a(href='/keystone/signin').btn.btn-lg.btn-primary Open the Admin UI
-		else
-			p We have created a default Admin user for you with the email <strong>user@keystonejs.com</strong> and the password <strong>admin</strong>.
-			p
-				a(href='/keystone/signin', style='margin-right: 10px').btn.btn-lg.btn-primary Sign in
-				|  to use the Admin UI.
-		hr
-		p Remember to <a href='https://github.com/JedWatson/keystone' target='_blank'>Star KeystoneJS on GitHub</a> and
-			| <a href='https://twitter.com/keystonejs' target='_blank'>follow @keystonejs</a> on twitter for updates.
+	#top-background
+		.overlay.overlay-tvnoise
+		.overlay.overlay-black
+		.overlay.overlay-open-menu
+		.logo
+			img(src="images/infocinc-logo-white.png")
+		.hero-text-wrapper
+			h1(itemprop="name")!= t('home:catchphrase')
+			a.white-box.front(href="/contact.html?setLng="+lang)
+				span= t('home:button')
+		.arrow-down
+			img(src="images/arrow-down.png")
+		.quick-links.mobile-hide.front
+			ul
+				li
+					a(href="/contact.html?setLng="+lang)
+						img(src="/images/arrow-right.png")
+						span= t('home:arrow-top-1')
+				li
+					a(href="/contact.html?setLng="+lang)
+						img(src="/images/arrow-right.png")
+						span= t('home:arrow-top-2')
+	#service-icons.container-fluid
+		a.col-xs-6.col-md-2(href="/services.html?setLng="+lang)
+			.icon-logo
+				img(src="images/design.png")
+			.icon-text= t('home:icon-1')
+		a.col-xs-6.col-md-2(href="/services.html?setLng="+lang)
+			.icon-logo
+				img(src="images/webapp.png")
+			.icon-text= t('home:icon-2')
+		a.col-xs-6.col-md-2(href="/services.html?setLng="+lang)
+			.icon-logo
+				img(src="images/share2.png")
+			.icon-text= t('home:icon-3')
+		a.col-xs-6.col-md-2(href="/services.html?setLng="+lang)
+			.icon-logo
+				img(src="images/datacollect.png")
+			.icon-text= t('home:icon-4')
+		a.col-xs-6.col-md-2(href="/services.html?setLng="+lang)
+			.icon-logo
+				img(src="images/conseil.png")
+			.icon-text=t('home:icon-5')
+		a.col-xs-6.col-md-2(href="/services.html?setLng="+lang)
+			.icon-logo
+				img(src="images/training.png")
+			.icon-text
+				span=t('home:icon-6')
+block js
+	script.
+		var switchimg = function(e, delim, suffix) {
+			var img = $(this).find('img');
+			var tkn = $(img).attr('src').split(delim)[0];
+			$(img).attr('src', tkn + suffix);
+		}
+		$("#service-icons > a").hover(function(e) {
+			e.preventDefault();
+			console.log(e.target.id);
+			$.proxy(switchimg, this)(e, '.', '-hover.png');
+		}, function(e) {
+			e.preventDefault();
+			$.proxy(switchimg, this)(e, '-', '.png');
+		});		

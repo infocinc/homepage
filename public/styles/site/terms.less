@@ -1,0 +1,80 @@
+@import (reference) "utils.less";
+
+#margin-top {
+  height: 20px;
+}
+
+#fixed-bar {
+  position: relative;
+}
+#terms {
+  margin-bottom: 90px;
+  padding: 0px 40px;
+  h1,h2,li,p {
+    font-family: 'Open Sans Condensed', sans-serif;
+    letter-spacing: 0.01em;
+  }
+
+  h1 {
+   padding: 0;
+   font-size: 40px;
+   margin: 1em 0;
+  }
+  h2 {
+    font-size: 30px;
+  }
+  p,li {
+    font-size: 15px;
+    margin: 0;
+  }
+  a {
+    text-shadow: none;
+    display: inline;
+    color: @blue !important;
+    word-wrap: break-word;
+  }
+  li {
+    text-shadow : none;
+    font-style: italic;
+    font-family: 'Open Sans Condensed', sans-serif;
+    text-align: left;
+    padding: 5px 0px;
+  }
+  h2 {
+  //    margin-top: 40px !important;
+
+  }
+  p {
+    padding: 10px 0;
+    span {
+      font-style: italic;
+    }
+  }
+
+ @media screen and (min-width:@screen-sm-min) {
+
+    p,li {
+      font-size: 17px;
+    }
+
+  }
+  @media screen and (min-width:@screen-lg-min) {
+  }  
+  @media screen and (min-width:@screen-wide-min) {
+    padding: 0;
+    h1 {
+      font-size: 50px;
+      padding: 10px 0;
+    }
+    h2 {
+      font-size: 40px;
+    }
+    p,li {
+      font-size: 22px;
+    }
+     p {
+      padding: 15px 0;
+     }
+  }
+}
+
