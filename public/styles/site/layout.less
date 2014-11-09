@@ -1,58 +1,75 @@
-@import "utils.less";
-@import "variables.less";
+
+@import (reference) "../ifc-toolkit/presets/electro.less";
 @import "fonts.less";
-@import "normalize.less";
-@import "mixins.less";
-@import "side-menu.less";
-@import "mobile-fixed-icons.less";
 
-a {
-  text-decoration: none !important;
+//////////////////////////////////////////////
+// COLORS
+//////////////////////////////////////////////
+
+body {
+	font-family: 'Open Sans Condensed', sans-serif;
 }
 
-a, button
-{
-    -ms-touch-action: manipulation; /* IE10  */
-    touch-action: manipulation;     /* IE11+ */
-}
-
-
-button {
-  padding: 0;
-  border: none;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-h1,h2,h3,h4,h5,h6 {
-  font-weight: normal;
-  margin: 0 !important;
-}
-
-span,p, li, h1,h2 {
-  word-wrap: break-word !important;
-}
-
-html, body{
- position: relative;
- z-index: 10;
- width: 100% !important;
- margin: 0px !important;
- padding: 0px !important;
--webkit-tap-highlight-color: rgba(0,0,0,0);
- -ms-touch-action: manipulation; // remove delay for windows Phones
- touch-action: manipulation;  // remove delay for windows Phones
- font-family: 'Open Sans Condensed', sans-serif;
-}
-
-img {
- image-rendering:optimizeQuality !important;
+#main > button {
+	background: none;
 }
 
 #main {
-    position: relative;
-    right: 0;
+	position: relative;
+	right: 0;
+}
+
+#menu {
+	.side-menu-mobile(@bg:'@{kjs-img}/infocinc-desktop.jpg',@font:'Open Sans Condensed',@font-size:13px);
+}
+
+.logo {
+	position: absolute;
+	top: 10px;
+	img {
+		height: 30px;
+	}
+}
+
+////////////////////////////////////////////////////////////////
+// MEDIA QUERIES
+////////////////////////////////////////////////////////////////
+
+@media screen and (min-width:@screen-iphone-min) {
+	.logo {
+		left: 10px;
+	}
+}
+
+@media screen and (min-width:@screen-sm-min) {
+	.logo {
+		top: 15px;
+		left: 30px;
+		img {
+			height: 40px;
+		}
+	}
+	#menu {
+		.side-menu-full();
+	}
+}
+
+@media screen and (min-width:@screen-md-min) {
+	.logo {
+		top: 10px;
+	}
+}
+
+@media screen and (min-width:@screen-lg-min) {
+	.logo {
+		top: 20px;
+		left: 50px;
+		img {
+			height: 50px;
+		}
+	}
+}
+
+@media screen and (min-width:@screen-wide-min) {
+
 }

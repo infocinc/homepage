@@ -7,19 +7,12 @@ var express = require("express"),
 	app = express(),
 	keystone = require('keystone').connect(app),
 	compressor = require('node-minify'),
-    i18n = require('i18next');
-	
+    i18n = require('i18next')
+
 
 // Initialise Keystone with your project's configuration.
 // See http://keystonejs.com/guide/config for available options
 // and documentation.
-/*i18n.init({
-	lng: 'en-US',
-	saveMissing: true,
-	debug: true
-});
-*/
-
 keystone.init({
 	'name': 'infocinc',
 	'brand': 'infocinc',
@@ -37,17 +30,6 @@ keystone.init({
 	'mongo' : process.env.MONGOHQ_URL
 });
 
-var options = {
-	ns: {
-		namespaces: ['app','home'],
-		defaultNs: 'app'
-	},
-	lng: 'fr',
-	debug: true
-}
-i18n.init(options);
-i18n.registerAppHelper(app);
-// Load your project's Models
 
 // compress js script 
 new compressor.minify({
@@ -68,7 +50,6 @@ keystone.import('models');
 // Setup common locals for your templates. The following are required for the
 // bundled templates and layouts. Any runtime locals (that should be set uniquely
 // for each request) should be added to ./routes/middleware.js
-
 keystone.set('locals', {
 	_: require('underscore'),
 	env: keystone.get('env'),
@@ -76,8 +57,28 @@ keystone.set('locals', {
 	editable: keystone.content.editable
 });
 
-// Load your project's Routes
+// Load i18n options
+var options = {
+	preload: ['en','fr'],
+	supportedLngs: ['en','fr'],
+	load: 'unspecific',
+	ns: {
+		namespaces: [
+			'app','home','form','services',
+			'footer','portfolio','terms',
+			'contact'
+		],
+		defaultNs: 'app'
+	},
+	detectLngFromPath: 0,
+	forceDetectLngFromPath: true,
+	fallbackLng: 'fr',
+	debug: true
+}
 
+i18n.init(options);
+i18n.registerAppHelper(app);
+// Load your project's Routes
 keystone.set('routes', require('./routes'));
 
 
@@ -113,16 +114,13 @@ keystone.set('email rules', [{
 }]);
 
 // Load your project's email test routes
-
 keystone.set('email tests', require('./routes/emails'));
 
 // Configure the navigation bar in Keystone's Admin UI
-
 keystone.set('nav', {
 	'posts': ['posts', 'post-categories'],
 	'users': 'users'
 });
 
 // Start Keystone to connect to your database and initialise the web server
-
 keystone.start();

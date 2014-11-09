@@ -1,123 +1,40 @@
 
-@import (reference) "variables.less";
-@import (reference) "utils.less";
-@import (reference) "mixins.less";
-@import "common.less";
-@import "herotext.less";
+@import (reference) "../ifc-toolkit/presets/electro.less";
+
+@folder: "@{kjs-img}/home";
 
 
-.overlay-tvnoise {
-  background: url('../../images/tvnoise.png');
-  opacity: 1;
-}
 
+////////////////////////////////////////////////////////////////
+// HERO SECTION
+////////////////////////////////////////////////////////////////
 
-.icon-logo {
-  width: 120px;
-  margin: 0 auto;
-  img {
-    width: 100%
-  }
-  width: 80%;
-  max-width: 120px;
-  @media screen and (min-width:@screen-sm-min) {
-    width: 110px;
-  }
-  @media screen and (min-width:@screen-md-min) {
-    margin-bottom: 10px;
-    width: 100px;
-  }
-  @media screen and (min-width:@screen-lg-min) {
-    width: 120px;
-  }
-  @media screen and (min-width:@screen-wide-min) {
-  }
-}
-.icon-text {
-  font-family: 'Open Sans Condensed', sans-serif;
-  letter-spacing: 0.2em;
-  .refsize(25px,2,2.2);
-
-  @media screen and (min-width:320px) {
-  }
-  @media screen and (min-width:480px) {
-    margin-top: 10px;
-  }
-  @media screen and (min-width:@screen-sm-min) {
-  }
-  @media screen and (min-width:@screen-md-min) {
-  }
-  @media screen and (min-width:@screen-lg-min) {
-  }
-  @media screen and (min-width:@screen-wide-min) {
-  }
-
-}
-
-#service-icons {
-  text-align: center;
-  a {
-    margin-bottom: 15px;
-  } 
-  a:first-child {
-    margin-top: 35px;
-  }   
-
-  @media screen and (max-width:479px) {
-    a {
-      width: 100%;
-    }
-  }
-  @media screen and (min-width:@screen-xs-min) {
-    a:nth-child(2) {
-      margin-top: 35px;
-    }   
-  }
-  @media screen and (min-width:@screen-sm-min) {
-    a {
-      margin-bottom: 15px;
-    }    
-    a:first-child,a:nth-child(2) {
-      margin-top: 25px;
-    }
-    margin-bottom: 40px;
-  }
-  @media screen and (min-width:@screen-md-min) {
-    a:first-child,a:nth-child(2) {
-      margin-top: 0;
-    }
-    margin-top: 35px;
-  }
-  @media screen and (min-width:@screen-lg-min) {
-    margin: 50px 0 40px 0;
-  }  
-  @media screen and (min-width:@screen-wide-min) {
-  }
-  a {
-    display: inline-block;
-    .transition(@property:background;@delay:300ms);
-  }
-  > a:hover {
-    background:#353230   !important ;
-    .icon-text {
-      color: @white !important;
-    }
-  }
-}
-
-///////////////////////////////////////////////////////////////////////////////////////////
-// Top background
-///////////////////////////////////////////////////////////////////////////////////////////
-
-#top-background {
+.hero-text-wrapper {
   position: relative;
-  background: url('../..//images/hero-mobile.jpg') no-repeat ;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  min-height: 480px;
+  color: @white;
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 50px;
+  text-align: center;
 
- .arrow-down {
+  h1 {
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    font-size: 2em;
+    padding: 0 20px;
+    line-height: 2;
+  }
+  .white-box {
+    display: none;
+  }
+}
+
+#hero-wrapper {
+   position: relative;
+  .bg("@{folder}/bg-mobile.jpg");
+   min-height: 480px;
+
+  .arrow-down {
     position: absolute;
     width: 50px;
     left: 50%;
@@ -127,47 +44,184 @@
      width: 100%;
     }
   }
-  @media screen and (min-width:320px) {
+}
+
+
+
+//////////////////////////////////////////////////////////////
+// SERVICES
+///////////////////////////////////////////////////////////////
+
+.icon-logo {
+  width: 80%;
+  max-width: 120px;
+  margin: 0 auto;
+  img {
+    width: 100%
+  }
+}
+
+.icon-text {
+  letter-spacing: 0.2em;
+  font-size: 1.4em;
+}
+
+#services-wrapper {
+  text-align: center;
+  a {
+    display: inline-block;
+    .transition(@property:background;@delay:300ms);
+    margin-bottom: 15px;
+    color: black;
+    &:first-child {
+      margin-top: 35px;
+    }
+    &:active,&:focus {
+      background: @dark-brown !important;
+    }
+  } 
+}
+
+///////////////////////////////////////////////////////////////
+// JS CONTROLLED HOVERS
+///////////////////////////////////////////////////////////////
+.service-item-hover {
+  background: @dark-brown;
+}
+.icon-text-hover {
+  color: @white !important;
+}
+
+
+////////////////////////////////////////////////////////////////
+// MEDIA QUERIES
+////////////////////////////////////////////////////////////////
+
+// MAX WIDTHS
+@media screen and (max-width:@screen-iphone-max) {
+  #services-wrapper a {
+    width: 100%;
+  }
+
+}
+
+// MIN WIDTHS
+@media screen and (min-width:@screen-iphone-min) {
+  #hero-wrapper {
     min-height: 400px;
   }
-  @media screen and (min-width:@screen-sm-min) {
-    background: url('../../images/hero-tablet.jpg') no-repeat ;
-    background-size: cover;
-    background-position: 0% 5%;
-    height: 700px;
-    .quick-links {
-      position: absolute;
-      top: 20px;
-      right: 200px;
-      ul {
-        margin: 0;
-        li {
-         display: inline-block;
-        }
-        li:first-child {
-         margin-right: 20px;
-        }
-      }
-      img {
-        padding-right: 5px;
-        width: 20px;
-      }
-      span {
-        display: inline-block;
-        vertical-align: middle;
-        color: @white;
-        font-size: 20px;
-      }
+  .hero-text-wrapper {
+    padding-top: 80px;
+    max-width: 320px;
+  }
+}
+@media screen and (min-width:@screen-xs-min) {
+  #services-wrapper {
+    a:nth-child(2) {
+      margin-top: 35px;
     }
   }
-  @media screen and (min-width:@screen-md-min) {
-    background: url('../../images/hero-desktop.jpg') no-repeat center center;
-    background-size: cover;
+  .icon-text {
+    margin-top: 10px;
+  }
+}
+
+@media screen and (min-width:@screen-sm-min) {
+  #hero-wrapper {
+    .bg(@path:"@{folder}/bg-tablet.jpg",@x:0%,@y:5%);
+     height: 700px;
+    .quick-links {
+       position: absolute;
+       top: 20px;
+       right: 200px;
+       ul {
+         margin: 0;
+         li {
+          display: inline-block;
+         }
+         li:first-child {
+          margin-right: 20px;
+         }
+       }
+       img {
+         padding-right: 5px;
+         width: 20px;
+       }
+       span {
+         display: inline-block;
+         vertical-align: middle;
+         color: @white;
+         font-size: 1.33em;
+       }
+    }
+  }
+  .icon-logo {
+    width: 110px;
+  }
+  #services-wrapper {
+    margin-bottom: 40px;
+    a {
+      margin-bottom: 15px;
+    }
+    a:first-child,a:nth-child(2) {
+      margin-top: 25px;
+    }
+  }
+  .hero-text-wrapper {
+    padding-top: 180px;
+    width: auto;
+    max-width: none;
+    h1 {
+      font-size: 3.8em;
+      letter-spacing: 1;
+      line-height: 1.4;
+      padding: 0;
+    }
+    .white-box {
+      margin-top: 30px;
+      display: inline-block;
+    }
+  }
+}
+
+@media screen and (min-width:@screen-md-min) {
+  #hero-wrapper {
+    .bg('@{folder}/bg-desktop.jpg');
+    //.bg('http://res.cloudinary.com/infocinc/image/upload/v1415505164/infocinc-home/bg-desktop.jpg');
     .arrow-down {
       width: 60px;
       bottom: -30px;
       margin-left: -30px;
     }
+  }
+  #services-wrapper {
+    margin-top: 35px;
+    a:first-child,a:nth-child(2) {
+      margin-top: 0;
+    }
+  }
+  .icon-logo {
+    width: 100px;
+    margin-bottom: 10px;
+  }
+  .hero-text-wrapper {
+    padding-top: 250px;
+  }
+}
+
+@media screen and (min-width:@screen-lg-min) {
+  #services-wrapper {
+     margin: 50px 0 40px 0;
+  }
+
+  .icon-logo {
+    width: 120px;
+  }
+}
+
+@media screen and (min-width:@screen-wide-min) {
+  .hero-text-wrapper {
+    width: 1200px;
   }
 }
 

@@ -10,8 +10,7 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
 
     //- HTML HEADER
     head
-        -var base = "http://www.infocinc.com"
-        -var url = base + '/' + section + ".html";
+        -var root = "http://www.infocinc.com"
 
         meta(charset="utf-8")
         meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
@@ -20,17 +19,15 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
 
         //- this tag is to disable styling of links in iphones
         meta(name="format-detection", content="telephone=no")
-        meta(property="fb:admins", content="699841262")
+        meta(property="fb:app_id", content="712675532159199")
         meta(property="og:type", content="website")
-        meta(property="og:locale", content="fr_CA")
+        meta(property="og:locale", content=lang)
+        meta(property="og:url", content=root + '/' + lang + '/' + section)
 
-        link(rel="alternate", href=url, hreflang="fr-ca")
-        link(rel="alternate", href=url+ '?setLng=en-US', hreflang="en-US")
+        link(rel="alternate", href=root + '/fr/' + section, hreflang="fr-CA")
+        link(rel="alternate", href=root + '/en/' + section,  hreflang="en-US")
+        link(rel="canonical", href=root + '/' + lang + '/' + section)
 
-        meta(property="og:url", content=url)        
-
-        title= title || 'infocinc'
-        link(rel="canonical", href=url)
         link(rel="publisher", href="https://plus.google.com/+Infocinc1")
         link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
 
@@ -106,54 +103,43 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
             fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
         //- BODY
+        nav#menu.bar-items
+            button(type="button")#remove-btn
+                span.glyphicon.glyphicon-remove
+            ul.principal
+                a.nav-grey-bg.clearfix(href='/' + lang + '/home')
+                    li.nav-item=t('app.home')
+                a.nav-grey-bg.clearfix(href='/' + lang + '/portfolio')
+                    li.nav-item=t('app.portfolio')     
+                a.nav-grey-bg.clearfix(href='/' + lang + '/services')
+                    li.nav-item=t('app.services')
+                a.nav-grey-bg.clearfix(href='/' + lang + '/contact')
+                    li.nav-item=t('app.contact')     
+            ul.lang
+                a#english-hero-anchor.nav-grey-bg.clearfix(href='/'+t('app.switchlng') +'/' + section)
+                    li.nav-item=t('app.switchlng-label')
+            ul.menu-buttons
+                .fb-like(data-href="http://www.facebook.com/infocinc" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false")
+                a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.infocinc.com")=t('app.tweet')
+            ul.menu-footer
+                li#social-icons.clearfix
+                    a(target="_blank" href="//twitter.com/InfoCinc") 
+                        img(src="/images/twitterlogo.png")   
+                    a(target="_blank" href="//facebook.com/Infocinc")
+                        img(src="/images/facebooklogo.png")
+                    a(target="_blank" href="//plus.google.com/+Infocinc1")  
+                        img(src="/images/googlepluslogo.png") 
+                    a(target="_blank" href="//www.linkedin.com/company/infocinc")  
+                        img(src="/images/linkedin.png") 
+                li.nav-item
+                    | &copy;2014 INFOCINC
         #main.push
-            a#navbar-button.menu-link.menu-toggle(href="#menu",type="button")
+            button#navbar-button.menu-link.menu-toggle(type="button")
                 span.menu= t('app.menu')
                 #hamburger
                     span.icon-bar
                     span.icon-bar
                     span.icon-bar
-            #fixed-icons
-                #phone-logo-wrapper.desktop-hide.invisible
-                    a#phone-logo-wrapper(href="tel:+14384966886")
-                        span.glyphicon.glyphicon-earphone
-                #mail-logo-wrapper.desktop-hide.invisible
-                    a#mail-logo-anchor(href="/contact.html?setLng="+lang)
-                        span.glyphicon.glyphicon-envelope
-                #arrow-up.invisible
-                    a#arrow-up-anchor(href="#")
-                        span.glyphicon.glyphicon-arrow-up
-
-            nav#menu.bar-items
-                ul.principal
-                    a.nav-red-bg(href="/?setLng="+lang)
-                        li.nav-item=t('app.home')
-                    a.nav-blue-bg(href="/about.html?setLng="+lang)
-                        li.nav-item=t('app.about')
-                    a.nav-green-bg(href="/services.html?setLng="+lang)
-                        li.nav-item=t('app.services')
-                    a.nav-orange-bg(href="/contact.html?setLng="+lang)
-                        li.nav-item=t('app.contact')     
-                ul.lang
-                    a#english-hero-anchor(href='/?setLng='+t('app.switchlng'))
-                        li.nav-item=t('app.switchlng-label')
-                ul.menu-buttons
-                    iframe(src!="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.infocinc.com&amp;width&amp;layout=button_count&amp;action=like&amp;show_faces=false&amp;share=false&amp;height=21&amp;appId=712675532159199" scrolling="no" frameborder="0" style="border:none; overflow:hidden; height:21px;" allowTransparency="true")
-                    a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.infocinc.com")=t('app.tweet')
-                    .g-plusone(data-size="medium")
-                ul.menu-footer
-                    #social-icons
-                        a(target="_blank" href="//twitter.com/InfoCinc") 
-                            img(src="/images/twitterlogo.png")   
-                        a(target="_blank" href="//facebook.com/Infocinc")
-                            img(src="/images/facebooklogo.png")
-                        a(target="_blank" href="//plus.google.com/+Infocinc1")  
-                            img(src="/images/googlepluslogo.png") 
-                        a(target="_blank" href="//www.linkedin.com/company/infocinc")  
-                            img(src="/images/linkedin.png") 
-                    li.nav-item
-                        | &copy;2014 InfoCinc
-
             //- NOTE:
             //- There is no .container wrapping class around body blocks to allow more flexibility in design.
             //- Remember to include it in your templates when you override the intro and content blocks!
@@ -161,9 +147,6 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
             //- The Intro block appears above flash messages (used for temporary information display)
             block intro
 
-            //- Flash messages allow you to display once-off status messages to users, e.g. form
-            //- validation errors, success messages, etc.
-            +flash-messages(messages)
 
             //- The content block should contain the body of your template's content
             block content
@@ -179,6 +162,7 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
         script.
             var tag = '<script src="/js/vendor/jquery-2.1.0.min.js"<\/script>'
             window.jQuery || document.write(tag)
+            var section = !{JSON.stringify(section)}
         script(src="/js-dist/base-min.js")
 
         //- The KeystoneJS Content Editor provides support for ks-editable data attributes,

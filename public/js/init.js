@@ -24,7 +24,7 @@ var app_config = {
     'menu' : {
         'side' : 'right',
         'anchor': '.menu-link',
-        'minisize' : '180px',
+        'minisize' : '200px',
         'fullsize' : '250px'
     }
 }
@@ -67,9 +67,8 @@ function init_sidemenu() {
   var menu = app_config['menu'],
       link = $(menu['anchor']),
       side = menu['side'],
-      size = (screenwidth < SCREEN_WIDTHS.TABLET_PORTRAIT) ? menu['minisize'] : menu['fullsize']
+      size = (screenwidth < SCREEN_WIDTHS.TABLET_PORTRAIT) ? menu['minisize'] : menu['fullsize'];
 
-  
   console.log('calling bigSlide script with width ' + size);
   link.off('click.bigSlide');
   $(document).off('click.bigSlide');

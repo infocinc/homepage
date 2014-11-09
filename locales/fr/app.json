@@ -8,6 +8,7 @@
         "home" : "ACCUEIL",
         "blog" : "BLOG",
         "services" : "SERVICES",
+        "portfolio": "PORTFOLIO",
         "contact" : "CONTACT",
         "about" : "À PROPOS",
         "menu" : "Menu"

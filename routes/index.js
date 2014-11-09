@@ -23,15 +23,27 @@ var _ = require('underscore'),
 	i18n = require("i18next"),
 	middleware = require('./middleware'),
 	importRoutes = keystone.importer(__dirname);
-	
+
 
 
 // Common Middleware
 keystone.pre('routes',i18n.handle);
-
 keystone.pre('routes', middleware.initLocals);
 keystone.pre('render', middleware.flashMessages);
 
+
+keystone.set('404', function(req,res,next) {
+	res.notfound();
+});
+
+keystone.set('500',function(err,req,res,next) {
+	var title, message;
+	if (err instanceof Error) {
+		message = err.message;
+		err = err.stack;
+	}
+	res.err(err,title,message);
+});
 
 // Import Route Controllers
 var routes = {
@@ -42,13 +54,22 @@ var routes = {
 exports = module.exports = function(app) {
 		
 	// Views
+	app.all('/:lng/contact', function(req,res) {
+		routes.views.contact(req,res);
+	});
 
-//	app.use('/:lang/*', setlocal);
+	app.get('/:lng/:section', function(req,res) {
+		console.log('hi');
+		routes.views.index(req,res);
+	});
 
-	app.get('/', routes.views.index);
+
+	app.get('/', function(req,res) {
+		res.redirect(301,'/fr/home');
+	});
 
 	app.get('/welcome.html', function(req,res) {
-		res.redirect(301,'/?setLng=en-US');
+		res.redirect(301,'/en/home');
 	});
 
 	app.get('/blog/:category?', routes.views.blog);

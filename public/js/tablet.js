@@ -39,10 +39,13 @@ function configure_enquire() {
             if (_switch && app_config['side-menu']) {
                 init_sidemenu();
             }
+            console.log(notouch);
             if (notouch) {
                 add_interaction('#footer-contact a, #footer-community a,'+
                     '#footer-nav a', 'hover-underline');
                 add_interaction('.center-navigation a','navbox-hover');
+                add_interaction('#services-wrapper > a','service-item-hover');
+                add_interaction('#services-wrapper > a','icon-text-hover');
             }
         }
     });

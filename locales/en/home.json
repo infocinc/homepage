@@ -3,10 +3,11 @@
     "button": "Our services",
     "arrow-top-1": "Contact us",
     "arrow-top-2": "Get a quote",
-    "icon-1": "Website",
-    "icon-2": "Web Apps",
-    "icon-3": "Social Media",
-    "icon-4": "Data",
-    "icon-5": "Consulting",
-    "icon-6": "Training"
+    "design": "Web Design",
+    "webapp": "Web Apps",
+    "social": "Social Networks",
+    "data": "Data Mining",
+    "advice": "Advice",
+    "training": "Training"
 }
+
