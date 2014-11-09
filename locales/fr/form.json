@@ -1,0 +1,8 @@
+ {
+	"fullname": "Nom complet *",
+	"company": "Compagnie *",
+	"email": "Courriel *",
+	"phone": "Téléphone *",
+	"msg": "Comment peut-on vous aider aujourd'hui ?",
+	"submit": "ENVOYER"
+}

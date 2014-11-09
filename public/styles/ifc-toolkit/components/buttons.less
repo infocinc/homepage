@@ -1,0 +1,55 @@
+
+@import (reference) "../mixins/animate";
+@import (reference) "../mixins/colors.less";
+@import (reference) "../mixins/animate.less";
+// PRESETS
+// --------------------
+@btn-radius: 3px;
+@btn-letter-spacing: 0.4em;
+@btn-padding-x: 12px;
+@btn-padding-y: 45px;
+@btn-font: 'Open Sans Condensed';
+@btn-hover-bg-color: #353230;
+@btn-hover-fg-color: @white;
+@btn-font-size: 1.2em;
+.btn-wide {
+	display:inline-block;
+	.transition(background);
+	span {
+		font-family: @btn-font, sans-serif;
+		letter-spacing: @btn-letter-spacing;
+		font-size: @btn-font-size;
+	}
+	padding: @btn-padding-x @btn-padding-y;
+}
+
+.white-box {
+	.btn-wide;
+	border: 1px solid @white;
+	border-radius: 3px;
+	background: none;
+	color: @white;
+}
+
+.black-box {
+	.btn-wide;
+	background: @black;
+	color: @white;
+}
+
+// hovers
+// ---------------------
+
+.white-box:active,.black-box:active {
+	.shake;
+}
+
+.white-box:hover, .black-box:hover {
+	outline: none !important;
+	box-shadow : none !important;
+}
+
+.white-box:hover, .black-box:hover {
+	background: #353230  !important;
+	color: @white !important;
+}

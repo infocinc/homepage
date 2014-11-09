@@ -1,0 +1,49 @@
+mixin footer-block(type)
+	.col-sm-6.col-md-4.col-md-offset-0
+		.footer-logo
+			img(src='/images/'+type+'.png' alt=t('footer:'+type))
+		.footer-text(class=type === 'social' ? 'social-network' : '')
+				p.footer-caption=t('footer:'+type)
+				block
+footer
+	.row
+		+footer-block('contact')
+			ul
+				li
+					span=t('footer:local') + ': '
+					a(href="tel:+4384966886")
+						| 450 438 496-6886
+				li
+					span=t('footer:email') + ':'
+					a(href="mailto:info@infocinc.com")
+						| info@infocinc.com
+		+footer-block('office')
+			ul
+				li
+					span=t('footer:address')
+				li
+					span=t('footer:city')
+		+footer-block('social')
+			-var social = ['Facebook','Google+','Twitter','LinkedIn']
+			-var href = ['//facebook.com/Infocinc', '//plus.google.com/+Infocinc1','//twitter.com/Infocinc','//linkedin.com/company/infocinc']
+			-var i = 0
+			ul
+				while i < 2
+					li
+							a(target="_blank",href=href[i])=social[i]
+					-i++
+			ul
+				while i < 4
+					li
+							a(target="_blank",href=href[i])=social[i]
+					-i++
+	.row.terms
+		img(itemprop="logo", src="/images/logo.png", alt="Infocinc")
+		span
+			|&copy; 
+			=t('footer:copyrights')
+		.cookies-warning
+			p=t('footer:cookies')
+					a(href='/' + lang + '/terms' )
+						=t('footer:learn-more')
+

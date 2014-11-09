@@ -1,0 +1,79 @@
+@z-max: 9999;
+
+////////////////////////////////////
+// MEDIA QUERY
+//////////////////////////////////// 
+
+// Uses only resolution (in dip) to separate mobile from tablet devices. 
+.mobile-only(@display-type:block;@max-res:767px) {
+  display: none;
+  @media screen and (max-width:@max-res) {
+    display: @display-type;
+  }
+}
+
+.show-media(@display-type:block;@min-width:768px) {
+  display: none;
+  @media screen and (min-width:@min-width) {
+    display: @display-type;
+  }
+}
+.hide-media(@min-width:@screen-sm-min) {
+  @media screen and (min-width:@min-width) {
+    display: none;
+  }
+}
+
+////////////////////
+// VISIBILITY
+////////////////////
+
+.none {
+  display:none
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.front {
+  position: relative;
+  z-index: @z-max;
+}
+
+.show-tablet {
+  .show-media; 
+}
+
+
+//////////////////////////////////
+// LISTS STYLING
+//////////////////////////////////
+
+.nostyle {
+    list-style: none;
+}
+
+/////////////////////////////////
+// CLEARFIX
+/////////////////////////////////
+
+.clearfix {
+    &:before, &:after {
+        content:" ";
+        display: table;
+    }
+    &:after {
+        clear:both
+    }
+}
+
+//////////////////////////////////
+// POSITIONING
+//////////////////////////////////
+
+.center       { margin: 0 auto; }
+.text-left    { text-align: left; }
+.text-right   { text-align: right; }
+.text-center  { text-align: center; }
+.text-justify { text-align: justify; }

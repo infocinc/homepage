@@ -1,0 +1,58 @@
+extends ../layouts/default
+
+
+mixin service-item(name) 
+	-var images = { "base": "/images/home/" }
+	a.col-xs-6.col-md-2(href='/' + lang + '/services#' + name)
+		.icon-logo
+			img(src=images.base + name + '.png')
+		.icon-text= t('home:' + name)
+
+block css
+	link(href="/styles/site/home.min.css", rel="stylesheet")
+block content
+	-var prefix = '/' + lang + '/'
+	#hero-wrapper
+		.overlay.overlay-tvnoise
+		.overlay.overlay-black
+		.overlay.overlay-open-menu
+		.logo
+			img(src="/images/infocinc-logo-white.png" alt="Infocinc Logo")
+		.hero-text-wrapper
+			h1(itemprop="name")!= t('home:catchphrase')
+			a.white-box.front(href=prefix + 'services')
+				span= t('home:button')
+		.arrow-down
+			img(src="/images/home/arrow-down.png" alt="Arrow down")
+		.quick-links.show-tablet.front
+			ul
+				li
+					a(href=prefix +'contact')
+						img(src="/images/arrow-right.png" alt="arrow right")
+						span= t('home:arrow-top-1')
+				li
+					a(href=prefix + 'contact')
+						img(src="/images/arrow-right.png" alt="arrow right")
+						span= t('home:arrow-top-2')
+	#services-wrapper.container-fluid
+		-var i = 0
+		-var services = ['design','webapp','social','data','advice','training']
+		while i < 6
+			+service-item(services[i])
+			-i++
+block js
+	script.
+		var switchimg = function(e, state) {
+			var delim = state === 'on' ? '.' : "-",
+				suffix = state === 'on' ? "-hover" : "",
+				img = $(this).find('img');
+
+			var tkn = $(img).attr('src').split(delim).shift();
+			$(img).attr('src', tkn + suffix + '.png');
+		}
+		var toggle = function(state) {
+			return function(e) {
+				$.proxy(switchimg,this)(e,state)
+			}
+		}
+		$("#services-wrapper > a").hover(toggle('on'),toggle('off'));

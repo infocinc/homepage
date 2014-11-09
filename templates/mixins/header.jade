@@ -1,0 +1,14 @@
+mixin header(section,icon)
+	header
+		.overlay.overlay-black
+		h1.front!=t(section + ':catchphrase')
+		.img-wrapper
+			if icon !== ''
+				img.front(src='/images/' + section + '/' + icon)
+	if icon !== ''
+		section.intro
+			h2!=t(section + ':intro-h')
+			p=t(section + ':intro-p')
+			if block
+				block
+
