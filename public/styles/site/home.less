@@ -1,8 +1,7 @@
 
 @import (reference) "../ifc-toolkit/presets/electro.less";
 
-@folder: "@{kjs-img}/home";
-
+@root: "http://res.cloudinary.com/infocinc/image/fetch/http://infocinc.herokuapp.com/images/home";
 
 
 ////////////////////////////////////////////////////////////////
@@ -31,7 +30,7 @@
 
 #hero-wrapper {
    position: relative;
-  .bg("@{folder}/bg-mobile.jpg");
+  .bg("@{root}/bg-mobile.jpg");
    min-height: 480px;
 
   .arrow-down {
@@ -128,7 +127,7 @@
 
 @media screen and (min-width:@screen-sm-min) {
   #hero-wrapper {
-    .bg(@path:"@{folder}/bg-tablet.jpg",@x:0%,@y:5%);
+    .bg(@path:"@{root}/bg-tablet.jpg",@x:0%,@y:5%);
      height: 700px;
     .quick-links {
        position: absolute;
@@ -186,8 +185,7 @@
 
 @media screen and (min-width:@screen-md-min) {
   #hero-wrapper {
-    .bg('@{folder}/bg-desktop.jpg');
-    //.bg('http://res.cloudinary.com/infocinc/image/upload/v1415505164/infocinc-home/bg-desktop.jpg');
+    .bg('@{root}/bg-desktop.jpg');
     .arrow-down {
       width: 60px;
       bottom: -30px;

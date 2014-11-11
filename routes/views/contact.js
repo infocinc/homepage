@@ -16,6 +16,7 @@ exports = module.exports = function(req,res) {
 		var application = new Enquiry.model(),
 			updater = application.getUpdateHandler(req);
 			updater.options.errorMessage = 'Oops!';
+
 		updater.process(req.body, {
 			flashErrors: true
 		}, function(err) {
@@ -24,9 +25,20 @@ exports = module.exports = function(req,res) {
 				console.log(err);
 			} else {
 				locals.enquirySubmitted = true;
+				var email = new keystone.Email('enquiry-notification');
+				locals.enquiry = application;
+				email.send({
+					enquiry: application, 
+					fromName: 'Infocinc',
+					fromEmail: 'info@infocinc.com',
+					to: 'ndutil79@gmail.com'
+				}, function(err,info) {
+					if (err)
+						console.log(err);
+				});
 			}
 			next();
 		});
 	});
-	view.render('contact', {section: 'contact'});
+	view.render('contact');
 }

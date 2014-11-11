@@ -27,7 +27,9 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
 	'cookie secret': ']>.N%h]>4H_e=(Sifsks!NUPe_tsv=qAGZbqNfI_`B%h:T^JL2r^~)GOdf3/-XU;',
-	'mongo' : process.env.MONGOHQ_URL
+	'mongo' : process.env.MONGOHQ_URL,
+	'mandrill api key': process.env.MANDRILL_API_KEY,
+	'mandrill username': 'nicolas.dutil@infocinc.com'
 });
 
 
