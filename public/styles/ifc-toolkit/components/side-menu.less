@@ -168,7 +168,7 @@
     display: block;
     border: none;
     margin: 0;
-    max-width: 100px;
+    max-width: 120px;
     padding: 10px 0px;
     color: @text-color !important;
   }
@@ -187,20 +187,25 @@
     margin-top: 30px;
   }
 
-  .lang,.menu-buttons,.menu-footer {
+  .lang,.menu-buttons,.cms,.menu-footer {
     border-top: 4px solid @text-color;
-    width: 100px;
+    width: 120px;
     overflow-x: visible;
   }
 
   .lang,.menu-buttons {
-    .fb-like, & > iframe, & > div > iframe  {
-      margin-top: 20px !important;
+    & > iframe, & > div > iframe  {
       max-width: 100px !important;
+    }
+    & > iframe {
+      margin-top: 20px !important;
     }
     .fb-like span {
       margin-left: 0px !important;
     }
+  }
+  .menu-buttons {
+    padding-top: 20px;
   }
   .lang {
     margin-top: 10px;

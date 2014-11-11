@@ -114,10 +114,19 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
                 a.nav-grey-bg.clearfix(href='/' + lang + '/services')
                     li.nav-item=t('app.services')
                 a.nav-grey-bg.clearfix(href='/' + lang + '/contact')
-                    li.nav-item=t('app.contact')     
+                    li.nav-item=t('app.contact')
             ul.lang
                 a#english-hero-anchor.nav-grey-bg.clearfix(href='/'+t('app.switchlng') +'/' + section)
                     li.nav-item=t('app.switchlng-label')
+            ul.cms
+                if user 
+                    a.nav-grey-bg.clearfix(href='/keystone')
+                        li.nav-item=t('app.admin')
+                    a.nav-grey-bg.clearfix(href='/keystone/signout')
+                        li.nav-item=t('app.signout')
+                else
+                    a.nav-grey-bg.clearfix(href='/keystone/signin')
+                        li.nav-item=t('app.signin')
             ul.menu-buttons
                 .fb-like(data-href="http://www.facebook.com/infocinc" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false")
                 a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.infocinc.com")=t('app.tweet')

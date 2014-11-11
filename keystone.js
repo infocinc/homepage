@@ -24,6 +24,7 @@ keystone.init({
 	'emails': 'templates/emails',
 	'auto update': true,
 	'session': true,
+	'signout redirect': '/fr/home',
 	'auth': true,
 	'user model': 'User',
 	'cookie secret': ']>.N%h]>4H_e=(Sifsks!NUPe_tsv=qAGZbqNfI_`B%h:T^JL2r^~)GOdf3/-XU;',

@@ -10,7 +10,7 @@ Enquiry.add({
 	email: {type: Types.Email, required: true},
 	phone: {type: String, required: true},
 	message: {type: Types.Textarea, required: true},
-	timestamp: {type: Date, default: Date.now, noedit: true}
+	timestamp: {type: Date, default: Date.now, format: "Do MMM YYYY, LT", noedit: true}
 });
 
 Enquiry.defaultSort = '-timestamp';

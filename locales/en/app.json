@@ -11,6 +11,9 @@
         "services" : "SERVICES",
         "contact" : "CONTACT",
         "about" : "ABOUT",
-        "menu" : "Menu"
+        "menu" : "Menu",
+        "admin": "ADMIN",
+        "signin" : "SIGN IN",
+        "signout" : "SIGN OUT"
     }
 }

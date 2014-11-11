@@ -11,6 +11,9 @@
         "portfolio": "PORTFOLIO",
         "contact" : "CONTACT",
         "about" : "À PROPOS",
-        "menu" : "Menu"
+        "menu" : "Menu",
+        "admin" : "ADMIN",
+        "signout" : "DÉCONNEXION",
+        "signin" : "CONNEXION"
     }
 }
