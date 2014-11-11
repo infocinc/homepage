@@ -1,0 +1,22 @@
+extends /layouts/default
+
+block body-contents
+	h1 Salut Nic,
+	p.text-larger Un formulaire a été rempli sur le site web #{brand}:
+	if enquiry.name.full || enquiry.email
+		p.text-larger De la part de: 
+			if enquiry.name.full
+				| <strong>#{enquiry.name.full}</strong>
+			if enquiry.name.full && enquiry.email
+				|  (
+			if enquiry.email
+				| <a href="mailto:#{enquiry.email}">#{enquiry.email}</a>
+			if enquiry.name.full && enquiry.email
+				| )
+	if enquiry.phone
+		p.text-larger Tel: #{enquiry.phone}
+	if enquiry.message
+		.text-larger !{enquiry.message}
+	p.text-muted='Envoyé: ' + enquiry._.timestamp.format()
+	p &nbsp;
+	+button({ url: '/keystone/enquiries/' + enquiry.id, label: 'Ouvrir la console administrateur' })
