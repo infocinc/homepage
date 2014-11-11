@@ -1,0 +1,414 @@
+////////////////////////////////////////////
+// TRANSITION
+////////////////////////////////////////////
+
+.transition(@property:all, @delay:500ms, @easing:ease, @duration:0s) {
+  -webkit-transition: @property @delay @easing @duration;
+  -moz-transition: @property @delay @easing @duration;
+  -o-transition: @property @delay @easing @duration;
+  transition: @property @delay @easing @duration;  
+}
+
+/////////////////////////////////////////////////////////////////////////////////
+// KEYFRAMES
+/////////////////////////////////////////////////////////////////////////////////
+
+@-webkit-keyframes shakeanime {
+  0% { -webkit-transform: translate(0px,0px);}
+  2%{ -webkit-transform: translate(0px,10px);}
+  4% { -webkit-transform: translate(0px,0px);}
+}
+
+@-moz-keyframes shakeanime {
+  0% { -moz-transform: translate(0px,0px);}
+  2%{ -moz-transform: translate(0px,10px);}
+  4% { -moz-transform: translate(0px,0px);}
+}
+
+@keyframes shakeanime {
+  0% { transform: translate(0px,0px);}
+  2%{ transform: translate(0px,10px);}
+  4% { transform: translate(0px,0px);}
+}
+
+.shake {
+  -webkit-animation-name: shakeanime;
+  -webkit-animation-delay: 0ms;
+  -webkit-animation-duration: 2000ms;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+
+  -moz-animation-name: shakeanime;
+  -moz-animation-delay: 0s;
+  -moz-animation-duration: 2000ms;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: linear;
+
+  animation-name: shakeanime;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-delay: 0s;
+  animation-timing-function: linear;
+}
+
+@keyframes wobble {
+  0% {
+    transform:  rotate(0deg) scaleX(1) scaleY(1) ;
+  }
+  25% {
+    transform:  rotate(0deg) scaleX(0.97) scaleY(0.99) ;
+  }
+  50% {
+    transform:  rotate(0deg) scaleX(0.97) scaleY(0.95) ;
+  }
+  75% {
+    transform:  rotate(0deg) scaleX(0.99) scaleY(0.95) ;
+  }
+  100% {
+    transform:  rotate(0deg) scaleX(1) scaleY(1) ;
+  }
+}
+
+@-moz-keyframes wobble {
+  0% {
+    -moz-transform:  rotate(0deg) scaleX(1) scaleY(1) ;
+  }
+  25% {
+    -moz-transform:  rotate(0deg) scaleX(0.97) scaleY(0.99) ;
+  }
+  50% {
+    -moz-transform:  rotate(0deg) scaleX(0.97) scaleY(0.95) ;
+  }
+  75% {
+    -moz-transform:  rotate(0deg) scaleX(0.99) scaleY(0.95) ;
+  }
+  100% {
+    -moz-transform:  rotate(0deg) scaleX(1) scaleY(1) ;
+  }
+}
+
+
+@-webkit-keyframes wobble {
+  0% {
+    -webkit-transform:  rotate(0deg) scaleX(1) scaleY(1) ;
+  }
+  25% {
+    -webkit-transform:  rotate(0deg) scaleX(0.97) scaleY(0.99) ;
+  }
+  50% {
+    -webkit-transform:  rotate(0deg) scaleX(0.97) scaleY(0.95) ;
+  }
+  75% {
+    -webkit-transform:  rotate(0deg) scaleX(0.99) scaleY(0.95) ;
+  }
+  100% {
+    -webkit-transform:  rotate(0deg) scaleX(1) scaleY(1) ;
+  }
+}
+
+@-o-keyframes wobble {
+  0% {
+    -o-transform:  rotate(0deg) scaleX(1) scaleY(1) ;
+  }
+  25% {
+    -o-transform:  rotate(0deg) scaleX(0.97) scaleY(0.99) ;
+  }
+  50% {
+    -o-transform:  rotate(0deg) scaleX(0.97) scaleY(0.95) ;
+  }
+  75% {
+    -o-transform:  rotate(0deg) scaleX(0.99) scaleY(0.95) ;
+  }
+  100% {
+    -o-transform:  rotate(0deg) scaleX(1) scaleY(1) ;
+  }
+}
+
+@-ms-keyframes wobble {
+  0% {
+    -ms-transform:  rotate(0deg) scaleX(1) scaleY(1) ;
+  }
+  25% {
+    -ms-transform:  rotate(0deg) scaleX(0.97) scaleY(0.99) ;
+  }
+  50% {
+    -ms-transform:  rotate(0deg) scaleX(0.97) scaleY(0.95) ;
+  }
+  75% {
+    -ms-transform:  rotate(0deg) scaleX(0.99) scaleY(0.95) ;
+  }
+  100% {
+    -ms-transform:  rotate(0deg) scaleX(1) scaleY(1) ;
+  }
+}
+
+.wobble {
+  animation: wobble linear 10s;
+  animation-iteration-count: infinite;
+  animation-delay: 20ms;
+  -webkit-animation: wobble linear 10s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-delay: 20ms;
+  -moz-animation: wobble linear 10s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-delay: 20ms;
+  -o-animation: wobble linear 10s;
+  -o-animation-iteration-count: infinite;
+  -o-animation-delay: 20ms;
+  -ms-animation: wobble linear 10s;
+  -ms-animation-iteration-count: infinite;
+  -ms-animation-delay: 20ms;
+}
+///////////////////////////////////
+// BG
+///////////////////////////////////
+
+.bg-size(@val) {
+  background-size: @val;
+  -webkit-background-size: @val;
+  -moz-background-size: @val;
+  -o-background-size: @val;
+}
+
+.bg(@path;@pattern:no-repeat;@x:center;@y:center;@size:cover) {
+    background: url(@path) @pattern @x @y;
+    .bg-size(@size);
+}
+
+
+/////////////////////////
+// DEFAULT COLOR
+/////////////////////////
+@lightGray: #f2f4f7;
+@lightGray-2: #F8F9FB;
+@white: #fff;
+@black: #000;
+@dark: #262626;
+@darkGray: #656565;
+@blue: #2980B9;
+@lightBlue: rgba(41,128,185,0.55);
+@darkBlue: #354774;
+@green: #27AE60;
+@red: #c0392b;
+@orange: #f39c12;
+@darkOrange: #915D0B;
+@yellow: #E5C454;
+@darkYellow: #9E873A;
+@midnight: #141c26;
+@darkGreen: #1E824C;
+@green-2: rgba(56,187,73,1);
+@darkRed: #96281B;
+@white-2: #f2f4f7;
+@purple: #8e44ad;
+@darkPurple: #542866;
+@lightGreen: #8DEDA5;
+@cyan: #c8e3e4;
+
+.yellow {
+  color: @yellow;
+}
+
+.darkRed {
+  color: @darkRed;
+}
+
+.white {
+  color: @white;
+}
+
+.white-2 {
+  color: @white-2;
+}
+
+.midnight {
+  color: @midnight;
+}
+
+.blue {
+    color:@blue;
+}
+
+.darkblue {
+  color: @darkBlue;
+}
+.red {
+    color:@red;
+}
+.darkgreen { 
+    color: @darkGreen;
+}
+
+.cyan {
+  color: @cyan;
+}
+
+.green {
+    color:@green;
+}
+
+.purple {
+    color:@purple;
+}
+
+.orange {
+    color:@orange;
+}
+
+.background {
+    &-none {
+    background: none ;
+  }
+    &-lightGray {
+      background: @lightGray;
+    }
+    &-lightGray-2 {
+      background: @lightGray-2 ;
+    }
+    &-black {
+      background: #000 ;
+    }
+    &-dark {
+        background: @dark ;
+    }
+
+    &-red {
+        background: @red ;
+    }
+    &-blue {
+        background: @blue ;
+    }
+
+    &-orange {
+        background: @orange ;
+    }
+
+    &-purple {
+        background: @purple ;
+    }
+
+    &-green {
+        background: @green ;
+    }
+
+    &-midnight {
+        background: @midnight ;
+    }
+}
+@z-max: 9999;
+
+////////////////////////////////////
+// MEDIA QUERY
+//////////////////////////////////// 
+
+// Uses only resolution (in dip) to separate mobile from tablet devices. 
+.mobile-only(@display-type:block;@max-res:767px) {
+  display: none;
+  @media screen and (max-width:@max-res) {
+    display: @display-type;
+  }
+}
+
+.show-media(@display-type:block;@min-width:768px) {
+  display: none;
+  @media screen and (min-width:@min-width) {
+    display: @display-type;
+  }
+}
+.hide-media(@min-width:@screen-sm-min) {
+  @media screen and (min-width:@min-width) {
+    display: none;
+  }
+}
+
+////////////////////
+// VISIBILITY
+////////////////////
+
+.none {
+  display:none
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.front {
+  position: relative;
+  z-index: @z-max;
+}
+
+.show-tablet {
+  .show-media; 
+}
+
+
+//////////////////////////////////
+// LISTS STYLING
+//////////////////////////////////
+
+.nostyle {
+    list-style: none;
+}
+
+/////////////////////////////////
+// CLEARFIX
+/////////////////////////////////
+
+.clearfix {
+    &:before, &:after {
+        content:" ";
+        display: table;
+    }
+    &:after {
+        clear:both
+    }
+}
+
+//////////////////////////////////
+// POSITIONING
+//////////////////////////////////
+
+.center       { margin: 0 auto; }
+.text-left    { text-align: left; }
+.text-right   { text-align: right; }
+.text-center  { text-align: center; }
+.text-justify { text-align: justify; }
+
+////////////////////////////////////////
+// FILTERS
+////////////////////////////////////////
+
+@filters-image-directory: "/images";
+
+.grayfilter(@url:'../images/grayscale.svg#greyscale') {
+  @media screen and (min-width:@screen-sm-min) {
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    filter: grayscale(100%);
+    filter: url(@url);
+  }
+}
+
+.overlay-black-gen(@opacity:0.2) {
+  background: @black;
+  opacity: @opacity;
+}
+
+.overlay-black {
+  .overlay-black-gen();  
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.overlay-tvnoise {
+  background: url("@{filters-image-directory}/tvnoise.png");
+  opacity: 1;
+}

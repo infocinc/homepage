@@ -1,0 +1,75 @@
+extends ../layouts/default
+include ../mixins/header
+include ../mixins/logo
+
+block css
+	link(href="/styles/site/header.min.css", rel="stylesheet")
+	link(href='/styles/site/footer.min.css', rel="stylesheet")
+	link(href="/styles/site/services.min.css", rel="stylesheet")
+block head
+	title=t('services:title')
+	meta(name="description", content=t('services:description'))
+block content
+	+logo
+	+header('services','megaphone.png')
+	section#services.clearfix
+	//- 	.col-md-6.col-lg-offset-1.col-lg-5.turnkey
+	//- 		h2!=t('services:turnkey-h')
+	//- 		p=t('services:turnkey-p')
+	//- 		a.orange-box(href='/' + lang+ '/' + "contact")
+	//- 			span=t('services:turnkey-button')
+	//- 	.col-sm-offset-1.col-sm-10.col-md-offset-0.col-md-6.col-lg-offset-1.col-lg-5.service-box
+	//- 		h2=t('services:box-h')
+	//- 		-var n = 1
+	//- 		ul
+	//- 			while n < 8
+	//- 				li
+	//- 					img(src="/images/services/square.png")
+	//- 					span=t('services:box-li-' + n)
+	//- 				-n++
+	//- section#samples.clearfix
+	//- 	.col-md-11.col-lg-offset-1.col-lg-8
+	//- 		h2=t('services:samples-h')
+	//- 		br
+	//- 		span=t('services:samples-hint')
+	//- 		-var n = 1
+	//- 		.row 
+	//- 			.col-sm-6.col-md-6
+	//- 				a(href='/' + lang + '/portfolio/#project-0')
+	//- 					.overlay
+	//- 						.title-box
+	//- 							span.bar
+	//- 							span 
+	//- 								| FORTIER AUTO
+	//- 							span.bar
+	//- 					img(src="/images/services/samples-1.jpg")
+	//- 			.col-sm-6.col-md-6
+	//- 				a(href='/' + lang + '/portfolio/#project-1')
+	//- 					.overlay
+	//- 						.title-box
+	//- 							span.bar
+	//- 							span 
+	//- 								| SUBARU CAR
+	//- 							span.bar
+	//- 					img(src="/images/services/samples-2.jpg")
+	//- 		.row 
+	//- 			.col-sm-6.col-md-6
+	//- 				a(href='/'+ lang + '/portfolio/#project-2')
+	//- 					.overlay
+	//- 						.title-box
+	//- 							span.bar
+	//- 							span 
+	//- 								| NORD SUD HONDA
+	//- 							span.bar
+	//- 					img(src="/images/services/samples-3.jpg")
+	//- 			.col-sm-6.col-md-6
+	//- 				a(href='/' + lang + '/portfolio/#project-3')
+	//- 					.overlay
+	//- 						.title-box
+	//- 							span.bar
+	//- 							span 
+	//- 								| GROUPE BARNABÉ
+	//- 							span.bar
+	//- 					img(src="/images/services/samples-4.jpg")
+	include ../layouts/footer.jade
+

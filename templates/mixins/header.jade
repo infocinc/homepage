@@ -1,14 +1,16 @@
 mixin header(section,icon)
 	header
+		.overlay.overlay-tvnoise
 		.overlay.overlay-black
+		.overlay.overlay-open-menu
 		h1.front!=t(section + ':catchphrase')
-		.img-wrapper
-			if icon !== ''
-				img.front(src='/images/' + section + '/' + icon)
-	if icon !== ''
-		section.intro
-			h2!=t(section + ':intro-h')
-			p=t(section + ':intro-p')
-			if block
-				block
+	//- 	.img-wrapper
+	//- 		if icon !== ''
+	//- 			img.front(src='/images/' + section + '/' + icon)
+	//- if icon !== ''
+	//- 	section.intro
+	//- 		h2!=t(section + ':intro-h')
+	//- 		p=t(section + ':intro-p')
+	//- 		if block
+	//- 			block
 
