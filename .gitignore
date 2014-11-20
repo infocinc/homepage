@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Logs
 logs
 *.log
@@ -29,3 +30,21 @@ node_modules
 
 # Ignore .DS_Store files on OS X
 .DS_Store
+=======
+$ cat .gitignore
+
+# Can ignore specific files
+.settings.xml
+.monitor
+sample/locales/dev/new.ns.special.json
+.DS_Store
+new.ns.*
+
+# Use wildcards as well
+*~
+#*.swp
+
+# Can also ignore all directories and files in a directory.
+node_modules
+node_modules/**/*
+>>>>>>> ce83ded5d16437068e455d1ee66613a4cbb038b6

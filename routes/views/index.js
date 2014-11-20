@@ -7,7 +7,7 @@ exports = module.exports = function(req, res) {
 
 	locals.section = req.params.section || 'home';
 	locals.lang = req.params.lng || 'fr';
-
+	
 	// Render the view
 	view.render(locals.section);
 };

@@ -2,74 +2,91 @@ extends ../layouts/default
 include ../mixins/header
 include ../mixins/logo
 
+
+mixin service-item(name)
+	-var images = { "base" : "/images/home/"}
+	a.col-xs-6.col-md-3(href='services#' + name).service-item
+		.icon-logo
+			img(src=images.base + name + '.png')
+		.icon-text!=t('home:'+name)
+
+mixin service-descr(name,i) 
+	h2!=t('services:' + name+".title") 
+	p.brief!=t('services:' + name + ".brief")
+	button(type="button",data-toggle="collapse" data-target='#hidden-row-' + i).btn-wide
+		span.hide=t('services:close')
+		span=t('services:learnmore')
+
 block css
 	link(href="/styles/site/header.min.css", rel="stylesheet")
 	link(href='/styles/site/footer.min.css', rel="stylesheet")
 	link(href="/styles/site/services.min.css", rel="stylesheet")
 block head
+	link(href='http://fonts.googleapis.com/css?family=Bubblegum+Sans' rel='stylesheet' type='text/css')
 	title=t('services:title')
 	meta(name="description", content=t('services:description'))
 block content
 	+logo
 	+header('services','megaphone.png')
-	section#services.clearfix
-	//- 	.col-md-6.col-lg-offset-1.col-lg-5.turnkey
-	//- 		h2!=t('services:turnkey-h')
-	//- 		p=t('services:turnkey-p')
-	//- 		a.orange-box(href='/' + lang+ '/' + "contact")
-	//- 			span=t('services:turnkey-button')
-	//- 	.col-sm-offset-1.col-sm-10.col-md-offset-0.col-md-6.col-lg-offset-1.col-lg-5.service-box
-	//- 		h2=t('services:box-h')
-	//- 		-var n = 1
-	//- 		ul
-	//- 			while n < 8
-	//- 				li
-	//- 					img(src="/images/services/square.png")
-	//- 					span=t('services:box-li-' + n)
-	//- 				-n++
-	//- section#samples.clearfix
-	//- 	.col-md-11.col-lg-offset-1.col-lg-8
-	//- 		h2=t('services:samples-h')
-	//- 		br
-	//- 		span=t('services:samples-hint')
-	//- 		-var n = 1
-	//- 		.row 
-	//- 			.col-sm-6.col-md-6
-	//- 				a(href='/' + lang + '/portfolio/#project-0')
-	//- 					.overlay
-	//- 						.title-box
-	//- 							span.bar
-	//- 							span 
-	//- 								| FORTIER AUTO
-	//- 							span.bar
-	//- 					img(src="/images/services/samples-1.jpg")
-	//- 			.col-sm-6.col-md-6
-	//- 				a(href='/' + lang + '/portfolio/#project-1')
-	//- 					.overlay
-	//- 						.title-box
-	//- 							span.bar
-	//- 							span 
-	//- 								| SUBARU CAR
-	//- 							span.bar
-	//- 					img(src="/images/services/samples-2.jpg")
-	//- 		.row 
-	//- 			.col-sm-6.col-md-6
-	//- 				a(href='/'+ lang + '/portfolio/#project-2')
-	//- 					.overlay
-	//- 						.title-box
-	//- 							span.bar
-	//- 							span 
-	//- 								| NORD SUD HONDA
-	//- 							span.bar
-	//- 					img(src="/images/services/samples-3.jpg")
-	//- 			.col-sm-6.col-md-6
-	//- 				a(href='/' + lang + '/portfolio/#project-3')
-	//- 					.overlay
-	//- 						.title-box
-	//- 							span.bar
-	//- 							span 
-	//- 								| GROUPE BARNABÉ
-	//- 							span.bar
-	//- 					img(src="/images/services/samples-4.jpg")
+	-var services = ['design', 'social', 'webapp', 'advice']
+	section.intro.clearfix
+		h2=t('services:intro')
+		-var i = 0
+		while i < 4
+			+service-item(services[i])
+			-i++
+
+	-var i =  0
+	while i < 2
+		-var prefix = 'services:' + services[i]
+		section.services.clearfix.container-fluid(class=services[i])
+			.row.service-wrapper
+				.col-sm-6.col-sm-offset-3.col-md-offset-0.col-md-6.col-lg-4.visual(class= i % 2 === 0 ? '' : 'col-md-push-6 col-lg-push-8')
+					img.main(src='/images/services/' + services[i] + '.png')
+				.col-sm-12.col-md-6.col-lg-6.col-lg-offset-2.text(class=i % 2 === 0 ? '' : 'col-md-pull-6' )
+					+service-descr(services[i],i)
+			.row(id='hidden-row-' + i).hidden-row.collapse
+				.question
+					p!=t(prefix+'.question')
+				.bubbles.clearfix
+					-var j = 1
+					while j < 5
+						.col-sm-6.col-md-3
+							.infobubble
+								img(src='/images/services/'+services[i]+'-bubble-' + j + '.png')
+								h3=t(prefix+'.bubbles.' + j)
+						-j++
+				.features.clearfix
+					.col-md-3 
+						p!=t(prefix+'.features.p')
+					-var j = 0
+					-var items = t(prefix+'.features.items');
+					-var count = items.length;
+					while j < 3
+						-var k = j*3
+						.col-md-3
+							ul
+								li=t(prefix + '.features.items.' + (k+1))
+								li=t(prefix + '.features.items.' + (k+2))
+								li=t(prefix + '.features.items.' + (k+3))
+						-j++
+		-i++
 	include ../layouts/footer.jade
+
+block js
+	script.
+		var switchimg = function(e, state) {
+			var delim = state === 'on' ? '.' : "-",
+				suffix = state === 'on' ? "-hover" : "",
+				img = $(this).find('img');
+
+			var tkn = $(img).attr('src').split(delim).shift();
+			$(img).attr('src', tkn + suffix + '.png');
+		}
+		var toggle = function(state) {
+			return function(e) {
+				$.proxy(switchimg,this)(e,state)
+			}
+		}
+		$(".intro > a").hover(toggle('on'),toggle('off'));
 

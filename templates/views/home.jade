@@ -3,7 +3,7 @@ extends ../layouts/default
 
 mixin service-item(name) 
 	-var images = { "base": "/images/home/" }
-	a.col-xs-6.col-md-2(href='/' + lang + '/services#' + name)
+	a.col-xs-6.col-md-2(href='/' + lang + '/services#' + name).service-item
 		.icon-logo
 			img(src=images.base + name + '.png')
 		.icon-text= t('home:' + name)

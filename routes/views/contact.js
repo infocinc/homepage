@@ -15,7 +15,8 @@ exports = module.exports = function(req,res) {
 	view.on('post', {action: 'contact'}, function(next) {
 		var application = new Enquiry.model(),
 			updater = application.getUpdateHandler(req);
-			updater.options.errorMessage = 'Oops!';
+
+		updater.options.errorMessage = 'Oops!';
 
 		updater.process(req.body, {
 			flashErrors: true
@@ -35,6 +36,7 @@ exports = module.exports = function(req,res) {
 				}, function(err,info) {
 					if (err)
 						console.log(err);
+					
 				});
 			}
 			next();

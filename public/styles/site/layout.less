@@ -31,6 +31,41 @@ body {
 	}
 }
 
+///////////////////////////////////////////////////////////////
+// JS CONTROLLED HOVERS
+///////////////////////////////////////////////////////////////
+.service-item-hover {
+  background: @dark-brown;
+}
+.icon-text-hover {
+  color: @white !important;
+}
+
+.service-item {
+	display: inline-block;
+	margin-bottom: 15px;
+	color: black;
+	.transition(@property:background;@delay:300ms);
+	&:first-child {
+		margin-top: 35px;
+	}
+	.icon-text {
+		letter-spacing: 0.2em;
+		font-size: 1.4em;
+	}
+	.icon-logo {
+		width: 80%;
+		max-width: 120px;
+		margin: 0 auto;
+		img {
+			width: 100%;
+		}
+	}
+}
+
+.service-item:active, .service-item:focus {
+	background: @dark-brown !important;
+}
 ////////////////////////////////////////////////////////////////
 // MEDIA QUERIES
 ////////////////////////////////////////////////////////////////
@@ -38,6 +73,12 @@ body {
 @media screen and (min-width:@screen-iphone-min) {
 	.logo {
 		left: 10px;
+	}
+}
+
+@media screen and (min-width: @screen-xs-min) {
+	.service-item .icon-text {
+		margin-top: 10px;
 	}
 }
 
@@ -52,11 +93,20 @@ body {
 	#menu {
 		.side-menu-full();
 	}
+	.service-item .icon-logo {
+		width: 110px;
+	}
 }
 
 @media screen and (min-width:@screen-md-min) {
 	.logo {
 		top: 10px;
+	}
+	.service-item {
+		.icon-logo {
+			width: 100px;
+			margin-bottom: 10px;
+		}
 	}
 }
 
@@ -67,6 +117,9 @@ body {
 		img {
 			height: 50px;
 		}
+	}
+	.service-item .icon-logo {
+		width: 120px;
 	}
 }
 

@@ -52,7 +52,26 @@ var routes = {
 
 // Setup Route Bindings
 exports = module.exports = function(app) {
-		
+
+	i18n.serveChangeKeyRoute(app)
+		.serveRemoveKeyRoute(app)
+		.serveDynamicResources(app);
+
+	i18n.serveWebTranslate(app, {
+		i18nextWTOptions: {
+			languages: ['fr','en'],
+			namespaces: [
+				'app','home','form','services',
+				'footer','portfolio','terms',
+				'contact'
+			],
+			resGetPath: 'locales/resources.json?lng=__lng__&ns=__ns__',
+			resChangePath: 'locales/change/__lng__/__ns__',
+			resRemovePath: 'locales/remove/__lng__/__ns__',
+			fallbackLng: "fr",
+			dynamicLoad: true
+		}
+	});
 	// Views
 	app.all('/:lng/contact', function(req,res) {
 		routes.views.contact(req,res);
@@ -74,7 +93,6 @@ exports = module.exports = function(app) {
 
 	app.get('/blog/:category?', routes.views.blog);
 	app.get('/blog/post/:post', routes.views.post);
-	
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
 };

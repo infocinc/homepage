@@ -62,9 +62,6 @@ keystone.set('locals', {
 
 // Load i18n options
 var options = {
-	preload: ['en','fr'],
-	supportedLngs: ['en','fr'],
-	load: 'unspecific',
 	ns: {
 		namespaces: [
 			'app','home','form','services',
@@ -73,14 +70,19 @@ var options = {
 		],
 		defaultNs: 'app'
 	},
+	preload: ['en','fr'],
+	supportedLngs: ['en','fr'],
+	load: 'unspecific',
+	resSetPath: 'locales/__lng__/__ns__.json',
 	detectLngFromPath: 0,
 	forceDetectLngFromPath: true,
 	fallbackLng: 'fr',
 	debug: true
 }
 
-i18n.init(options);
-i18n.registerAppHelper(app);
+
+//i18n.backend(require('./backend'));
+
 // Load your project's Routes
 keystone.set('routes', require('./routes'));
 
@@ -108,6 +110,12 @@ keystone.set('email locals', {
 // Be sure to update this rule to include your site's actual domain, and add
 // other rules your email templates require.
 
+keystone.set('signin url', 
+	keystone.get('env') == 'production' ? 
+		'https://infocinc.herokuapp.com/keystone/signin' : 
+		'/keystone/signin'
+);
+
 keystone.set('email rules', [{
 	find: '/images/',
 	replace: (keystone.get('env') == 'production') ? 'http://infocinc.herokuapp.com/images/' : 'http://localhost:3000/images/'
@@ -126,4 +134,11 @@ keystone.set('nav', {
 });
 
 // Start Keystone to connect to your database and initialise the web server
-keystone.start();
+var events = {
+	'onMount' : function() {
+		i18n.backend(require('./backend'));
+		i18n.init(options);
+		i18n.registerAppHelper(app);
+	}
+}
+keystone.start(events);

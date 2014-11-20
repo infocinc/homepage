@@ -46,49 +46,8 @@
 }
 
 
-
-//////////////////////////////////////////////////////////////
-// SERVICES
-///////////////////////////////////////////////////////////////
-
-.icon-logo {
-  width: 80%;
-  max-width: 120px;
-  margin: 0 auto;
-  img {
-    width: 100%
-  }
-}
-
-.icon-text {
-  letter-spacing: 0.2em;
-  font-size: 1.4em;
-}
-
 #services-wrapper {
   text-align: center;
-  a {
-    display: inline-block;
-    .transition(@property:background;@delay:300ms);
-    margin-bottom: 15px;
-    color: black;
-    &:first-child {
-      margin-top: 35px;
-    }
-    &:active,&:focus {
-      background: @dark-brown !important;
-    }
-  } 
-}
-
-///////////////////////////////////////////////////////////////
-// JS CONTROLLED HOVERS
-///////////////////////////////////////////////////////////////
-.service-item-hover {
-  background: @dark-brown;
-}
-.icon-text-hover {
-  color: @white !important;
 }
 
 
@@ -98,7 +57,7 @@
 
 // MAX WIDTHS
 @media screen and (max-width:@screen-iphone-max) {
-  #services-wrapper a {
+  .service-item {
     width: 100%;
   }
 
@@ -119,9 +78,6 @@
     a:nth-child(2) {
       margin-top: 35px;
     }
-  }
-  .icon-text {
-    margin-top: 10px;
   }
 }
 
@@ -154,9 +110,7 @@
        }
     }
   }
-  .icon-logo {
-    width: 110px;
-  }
+
   #services-wrapper {
     margin-bottom: 40px;
     a {
@@ -198,10 +152,6 @@
       margin-top: 0;
     }
   }
-  .icon-logo {
-    width: 100px;
-    margin-bottom: 10px;
-  }
   .hero-text-wrapper {
     padding-top: 250px;
   }
@@ -212,9 +162,6 @@
      margin: 50px 0 40px 0;
   }
 
-  .icon-logo {
-    width: 120px;
-  }
 }
 
 @media screen and (min-width:@screen-wide-min) {
