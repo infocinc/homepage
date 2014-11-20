@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "name": "infocinc",
   "version": "1.0.0",
   "private": true,
@@ -19,8 +18,7 @@
   "scripts": {
     "start": "node keystone.js"
   },
-  "main": "keystone.js"
-=======
+  "main": "keystone.js",
   "author": "Jan Muehlemann <jan.muehlemann@gmail.com>",
   "name": "i18next",
   "description": "i18n made easy - full featured: middleware, template support plus clientside use",
@@ -53,5 +51,4 @@
   "scripts": {
     "test": "make test"
   }
->>>>>>> ce83ded5d16437068e455d1ee66613a4cbb038b6
 }
