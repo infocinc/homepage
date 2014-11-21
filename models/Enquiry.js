@@ -1,4 +1,4 @@
-var keystone = require('keystone'),
+var keystone = require('dsy'),
 	Types = keystone.Field.Types;
 
 var Enquiry = new keystone.List("Enquiry", {nocreate: true, track: true});

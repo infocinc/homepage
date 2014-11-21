@@ -10,7 +10,7 @@
 
 var _ = require('underscore'),
 	querystring = require('querystring'),
-	keystone = require('keystone');
+	dsy = require('dsy');
 
 
 /**
@@ -68,7 +68,7 @@ exports.requireUser = function(req, res, next) {
 	
 	if (!req.user) {
 		req.flash('error', 'Please sign in to access this page.');
-		res.redirect('/keystone/signin');
+		res.redirect('/dsy/signin');
 	} else {
 		next();
 	}

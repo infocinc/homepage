@@ -19,24 +19,24 @@
  */
 
 var _ = require('underscore'),
-	keystone = require('keystone'),
+	dsy = require('dsy'),
 	i18n = require("i18next"),
 	middleware = require('./middleware'),
-	importRoutes = keystone.importer(__dirname);
+	importRoutes = dsy.importer(__dirname);
 
 
 
 // Common Middleware
-keystone.pre('routes',i18n.handle);
-keystone.pre('routes', middleware.initLocals);
-keystone.pre('render', middleware.flashMessages);
+dsy.pre('routes',i18n.handle);
+dsy.pre('routes', middleware.initLocals);
+dsy.pre('render', middleware.flashMessages);
 
 
-keystone.set('404', function(req,res,next) {
+dsy.set('404', function(req,res,next) {
 	res.notfound();
 });
 
-keystone.set('500',function(err,req,res,next) {
+dsy.set('500',function(err,req,res,next) {
 	var title, message;
 	if (err instanceof Error) {
 		message = err.message;

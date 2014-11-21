@@ -8,10 +8,10 @@
  * function that calls a callback(err, locals).
  * 
  * Sample generated emails, based on the keys and methods below,
- * can be previewed at /keystone/test-email/{key}
+ * can be previewed at /dsy/test-email/{key}
  */
 
-var keystone = require('keystone');
+var dsy = require('dsy');
 
 module.exports = {
 	
@@ -22,7 +22,7 @@ module.exports = {
 		// To test enquiry notifications we create a dummy enquiry that
 		// is not saved to the database, but passed to the template.
 		
-		var Enquiry = keystone.list('Enquiry');
+		var Enquiry = dsy.list('Enquiry');
 		
 		var newEnquiry = new Enquiry.model({
 			name: { first: 'Test', last: 'User' },
@@ -34,7 +34,7 @@ module.exports = {
 		callback(null, {
 			admin: 'Admin User',
 			enquiry: newEnquiry,
-			enquiry_url: '/keystone/enquiries/'
+			enquiry_url: '/dsy/enquiries/'
 		});
 		
 	}

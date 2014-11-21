@@ -1,4 +1,4 @@
-var keystone = require('keystone'),
+var keystone = require('dsy'),
 	Types = keystone.Field.Types;
 
 /**
@@ -13,7 +13,7 @@ User.add({
 	email: { type: Types.Email, initial: true, required: true, index: true },
 	password: { type: Types.Password, initial: true, required: true }
 }, 'Permissions', {
-	isAdmin: { type: Boolean, label: 'Can access Keystone', index: true }
+	isAdmin: { type: Boolean, label: 'Can access DSY', index: true }
 });
 
 // Provide access to Keystone

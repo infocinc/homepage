@@ -1,9 +1,9 @@
-var keystone = require('keystone'),
+var dsy = require('dsy'),
 	async = require('async');
 
 exports = module.exports = function(req, res) {
 	
-	var view = new keystone.View(req, res),
+	var view = new dsy.View(req, res),
 		locals = res.locals;
 	
 	// Set locals
@@ -18,7 +18,7 @@ exports = module.exports = function(req, res) {
 	// Load the current post
 	view.on('init', function(next) {
 		
-		var q = keystone.list('Post').model.findOne({
+		var q = dsy.list('Post').model.findOne({
 			state: 'published',
 			slug: locals.filters.post
 		}).populate('author categories');
@@ -33,7 +33,7 @@ exports = module.exports = function(req, res) {
 	// Load other posts
 	view.on('init', function(next) {
 		
-		var q = keystone.list('Post').model.find().where('state', 'published').sort('-publishedDate').populate('author').limit('4');
+		var q = dsy.list('Post').model.find().where('state', 'published').sort('-publishedDate').populate('author').limit('4');
 		
 		q.exec(function(err, results) {
 			locals.data.posts = results;

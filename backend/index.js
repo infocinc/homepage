@@ -1,5 +1,5 @@
-var keystone = require('keystone'),
-	Resource = keystone.list('LocaleResource');
+var dsy = require('dsy'),
+	Resource = dsy.list('LocaleResource');
 
 // helpers
 

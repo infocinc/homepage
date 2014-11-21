@@ -1,9 +1,9 @@
-var keystone = require('keystone'),
-	Enquiry = keystone.list('Enquiry');
+var dsy = require('dsy'),
+	Enquiry = dsy.list('Enquiry');
 
 
 exports = module.exports = function(req,res) {
-	var view = new keystone.View(req,res),
+	var view = new dsy.View(req,res),
 		locals = res.locals;
 
 	locals.section = 'contact';
@@ -26,7 +26,7 @@ exports = module.exports = function(req,res) {
 				console.log(err);
 			} else {
 				locals.enquirySubmitted = true;
-				var email = new keystone.Email('enquiry-notification');
+				var email = new dsy.Email('enquiry-notification');
 				locals.enquiry = application;
 				email.send({
 					enquiry: application, 

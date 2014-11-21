@@ -1,8 +1,8 @@
-var keystone = require('keystone');
+var dsy = require('dsy');
 
 exports = module.exports = function(req, res) {
 
-	var view = new keystone.View(req, res),
+	var view = new dsy.View(req, res),
 		locals = res.locals;
 
 	locals.section = req.params.section || 'home';

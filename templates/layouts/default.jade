@@ -41,7 +41,7 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
 
         //- This file provides the default styling for the KeystoneJS Content Editor
         if user && user.canAccessKeystone
-            link(href="/keystone/styles/content/editor.min.css", rel="stylesheet")
+            link(href="/dsy/styles/content/editor.min.css", rel="stylesheet")
 
         //- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
         //- Safely remove this block if you are not targeting IE8
@@ -120,12 +120,12 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
                     li.nav-item=t('app.switchlng-label')
             ul.cms
                 if user 
-                    a.nav-grey-bg.clearfix(href='/keystone')
+                    a.nav-grey-bg.clearfix(href='/dsy')
                         li.nav-item=t('app.admin')
-                    a.nav-grey-bg.clearfix(href='/keystone/signout')
+                    a.nav-grey-bg.clearfix(href='/dsy/signout')
                         li.nav-item=t('app.signout')
                 else
-                    a.nav-grey-bg.clearfix(href='/keystone/signin')
+                    a.nav-grey-bg.clearfix(href='/dsy/signin')
                         li.nav-item=t('app.signin')
             ul.menu-buttons
                 .fb-like(data-href="http://www.facebook.com/infocinc" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false")
@@ -177,7 +177,7 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
         //- The KeystoneJS Content Editor provides support for ks-editable data attributes,
         //- which generate links to edit content for users who can access Keystone
         if user && user.canAccessKeystone
-            script(src='/keystone/js/content/editor.js')
+            script(src='/dsy/js/content/editor.js')
 
         //- Add scripts that are globally required by your site here.
 
