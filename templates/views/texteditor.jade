@@ -1,0 +1,209 @@
+doctype html
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+
+html.no-js(lang=lang)
+
+    //- HTML HEADER
+    head
+
+        -var root = "http://www.infocinc.com"
+
+        meta(charset="utf-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0, user-scalable=no")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge,chrome=1")
+        meta(name="author", content="infocinc")
+        title
+            | i18next - webtranslate
+        base(href="/")
+        //- this tag is to disable styling of links in iphones
+        meta(name="format-detection", content="telephone=no")
+        meta(property="fb:app_id", content="712675532159199")
+        meta(property="og:type", content="website")
+        meta(property="og:locale", content=lang)
+        meta(property="og:url", content=root + '/' + lang + '/' + section)
+
+        link(rel="alternate", href=root + '/fr/' + section, hreflang="fr-CA")
+        link(rel="alternate", href=root + '/en/' + section,  hreflang="en-US")
+        link(rel="canonical", href=root + '/' + lang + '/' + section)
+
+        link(rel="publisher", href="https://plus.google.com/+Infocinc1")
+        link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
+
+        //- modernizr 
+        script(src="/js/vendor/modernizr-2.6.2.min.js")
+
+        //- Customise the stylesheet for your site by editing /public/styles/site.less
+        //- All .less files will be automatically compiled and minified in production.
+
+        link(href="/css/i18nextWT.css", rel="stylesheet")
+        //- This file provides the default styling for the KeystoneJS Content Editor
+
+        //- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+        //- Safely remove this block if you are not targeting IE8
+        //-[if lt IE 9]
+            script(src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js")
+            script(src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js")
+        //-[endif]
+
+        //- Include template-specific stylesheets by extending the css block
+        block css
+
+        //- Add any other template-specific HEAD tags by extending the head block
+        block head
+
+    //- HTML BODY
+    body
+        //-[if lt IE 9]
+            p.chromeframe 
+                |   Votre navigateur est passé date. SVP  <a href="http://browsehappy.com/">faite une mise à jour.</a> 
+        //-[endif]
+        .header
+            .header-inner
+
+        .main
+            .main-inner
+
+        .footer
+            .footer-inner
+        script(src="/js/vendor/i18nextWT.js")
+        script.
+            i18nextWT_onready = function(wt) {
+                wt.config(
+                    {
+                    languages: ["fr"],
+                    namespaces: [ 'app' ],
+                        //- 'app','home','form',
+                        //- 'services', 'footer','portfolio','terms',
+                        //- 'contact'
+                        //- ],
+                    resGetPath: "locales/__lng__/__ns__.json",
+                    resChangePath: "locales/__lng__/__ns__.json",
+                    fallbackLng: "fr",
+                    dynamicLoad: true
+                    }
+                )
+                wt.start()
+            }
+        script.
+            (function(i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r;
+            i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-52538854-1', 'auto');
+            ga('require', 'linkid', 'linkid.js');
+            ga('require', 'displayfeatures');
+            ga('send', 'pageview');
+        script.
+            window.___gcfg = {
+                lang: 'fr-CA',
+                parsetags: 'onload'
+            };
+            (function() {
+                var po = document.createElement("script");
+                po.type = "text/javascript";
+                po.async = true;
+                po.src = "https://apis.google.com/js/plusone.js";
+                var s = document.getElementsByTagName("script")[0];
+                s.parentNode.insertBefore(po, s);
+            })();    
+        #fb-root
+        script.
+            (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=257336651130199&version=v2.0";
+            fjs.parentNode.insertBefore(js, fjs);
+            }(document, 'script', 'facebook-jssdk'));
+        //- BODY
+        //- nav#menu.bar-items
+        //-     button(type="button")#remove-btn
+        //-         span.glyphicon.glyphicon-remove
+        //-     ul.principal
+        //-         a.nav-grey-bg.clearfix(href='/' + lang + '/home')
+        //-             li.nav-item=t('app.home')
+        //-         a.nav-grey-bg.clearfix(href='/' + lang + '/portfolio')
+        //-             li.nav-item=t('app.portfolio')     
+        //-         a.nav-grey-bg.clearfix(href='/' + lang + '/services')
+        //-             li.nav-item=t('app.services')
+        //-         a.nav-grey-bg.clearfix(href='/' + lang + '/contact')
+        //-             li.nav-item=t('app.contact')
+        //-     ul.lang
+        //-         a#english-hero-anchor.nav-grey-bg.clearfix(href='/'+t('app.switchlng') +'/' + section)
+        //-             li.nav-item=t('app.switchlng-label')
+        //-     ul.cms
+        //-         if user 
+        //-             a.nav-grey-bg.clearfix(href='/keystone')
+        //-                 li.nav-item=t('app.admin')
+        //-             a.nav-grey-bg.clearfix(href='/keystone/signout')
+        //-                 li.nav-item=t('app.signout')
+        //-         else
+        //-             a.nav-grey-bg.clearfix(href='/keystone/signin')
+        //-                 li.nav-item=t('app.signin')
+        //-     ul.menu-buttons
+        //-         .fb-like(data-href="http://www.facebook.com/infocinc" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false")
+        //-         a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.infocinc.com")=t('app.tweet')
+        //-     ul.menu-footer
+        //-         li#social-icons.clearfix
+        //-             a(target="_blank" href="//twitter.com/InfoCinc") 
+        //-                 img(src="/images/twitterlogo.png")   
+        //-             a(target="_blank" href="//facebook.com/Infocinc")
+        //-                 img(src="/images/facebooklogo.png")
+        //-             a(target="_blank" href="//plus.google.com/+Infocinc1")  
+        //-                 img(src="/images/googlepluslogo.png") 
+        //-             a(target="_blank" href="//www.linkedin.com/company/infocinc")  
+        //-                 img(src="/images/linkedin.png") 
+        //-         li.nav-item
+        //-             | &copy;2014 INFOCINC
+        //- #main.push
+        //-     button#navbar-button.menu-link.menu-toggle(type="button")
+        //-         span.menu= t('app.menu')
+        //-         #hamburger
+        //-             span.icon-bar
+        //-             span.icon-bar
+        //-             span.icon-bar
+            //- NOTE:
+            //- There is no .container wrapping class around body blocks to allow more flexibility in design.
+            //- Remember to include it in your templates when you override the intro and content blocks!
+
+            //- The Intro block appears above flash messages (used for temporary information display)
+            block intro
+
+
+            //- The content block should contain the body of your template's content
+            block content
+
+
+        //- JAVASCRIPT
+
+        //- jQuery 1.11.1 is included by default, and required by both Bootstrap
+        //- and the KeystoneJS Content Editor. If you are not targeting IE8,
+        //- you can upgrade to 2.1.1 (also bundled) for better performance.
+        #media-state.hide.screenwidth
+        script(src="https://code.jquery.com/jquery-2.1.0.min.js")
+        script.
+            var tag = '<script src="/js/vendor/jquery-2.1.0.min.js"<\/script>'
+            window.jQuery || document.write(tag)
+            var section = !{JSON.stringify(section)}
+        //- script(src="/js-dist/base-min.js")
+
+        //- The KeystoneJS Content Editor provides support for ks-editable data attributes,
+        //- which generate links to edit content for users who can access Keystone
+        //- if user && user.canAccessKeystone
+        //-     script(src='/keystone/js/content/editor.js')
+
+        //- Add scripts that are globally required by your site here.
+
+        //- Include template-specific javascript files by extending the js block
+        block js

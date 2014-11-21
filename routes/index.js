@@ -19,7 +19,7 @@
  */
 
 var _ = require('underscore'),
-	dsy = require('dsy'),
+	dsy = require('../lib/dsy'),
 	i18n = require("i18next"),
 	middleware = require('./middleware'),
 	importRoutes = dsy.importer(__dirname);

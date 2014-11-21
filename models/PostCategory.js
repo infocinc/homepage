@@ -1,4 +1,4 @@
-var keystone = require('dsy'),
+var keystone = require('../lib/dsy'),
 	Types = keystone.Field.Types;
 
 /**

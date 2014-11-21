@@ -1,4 +1,4 @@
-var dsy = require('dsy');
+var dsy = require('../../lib/dsy');
 
 exports = module.exports = function(req, res) {
 

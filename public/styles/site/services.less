@@ -1,0 +1,327 @@
+@import (reference) "../ifc-toolkit/presets/electro.less";
+
+
+@root: '@{kjs-img}/services';
+
+@seriousgreen: #495C5D;
+@lightgreen: rgba(73,92,93,0.5);
+
+///////////////////////////////////////////
+// HEADER BG
+///////////////////////////////////////////
+header {
+	.bg('@{root}/bg-mobile.jpg');
+}
+
+
+
+///////////////////////////////////////////
+// SERVICES
+///////////////////////////////////////////
+
+.intro {
+	a {
+		.transition(@property:background;@delay:300ms);
+	}
+	h2 {
+		font-size: 2em;
+		letter-spacing: 0.1em;
+	}
+}
+
+// NON-LAYOUT
+// ---------------
+.services {
+}
+.service-wrapper {
+	h2 {
+		font-family: 'Bubblegum Sans', sans-serif;
+		font-size: 1.8em;
+	}
+	.brief {
+		font-size: 1.2em;
+	}
+}
+
+
+.btn-wide {
+	border: 1px solid @seriousgreen;
+	background: rgba(73,92,93,0.7);
+	color: @white;
+	border-radius: 3px;
+	&:hover {
+		background: @seriousgreen;
+	}
+	span {
+		font-size: 1em;
+	}
+}
+.design {
+	border: 15px solid rgba(73,92,93,0.5);
+	background: url('@{root}/t9.png');
+	color: #495C5D;
+	.hidden-row {
+		.question {
+			background: url('@{root}/axiom-pattern-1.png') repeat #495C5D;
+		}
+		.bubbles {
+			background: url('@{root}/t9.png');
+		}
+		.features {
+			background: url('@{root}/axiom-pattern-2.png') repeat #495C5D;
+		}
+	}
+}
+.social {
+	border: 15px solid #8b9dc3;
+	background: url('@{root}/cubes.png') repeat @white;
+	color: #3b5998;
+	.question {
+		background: url('@{root}/axiom-pattern-1.png') repeat rgba(59,89,152,0.8);
+	}
+	.bubbles {
+		background: url('@{root}/cubes.png') repeat @white;
+	}
+	.features {
+	background: url('@{root}/axiom-pattern-2.png') repeat rgba(59,89,152,0.8);
+	}
+	.btn-wide {
+		border: 1px solid #3580D4;
+		background: #8b9dc3;
+		&:hover {
+			background: #3b5998;
+		}
+	}
+}
+
+.hidden-row {
+	.question {
+		p {
+			color: @white;
+			letter-spacing: 0.1em;
+			font-size: 1.5em;
+			text-align: center;
+			margin: 0;
+		}
+	}
+	.bubbles {
+		text-align: center;
+	}
+	.features {
+		p {
+			margin: 0;
+			color: @white;
+		}
+		ul {
+			color: @white;
+		}
+	}
+}
+
+// LAYOUT
+// ----------------------
+
+.hidden-row {
+	text-align: center;
+}
+
+.intro {
+	padding: 50px 0;
+	text-align: center;
+	h2 {
+		padding-bottom: 20px;
+	}
+}
+
+.service-wrapper {
+	padding: 30px;
+	text-align: center;
+	.visual {
+		padding-bottom: 20px;
+		img {
+			width: 100%;
+		}
+	}
+}
+.hidden-row {
+	.question {
+		padding: 60px;
+	}
+	.bubbles {
+		padding: 60px;
+		.infobubble {
+			img {
+				width: 100px;
+			}
+			h3 {
+				padding: 15px 0;
+				font-size: 1em;
+			}
+		}
+	}
+	.features {
+		text-align: center;
+		padding: 60px;
+		p {
+			font-size: 1.5em;
+			line-height: 1;
+		}
+		ul {
+			margin: 0;
+			font-size: 1.3em;
+			li {
+				padding: 10px 0;
+			}
+		}
+	}
+}
+
+///////////////////////////////////////////////
+// MEDIA QUERIES
+///////////////////////////////////////////////
+
+//////////////////////
+// VERY SMALL DEVICES 
+//////////////////////
+@media screen and (max-width:(@screen-nano-max)) {
+}
+
+@media screen and (max-width:@screen-iphone-max) {
+  .service-item {
+    width: 100%;
+  }
+
+}
+//////////////////
+// IPHONE PORTRAIT
+//////////////////
+@media screen and (min-width:@screen-iphone-min) {
+}
+
+//////////////////
+// IPHONE LANDSCAPE
+//////////////////
+@media screen and (min-width:@screen-xs-min) {
+
+}
+
+//////////////////
+// IPAD PORTRAIT
+//////////////////
+@media screen and (min-width:@screen-sm-min) {
+	header {
+		.bg('@{root}/bg-tablet.jpg');
+	}
+	.intro {
+		padding: 50px 0;
+		h2 {
+			font-size: 3em;
+			letter-spacing: 0.1em;
+			padding-bottom: 20px;
+		}
+	}
+	.service-wrapper {
+		padding: 60px;
+		text-align: center;
+		h2 {
+			font-size: 3em;
+		}
+		.brief {
+			font-size: 2em;
+		}
+		.visual {
+			padding-bottom: 20px;
+			img {
+					width: 100%;
+			}
+		}
+	}
+	.hidden-row {
+		.question {
+			padding: 60px;
+			p {
+				font-size: 3em;
+			}
+		}
+		.bubbles {
+			padding: 60px;
+			.infobubble {
+				img {
+					width: 100px;
+				}
+				h3 {
+					padding: 15px 0;
+					font-size: 1.2em;
+				}
+			}
+		}
+		.features {
+			text-align: center;
+			padding: 60px;
+			p {
+				font-size: 3.7em;
+				line-height: 1;
+			}
+			ul {
+				margin: 0;
+				font-size: 1.3em;
+				li {
+					padding: 10px 0;
+				}
+			}
+			.links {
+				text-align: left;
+				p {
+					padding: 20px 0;
+					font-size: 1.6em;
+				}
+			}
+		}
+	}
+}
+
+/////////////////////////
+// IPAD LANDSCAPE
+/////////////////////////
+@media screen and (min-width:@screen-md-min) {
+	header {
+		.bg('@{root}/bg-desktop.jpg');
+	}
+	.intro {
+		padding: 50px 0;
+		width: 80%;
+		margin: 0 auto;
+		img {
+			width: 120px;
+		}
+	}
+	.service-wrapper {
+		padding: 60px;
+		text-align: left;
+		.visual img {
+			width: 300px;
+		}
+	}
+	.services {
+		text-align: left;
+	}
+	.hidden-row {
+		.features {
+			text-align: left;
+		}
+	}
+}
+
+/////////////////////////
+// LARGE SCREEN - LAPTOP
+/////////////////////////
+@media screen and (min-width:@screen-lg-min) {
+	.service-wrapper {
+		padding: 60px;
+		.visual img {
+			width: 400px;
+		}
+	}
+}
+
+

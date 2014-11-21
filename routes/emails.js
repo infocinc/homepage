@@ -11,7 +11,7 @@
  * can be previewed at /dsy/test-email/{key}
  */
 
-var dsy = require('dsy');
+var dsy = require('../lib/dsy');
 
 module.exports = {
 	

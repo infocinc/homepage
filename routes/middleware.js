@@ -10,7 +10,7 @@
 
 var _ = require('underscore'),
 	querystring = require('querystring'),
-	dsy = require('dsy');
+	dsy = require('../lib/dsy');
 
 
 /**
