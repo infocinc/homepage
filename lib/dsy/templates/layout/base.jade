@@ -7,7 +7,7 @@ html
 		meta(name="viewport", content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width")
 
 		title= title
-
+		link(href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css')
 		//- Component Stylesheets
 		link(rel="stylesheet", href="/dsy/js/lib/select2/select2-3.3.2.css")
 		link(rel="stylesheet", href="/dsy/js/lib/pikaday/pikaday-1.1.0.css")
@@ -66,7 +66,7 @@ html
 				block content
 
 		#footer: .container
-			//- p Powered by <a href="http://keystonejs.com" target="_blank">KeystoneJS</a> version #{version}.
+			p Powered by DSY version #{version}.
 			if User && user
 				|  Signed in as 
 				a(href='/dsy/' + User.path + '/' + user.id)= User.getDocumentName(user)

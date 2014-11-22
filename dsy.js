@@ -5,7 +5,7 @@ require('dotenv').load();
 // Require dsy
 var express = require("express"),
 	app = express(),
-	dsy = require('./lib/dsy').connect(app),
+	dsy = require(__dirname + '/lib/dsy').connect(app),
 	compressor = require('node-minify'),
     i18n = require('i18next')
 
@@ -26,6 +26,7 @@ dsy.init({
 	'session': true,
 	'signout redirect': '/fr/home',
 	'auth': true,
+	'signin logo':  '/dsy/images/logo.png',
 	'user model': 'User',
 	'cookie secret': ']>.N%h]>4H_e=(Sifsks!NUPe_tsv=qAGZbqNfI_`B%h:T^JL2r^~)GOdf3/-XU;',
 	'mongo' : process.env.MONGOHQ_URL,
@@ -110,7 +111,7 @@ dsy.set('email locals', {
 // Be sure to update this rule to include your site's actual domain, and add
 // other rules your email templates require.
 
-dsy.set('secure admin', false);
+dsy.set('secure admin', dsy.get('env') == 'production' ? true : false);
 dsy.set('secure signin','https://infocinc.herokuapp.com/dsy/signin'); 
 
 dsy.set('email rules', [{
@@ -127,7 +128,8 @@ dsy.set('email tests', require('./routes/emails'));
 // Configure the navigation bar in dsy's Admin UI
 dsy.set('nav', {
 	'posts': ['posts', 'post-categories'],
-	'users': 'users'
+	'users': 'users',
+	'images': ['images', 'image-folders']
 });
 
 // Start dsy to connect to your database and initialise the web server

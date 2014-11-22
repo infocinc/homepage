@@ -3,23 +3,23 @@
 // --------------------------------------------------
 
 // Reset keystone navbar basics
-@navbar-keystone-bg:                         @link-color;// #004a80;
+@navbar-keystone-bg:                         @gray-flat;// #004a80;
 @navbar-keystone-color:                      mix(white,@navbar-keystone-bg,50%);
 @navbar-keystone-border:                     darken(@navbar-keystone-bg, 10%);
 
 // Keystone navbar links
 @navbar-keystone-link-color:                 mix(white,@navbar-keystone-bg,60%);
 @navbar-keystone-link-hover-color:           #fff;
-@navbar-keystone-link-hover-bg:              lighten(@navbar-keystone-bg, 3.5%);
+@navbar-keystone-link-hover-bg:              #000;
 @navbar-keystone-link-active-color:          @navbar-keystone-link-hover-color;
-@navbar-keystone-link-active-bg:             darken(@navbar-keystone-bg, 3.5%);
+@navbar-keystone-link-active-bg:             #000;
 @navbar-keystone-link-disabled-color:        #444;
 @navbar-keystone-link-disabled-bg:           transparent;
 
 // Keystone navbar brand label
 @navbar-keystone-brand-color:                mix(white,@navbar-keystone-link-color,50%);
 @navbar-keystone-brand-hover-color:          #fff;
-@navbar-keystone-brand-hover-bg:             transparent;
+@navbar-keystone-brand-hover-bg:             #333;
 
 // Keystone navbar search
 @navbar-keystone-search-bg:                  lighten(@navbar-keystone-bg, 25%);
@@ -47,8 +47,8 @@ abbr, .disabled, .disabled a {
 //
 // Typography
 // --------------------------------------------------
-h1,h2,h3,h4,h5,h6 {
-	font-family: 'Open Sans Condensed', sans-serif;
+a,h1,h2,h3,h4,h5,h6 {
+	font-family: 'Oxygen', sans-serif;
 }
 h3 {
 	font-weight: normal;

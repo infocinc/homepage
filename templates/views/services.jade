@@ -42,7 +42,7 @@ block content
 		section.services.clearfix.container-fluid(class=services[i])
 			.row.service-wrapper
 				.col-sm-6.col-sm-offset-3.col-md-offset-0.col-md-6.col-lg-4.visual(class= i % 2 === 0 ? '' : 'col-md-push-6 col-lg-push-8')
-					img.main(src='/images/services/' + services[i] + '.png')
+					img.main(src=imgs[services[i]].image.secure_url)
 				.col-sm-12.col-md-6.col-lg-6.col-lg-offset-2.text(class=i % 2 === 0 ? '' : 'col-md-pull-6' )
 					+service-descr(services[i],i)
 			.row(id='hidden-row-' + i).hidden-row.collapse
@@ -53,15 +53,14 @@ block content
 					while j < 5
 						.col-sm-6.col-md-3
 							.infobubble
-								img(src='/images/services/'+services[i]+'-bubble-' + j + '.png')
+								img(src=imgs[services[i]+'-bubble-'+j].image.secure_url)
+								//- img(src='/images/services/'+services[i]+'-bubble-' + j + '.png')
 								h3=t(prefix+'.bubbles.' + j)
 						-j++
 				.features.clearfix
 					.col-md-3 
 						p!=t(prefix+'.features.p')
 					-var j = 0
-					-var items = t(prefix+'.features.items');
-					-var count = items.length;
 					while j < 3
 						-var k = j*3
 						.col-md-3

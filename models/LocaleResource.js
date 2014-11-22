@@ -1,7 +1,7 @@
 var keystone = require('../lib/dsy'),
 	Types = keystone.Field.Types;
 
-var Resource = new keystone.List("LocaleResource", {nocreate: true, track: true});
+var Resource = new keystone.List("LocaleResource", {nocreate: true, track: true, hidden: true});
 
 
 Resource.add({
