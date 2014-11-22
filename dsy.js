@@ -111,8 +111,10 @@ dsy.set('email locals', {
 // Be sure to update this rule to include your site's actual domain, and add
 // other rules your email templates require.
 
-dsy.set('secure admin', dsy.get('env') == 'production' ? true : false);
-dsy.set('secure signin','https://infocinc.herokuapp.com/dsy/signin'); 
+
+if (dsy.get('env') === 'production') {
+	dsy.set('secure signin','https://infocinc.herokuapp.com/dsy/signin'); 
+}
 
 dsy.set('email rules', [{
 	find: '/images/',
