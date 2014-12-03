@@ -20,15 +20,19 @@ dsy.init({
 	'static': 'public',
 	'favicon': 'public/favicon.ico',
 	'views': 'templates/views',
+	'compress': true,
 	'view engine': 'jade',
+	'sections': ['contact','home','portfolio','services','terms'],
 	'emails': 'templates/emails',
 	'auto update': true,
 	'session': true,
 	'signout redirect': '/fr/home',
+	'signin redirect': '/fr/home',
 	'auth': true,
 	'signin logo':  '/dsy/images/logo.png',
 	'user model': 'User',
 	'cookie secret': ']>.N%h]>4H_e=(Sifsks!NUPe_tsv=qAGZbqNfI_`B%h:T^JL2r^~)GOdf3/-XU;',
+	'model prefix': "infocinc",
 	'mongo' : process.env.MONGOHQ_URL,
 	'mandrill api key': process.env.MANDRILL_API_KEY,
 	'mandrill username': 'nicolas.dutil@infocinc.com'
@@ -82,8 +86,6 @@ var options = {
 }
 
 
-//i18n.backend(require('./backend'));
-
 // Load your project's Routes
 dsy.set('routes', require('./routes'));
 
@@ -131,7 +133,9 @@ dsy.set('email tests', require('./routes/emails'));
 dsy.set('nav', {
 	'posts': ['posts', 'post-categories'],
 	'users': 'users',
-	'images': ['images', 'image-folders']
+	'services': 'services',
+	'enquiries': 'enquiries',
+	'images': 'images'
 });
 
 // Start dsy to connect to your database and initialise the web server

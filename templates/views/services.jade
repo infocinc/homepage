@@ -3,16 +3,15 @@ include ../mixins/header
 include ../mixins/logo
 
 
-mixin service-item(name)
-	-var images = { "base" : "/images/home/"}
-	a.col-xs-6.col-md-3(href='services#' + name).service-item
+mixin service-link(service)
+	a.col-xs-6.col-md-3(href='#' + service.name).service-item
 		.icon-logo
-			img(src=images.base + name + '.png')
-		.icon-text!=t('home:'+name)
+			img(src='/images/home/'+service.name+'.png')
+		.icon-text!=t('home:'+service.name)
 
 mixin service-descr(name,i) 
 	h2!=t('services:' + name+".title") 
-	p.brief!=t('services:' + name + ".brief")
+	p.brief!=t('services:' + name + '.brief')
 	button(type="button",data-toggle="collapse" data-target='#hidden-row-' + i).btn-wide
 		span.hide=t('services:close')
 		span=t('services:learnmore')
@@ -28,61 +27,64 @@ block head
 block content
 	+logo
 	+header('services','megaphone.png')
-	-var services = ['design', 'social', 'webapp', 'advice']
 	section.intro.clearfix
 		h2=t('services:intro')
-		-var i = 0
-		while i < 4
-			+service-item(services[i])
-			-i++
-
-	-var i =  0
-	while i < 2
-		-var prefix = 'services:' + services[i]
-		section.services.clearfix.container-fluid(class=services[i])
+		each service in services
+			+service-link(service)
+	each service,i in services
+		-var prefix = 'services:' + service.name
+		section(id=service.name).services.clearfix.container-fluid
 			.row.service-wrapper
-				.col-sm-6.col-sm-offset-3.col-md-offset-0.col-md-6.col-lg-4.visual(class= i % 2 === 0 ? '' : 'col-md-push-6 col-lg-push-8')
-					img.main(src=imgs[services[i]].image.secure_url)
-				.col-sm-12.col-md-6.col-lg-6.col-lg-offset-2.text(class=i % 2 === 0 ? '' : 'col-md-pull-6' )
-					+service-descr(services[i],i)
+				div(class= i % 2 === 0 ? '' : 'shift-service-img col-md-push-6 col-lg-push-8').col-sm-6.col-sm-offset-3.col-md-offset-0.col-md-6.col-lg-4.visual
+					img.main(src=service.icon.secure_url)
+				div(class=i % 2 === 0 ? '' : 'col-md-pull-6').col-sm-12.col-md-6.col-lg-6.col-lg-offset-2.text
+					+service-descr(service.name,i)
 			.row(id='hidden-row-' + i).hidden-row.collapse
 				.question
 					p!=t(prefix+'.question')
 				.bubbles.clearfix
-					-var j = 1
-					while j < 5
-						.col-sm-6.col-md-3
+					each bubble,j in service.bubbles
+						.col-xs-6.col-sm-6.col-md-3.infobubble-wrapper
 							.infobubble
-								img(src=imgs[services[i]+'-bubble-'+j].image.secure_url)
-								//- img(src='/images/services/'+services[i]+'-bubble-' + j + '.png')
-								h3=t(prefix+'.bubbles.' + j)
-						-j++
+								img(src=bubble.secure_url)
+								h3!=t(prefix+'.bubbles.' + j)
 				.features.clearfix
 					.col-md-3 
 						p!=t(prefix+'.features.p')
-					-var j = 0
-					while j < 3
+					each j in [0,1,2]
 						-var k = j*3
 						.col-md-3
 							ul
 								li=t(prefix + '.features.items.' + (k+1))
 								li=t(prefix + '.features.items.' + (k+2))
 								li=t(prefix + '.features.items.' + (k+3))
-						-j++
-		-i++
 	include ../layouts/footer.jade
 
 block js
+
 	script.
+		$('.service-item').scrollTo({
+				speed: 800,
+				easing: 'easeInOutCubic'
+			});
+		$('.services').on('click', function(event) {
+				$(this).find('.collapse').collapse('toggle');
+		});
 		var switchimg = function(e, state) {
 			var delim = state === 'on' ? '.' : "-",
 				suffix = state === 'on' ? "-hover" : "",
+				_color = state === 'on' ? 'white' : 'black',
 				img = $(this).find('img');
 
 			var tkn = $(img).attr('src').split(delim).shift();
 			$(img).attr('src', tkn + suffix + '.png');
+			$(this).css({'color': _color });
 		}
 		var toggle = function(state) {
+			var w = query_screenwidth(app_config['screenwidth-tag']);
+			if (isMobile(w)) {
+				return null;
+			}
 			return function(e) {
 				$.proxy(switchimg,this)(e,state)
 			}

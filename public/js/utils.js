@@ -80,6 +80,10 @@ $.fn.isOnScreen = function() {
 
 };
 
+function isMobile(screenwidth) { 
+    return screenwidth < SCREEN_WIDTHS.TABLET_PORTRAIT;
+}
+
 function query_screenwidth(tag) {
     var size = parseInt($(tag).css('font-size'), 10);
     var screenwidth;
@@ -104,7 +108,7 @@ function query_screenwidth(tag) {
         screenwidth = SCREEN_WIDTHS.DESKTOP_LG;
         break;
      case 7:
-        screenwidth = SCREEN_WIDTHS.DESKTOP_WIDE;    
+        screenwidth = SCREEN_WIDTHS.DESKTOP_WIDE;
         break;
     } 
 
@@ -112,18 +116,36 @@ function query_screenwidth(tag) {
 }
 
 
-function add_interaction(selectors, classname) {
-    $(selectors).hover(
-        function() {
-            $(this).addClass(classname)
-        },
-        function() {
-            $(this).removeClass(classname);
+function add_interaction(selectors, interaction) {
+    function getInHandler() {
+        if (typeof interaction === "string") {
+            return function() {
+               $(this).addClass(interaction); 
+            }
+        } 
+        if (typeof interaction === "function") {
+             return function() {
+                interaction.bind(this)();
+            }
         }
-    );
-    $(selectors).focusin(function() {$(this).addClass(classname)});
-    $(selectors).focusout(function() {$(this).removeClass(classname)});
+        return function() { };
+    }
+
+    function getOutHandler() {
+        if (typeof interaction === "string") {
+            return function() {
+               $(this).removeClass(interaction); 
+            } 
+        }
+        return function() { };
+    }
+
+    $(selectors).hover(getInHandler(),getOutHandler());
 }
+
+/*    $(selectors).focusin(function() {$(this).addClass(classname)});
+    $(selectors).focusout(function() {$(this).removeClass(classname)});
+*/
 
 
 

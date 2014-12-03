@@ -1,6 +1,13 @@
 extends ../../layouts/default
 
+block head
+	link(href='/styles/site/error.min.css', rel="stylesheet")
 block content
-	.container
-		h1 404
-		p.lead Sorry, the page you requested can't be found.
+	.error-404.container
+		h1 File Not Found
+		h1 Page non trouvée
+		img(src='/images/404.png')
+		h2
+			a(href='/en/home') Take me to the homepage
+		h2
+			a(href='/fr/home') Retourner à la page d'accueil

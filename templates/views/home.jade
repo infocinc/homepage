@@ -3,7 +3,7 @@ extends ../layouts/default
 
 mixin service-item(name) 
 	-var images = { "base": "/images/home/" }
-	a.col-xs-6.col-md-2(href='/' + lang + '/services#' + name).service-item
+	a.col-xs-6.col-md-3(href='/' + lang + '/services#' + name).service-item
 		.icon-logo
 			img(src=images.base + name + '.png')
 		.icon-text= t('home:' + name)
@@ -36,8 +36,8 @@ block content
 						span= t('home:arrow-top-2')
 	#services-wrapper.container-fluid
 		-var i = 0
-		-var services = ['design','webapp','social','data','advice','training']
-		while i < 6
+		-var services = ['design','social','advice','training']
+		while i < 4
 			+service-item(services[i])
 			-i++
 block js

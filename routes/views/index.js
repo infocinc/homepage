@@ -1,35 +1,60 @@
 var dsy = require('../../lib/dsy'),
-	_ = require('underscore');
+	_ = require('underscore'),
+	async = require('async');
+
+
+// HELPERS
+// -------------------
+function taskFactory(key, options) {
+    return function(callback) {
+        var q = dsy.list(key).model.find();
+        if (options && options.ref) {
+            q = q.populate(options.ref)
+        }
+        q.exec(function(err, results) {
+            if (err) {
+                callback(err)
+            }
+            if (options && options.postprocess) {
+                results = options.postprocess(results);
+            }
+            callback(null, results)
+        });
+    }
+}
 
 exports = module.exports = function(req, res) {
 
 	var view = new dsy.View(req, res),
-		locals = res.locals;
+		locals = res.locals,
+		section = locals.section = req.params.section || 'home',
+		lng = locals.lang = req.params.lng || 'fr';
 
-	locals.section = req.params.section || 'home';
-	locals.lang = req.params.lng || 'fr';
 
-// find all images that belong to section
-// names are given in jade file
-// names should not change in admin ui
-// images['test']
+    if (_.contains(['fr', 'en'], lng) == false || _.contains(dsy.get('sections'), section) == false) {
+        res.notfound();
+    }
 
-	// locales.images 
-	// Render the view
-	dsy.list('ImageFolder')
-		.model.findOne({name:locals.section},'images')
-		.populate('images')
-		.exec(function(err, results) {
-			if (err instanceof Error) {
-				res.err(err,'',err.message);
-			} else if (err) {
-				res.err(err,'','something happened while querying the db');
-			}
-			var _imgs = results ? _.indexBy(results.images,'key') : ' ';
-			console.log(_imgs);
-			view.render(locals.section, {
-				imgs: _imgs
-			});
-		});
+    switch (section) {
+        case 'portfolio':
+            break;
+        case 'about':
+            break;
+        case 'services':
+            async.parallel([
+                    taskFactory('Service')
+                ],
+                function(err, results) {
+                    if (err) {
+                        console.log('something wrong happened while querying the db')
+                    }
+                    view.render(section, {
+                        services: _.sortBy(results[0],function(s) { return s.row; })
+                    });
+                });
+            break;
+        default:
+            view.render(section);
+    }
 
 };

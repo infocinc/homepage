@@ -7,13 +7,13 @@ html
 		meta(name="viewport", content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width")
 
 		title= title
-		link(href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css')
+		link(href='//fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css')
 		//- Component Stylesheets
 		link(rel="stylesheet", href="/dsy/js/lib/select2/select2-3.3.2.css")
 		link(rel="stylesheet", href="/dsy/js/lib/pikaday/pikaday-1.1.0.css")
-
+		meta(name="robots" content="no index, no follow")
 		//- dsy Stylesheet
-		link(rel="stylesheet", href="/dsy/styles/keystone.min.css")
+		link(rel="stylesheet", href="/dsy/styles/dsy.min.css")
 		block css
 
 		link(rel="shortcut icon", href="/favicon.ico", type="image/x-icon")
@@ -42,8 +42,7 @@ html
 					ul.nav.navbar-nav
 						each navSection in nav.sections
 							li(class=section.key == navSection.key ? 'active' : null): a(href='/dsy/' + navSection.lists[0].path)= navSection.label
-					ul.nav.navbar-nav.navbar-right
-						li: a(href="/dsy/webtranslate") Web Translate
+						li(class=(section == 'webtranslate' ? 'active' : null)): a(href="/dsy/webtranslate") Translator
 			if section.lists && section.lists.length > 1
 				nav(role='navigation')#section-nav.navbar.navbar-default.navbar-static-top: .container
 					.navbar-header

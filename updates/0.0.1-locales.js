@@ -1,4 +1,5 @@
-var fs = require('fs');
+var fs = require('fs'),
+	dsy = require('../lib/dsy');
 
 var namespaces = [
 		'app','home','form','services',
@@ -9,8 +10,10 @@ var namespaces = [
 	resources = [];
 
 
+
 function loadResource($ns,$lng) {
 	var data = fs.readFileSync('./locales/' + $lng +'/' + $ns + '.json', 'utf8');
+
 	return {
 		_id: $ns + '_' + $lng,
 		ns: $ns,
@@ -27,7 +30,6 @@ namespaces.forEach(function(ns) {
 		resources.push(loadResource(ns,lng));
 	});
 });
-
 console.log(resources);
 
 exports.create = {

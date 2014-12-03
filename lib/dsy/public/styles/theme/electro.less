@@ -31,7 +31,7 @@
 @navbar-keystone-toggle-hover-bg:            mix(white, @navbar-keystone-bg, 25%);
 @navbar-keystone-toggle-icon-bar-bg:         #fff;
 @navbar-keystone-toggle-border-color:        transparent;
-
+@navbar-keystone-active-bg:					 #000;
 
 
 
@@ -77,6 +77,9 @@ h4 {
 #header {
 	background-color: @navbar-keystone-bg;
 	border: 0 none;
+	.active {
+		background-color: @navbar-keystone-active-bg;
+	}
 
 	.navbar-backtobrand-trigger {
 		color: @navbar-keystone-link-color;

@@ -9,7 +9,6 @@ Img.add( {
 	publishedDate: { type: Date, default: Date.now },
 	image: { type: Types.CloudinaryImage }
 });
-Img.defaultColumns = 'name, publishedDate, folders';
+Img.defaultColumns = 'name, publishedDate';
 
 Img.register();
-Img.relationship({path: 'folders', ref: 'ImageFolder', refPath: 'images'});

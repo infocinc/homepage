@@ -22,40 +22,45 @@ var _ = require('underscore'),
 	dsy = require('../lib/dsy'),
 	i18n = require("i18next"),
 	middleware = require('./middleware'),
+	utils = require('keystone-utils'),
 	importRoutes = dsy.importer(__dirname);
 
 
+function custom500Handler(err, req, res, next) {
+};
+
 
 // Common Middleware
-dsy.pre('routes',i18n.handle);
+dsy.pre('routes', i18n.handle);
 dsy.pre('routes', middleware.initLocals);
+dsy.pre('routes', middleware.initErrorHandler);
 dsy.pre('render', middleware.flashMessages);
-
-
-dsy.set('404', function(req,res,next) {
-	res.notfound();
-});
-
-dsy.set('500',function(err,req,res,next) {
-	var title, message;
-	if (err instanceof Error) {
-		message = err.message;
-		err = err.stack;
-	}
-	res.err(err,title,message);
-});
 
 // Import Route Controllers
 var routes = {
 	views: importRoutes('./views')
 };
 
+dsy.set('404', 'errors/404');
+dsy.set('500', function(err,req,res,next) { res.err(err,req,res);});
+
+
+
 // Setup Route Bindings
 exports = module.exports = function(app) {
 
-	i18n.serveChangeKeyRoute(app)
-		.serveRemoveKeyRoute(app)
-		.serveDynamicResources(app);
+	function isAuth(req,res) {
+		if (!req.user || !req.user.canAccessKeystone) {
+			var from = new RegExp('^\/dsy\/?$', 'i').test(req.url) ? '' : '?from=' + req.url;
+			return res.redirect(dsy.get('signin url') + from);
+		} else {
+			return true;
+		}
+	}
+
+	i18n.serveChangeKeyRoute(app,isAuth)
+		.serveRemoveKeyRoute(app,isAuth)
+		.serveDynamicResources(app,isAuth);
 
 	i18n.serveWebTranslate(app, {
 		i18nextWTOptions: {
@@ -70,7 +75,8 @@ exports = module.exports = function(app) {
 			resRemovePath: 'locales/remove/__lng__/__ns__',
 			fallbackLng: "fr",
 			dynamicLoad: true
-		}
+		},
+		authenticated: isAuth
 	});
 	// Views
 	app.all('/:lng/contact', function(req,res) {
@@ -78,7 +84,6 @@ exports = module.exports = function(app) {
 	});
 
 	app.get('/:lng/:section', function(req,res) {
-		console.log('hi');
 		routes.views.index(req,res);
 	});
 

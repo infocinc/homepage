@@ -17,6 +17,9 @@
 //  Initialization
 //////////////////////////////////////////////////////////////////////
 
+// GLOBAL
+var MEDIA_STATE = {}
+
 var app_config = {
     'main-wrapper' : '#main',
     'screenwidth-tag' : '#media-state',
@@ -126,16 +129,18 @@ function init() {
     }
     $.ajaxSetup({cache:true});
 
-    var screenwidth = query_screenwidth(app_config['screen-tag']);
+    MEDIA_STATE['init'] = query_screenwidth(app_config['screenwidth-tag']);
     common();
-    switch(screenwidth) {
+    switch(MEDIA_STATE['init']) {
         case SCREEN_WIDTHS.XSMALL:
         case SCREEN_WIDTHS.MOBILE:
         case SCREEN_WIDTHS.MOBILE_LANDSCAPE:
             ifc.mobile.init();
+            ifc.tablet.init();
             break;
         case SCREEN_WIDTHS.TABLET:
             ifc.tablet.init();
+            break;
         default:
             ifc.tablet.init();
     }

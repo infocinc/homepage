@@ -59,7 +59,38 @@ exports.flashMessages = function(req, res, next) {
 	
 };
 
+exports.initErrorHandler = function(req, res, next) {
+    
+    res.err = function(err,req,res,next) {
+		if (dsy.get('logger')) {
+			if (err instanceof Error) {
+				console.log((err.type ? err.type + ' ' : '') + 'Error thrown for request: ' + req.url);
+			} else {
+				console.log('Error thrown for request: ' + req.url);
+			}
+				console.log(err.stack || err);
+		}
+		var msg = '';
+		if (dsy.get('env') === 'development') {
+			if (err instanceof Error) {
+				if (err.type) {
+					msg += '<h2>' + err.type + '</h2>';
+				}
+				msg += utils.textToHTML(err.message);
+			} else if ('object' === typeof err) {
+				msg += '<code>' + JSON.stringify(err) + '</code>';
+			} else if (err) {
+				msg += err;
+			}
+		} else {
+			msg += '<h2>' + "We've been notified about this issue and we'll take a look at it shortly" + '</h2>';
+		}
+		res.status(500).send(dsy.wrapHTMLError('Sorry, an error occurred loading the page (500)', msg));
+	}
 
+    next();
+    
+};
 /**
 	Prevents people from accessing protected pages when they're not signed in
  */

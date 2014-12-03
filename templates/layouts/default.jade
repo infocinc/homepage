@@ -120,8 +120,9 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
                     li.nav-item=t('app.switchlng-label')
             ul.cms
                 if user 
-                    a.nav-grey-bg.clearfix(href='/dsy')
-                        li.nav-item=t('app.admin')
+                    if user.canAccessKeystone
+                        a.nav-grey-bg.clearfix(href='/dsy')
+                            li.nav-item=t('app.admin')
                     a.nav-grey-bg.clearfix(href='/dsy/signout')
                         li.nav-item=t('app.signout')
                 else

@@ -14,6 +14,8 @@
         "menu" : "Menu",
         "admin": "ADMIN",
         "signin" : "SIGN IN",
-        "signout" : "SIGN OUT"
+        "signout" : "SIGN OUT",
+        "404-title": "Page non trouvée",
+        "404-msg": "Retourner à la page d'accueil"
     }
 }

@@ -24,30 +24,53 @@ var notouch = $('html').hasClass('no-touch');
 //////////////////////////////////////////////////////////////////////////////////
 
 function configure_enquire() {
-    _switch = false;
+    var _switch = false,
+        _animating;
 
     enquire.register("screen and (min-width:768px)", {
 
+        deferSetup: true,
+        setup: function() {
+            if (notouch) {
+                add_interaction('#footer-contact a, #footer-community a,' +
+                    '#footer-nav a', 'hover-underline');
+                add_interaction('.center-navigation a', 'navbox-hover');
+                add_interaction('#services-wrapper > a', 'service-item-hover');
+                add_interaction('#services-wrapper > a', 'icon-text-hover');
+                // services template
+                add_interaction('.service-item', 'service-item-hover');
+                add_interaction('.service-item', 'icon-text-hover');
+                add_interaction('.services', function() {
+                    if (_animating) {
+                        $(_animating).stop();
+                    }
+                    _animating = this;
+                    var _bgPos = parseInt($(this).css('background-position')),
+                        _duration = (100 - _bgPos)* 140;
+
+                    $(this).animate({
+                        'background-position': '100%'
+                    }, {
+                        duration: _duration,
+                        queue: false,
+                        easing: 'linear',
+                        complete: function() {
+                            _animating = undefined;
+                            $(this).css('background-position', '0%');
+                        }
+                    });
+                });
+            }
+        },
         unmatch: function() {
             _switch = true;
             if (app_config['side-menu']) {
                 init_sidemenu();
             }
         },
-
         match: function() {
-            if (_switch && app_config['side-menu']) {
+            if (_switch || isMobile(MEDIA_STATE['init']) && app_config['side-menu']) {
                 init_sidemenu();
-            }
-            console.log(notouch);
-            if (notouch) {
-                add_interaction('#footer-contact a, #footer-community a,'+
-                    '#footer-nav a', 'hover-underline');
-                add_interaction('.center-navigation a','navbox-hover');
-                add_interaction('#services-wrapper > a','service-item-hover');
-                add_interaction('#services-wrapper > a','icon-text-hover');
-                add_interaction('.service-item','service-item-hover');
-                add_interaction('.service-item','icon-text-hover');
             }
         }
     });
@@ -84,6 +107,8 @@ tablet.detect_features = function(complete) {
 
 
 tablet.init = function() {
-//    tablet.bind_resizehandler();
+    //    tablet.bind_resizehandler();
+
     tablet.detect_features(configure_enquire);
+
 }

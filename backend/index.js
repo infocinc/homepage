@@ -1,5 +1,5 @@
 var dsy = require('../lib/dsy'),
-	Resource = dsy.list('LocaleResource');
+    Resource = dsy.list('LocaleResource');
 
 // helpers
 
@@ -7,52 +7,53 @@ var dsy = require('../lib/dsy'),
 module.exports = {
 
     saveResourceSet: function($lng, $ns, resourceSet, cb) {
-    	var toSave = {
-    		_id : $ns + '_' + $lng,
-    		ns : $ns,
-    		lng : $lng,
-    		resource: JSON.stringify(resourceSet)
-    	};
+        var toSave = {
+            _id : $ns + '_' + $lng,
+            ns : $ns,
+            lng : $lng,
+            resource: JSON.stringify(resourceSet)
+        };
 
-		var errorHandler = function errorHandler(err) {
-    		if (err) {
-    			console.log(err);
-    			cb(err);
-    		} else {
-    			cb(null,{});
-    		}
-    	};
+        var errorHandler = function errorHandler(err) {
+            if (err) {
+                console.log(err);
+                cb(err);
+            } else {
+                cb(null,{});
+            }
+        };
 
         Resource.model.find()
-        	.where('lng').equals($lng)
-        	.where('ns').equals($ns)
-        	.exec(function(err, obj) {
-            	if (err) {
-                	cb(err);
-            	} else {
-            		var resource = !obj ? new Resource.model() : obj[0];
-            		var updater = resource.getUpdateHandler({});
-            		updater.options.errorMessage = 'Failed to save local resources!';
-            		updater.process(toSave, errorHandler);
-            	}
+            .where('lng').equals($lng)
+            .where('ns').equals($ns)
+            .exec(function(err, obj) {
+                if (err) {
+                    cb(err);
+                } else {
+                    var resource = !obj ? new Resource.model() : obj[0];
+                    var updater = resource.getUpdateHandler({});
+                    updater.options.errorMessage = 'Failed to save local resources!';
+                    updater.process(toSave, errorHandler);
+                }
             });
     },
 
     fetchOne: function(lng, ns, cb) {
-        var _id = ns + '_' + lng;
-
+        var _oid = ns + '_' + lng;
         var self = this;
+
+
         Resource.model.find()
-        	.where('lng').equals(lng)
-        	.where('ns').equals(ns)
-        	.exec(function(err, obj) {
+            .where('lng').equals(lng)
+            .where('ns').equals(ns)
+            .exec(function(err, obj) {
             if (err) {
                 cb(err);
             } else {
                 if (!obj) {
                     cb(null, {});
                 } else {
-                    self.functions.log('loaded from mongoDb: ' + _id);
+                    self.functions.log('loaded from mongoDb: ' + _oid);
                     cb(null, JSON.parse(obj[0].resource));
                 }
             }
@@ -149,20 +150,3 @@ module.exports = {
     }
 
 };
-
-// helper
-var mergeOptions = function(options, defaultOptions) {
-    if (!options || typeof options === 'function') {
-        return defaultOptions;
-    }
-
-    var merged = {};
-    for (var attrname in defaultOptions) {
-        merged[attrname] = defaultOptions[attrname];
-    }
-    for (attrname in options) {
-        if (options[attrname]) merged[attrname] = options[attrname];
-    }
-    return merged;
-};
-
