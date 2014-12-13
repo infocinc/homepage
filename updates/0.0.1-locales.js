@@ -4,7 +4,7 @@ var fs = require('fs'),
 var namespaces = [
 		'app','home','form','services',
 		'footer','portfolio','terms',
-		'contact'
+		'contact','projects'
 	],
 	lngs = ['fr', 'en'],
 	resources = [];
