@@ -1,6 +1,6 @@
 var dsy = require('../../lib/dsy'),
-	_ = require('underscore'),
-	async = require('async');
+    _ = require('underscore'),
+    async = require('async');
 
 
 // HELPERS
@@ -25,31 +25,55 @@ function taskFactory(key, options) {
 
 exports = module.exports = function(req, res) {
 
-	var view = new dsy.View(req, res),
-		locals = res.locals,
-		section = locals.section = req.params.section || 'home',
-		lng = locals.lang = req.params.lng || 'fr';
+    var view = new dsy.View(req, res),
+        locals = res.locals,
+        section = locals.section = req.params.section || 'home',
+        lng = locals.lang = req.params.lng || 'fr';
 
 
     if (_.contains(['fr', 'en'], lng) == false || _.contains(dsy.get('sections'), section) == false) {
-        res.notfound();
+        return res.render('errors/404');
     }
 
     switch (section) {
-        case 'portfolio':
-            break;
-        case 'about':
-            break;
-        case 'services':
+        case 'projects':
             async.parallel([
-                    taskFactory('Service')
+                    taskFactory('Client', {
+                        'postprocess': function(results) {
+                            return _.sortBy(results, function(s) {
+                                return s.index
+                            });
+                        }
+                    })
                 ],
                 function(err, results) {
                     if (err) {
                         console.log('something wrong happened while querying the db')
                     }
                     view.render(section, {
-                        services: _.sortBy(results[0],function(s) { return s.row; })
+                        clients: results[0]
+                    });
+                });
+            break;
+        case 'about':
+            break;
+        case 'home':
+        case 'services':
+            async.parallel([
+                    taskFactory('Service', {
+                        'postprocess': function(results) {
+                            return _.sortBy(results, function(s) {
+                                return s.row
+                            });
+                        }
+                    })
+                ],
+                function(err, results) {
+                    if (err) {
+                        console.log('something wrong happened while querying the db')
+                    }
+                    view.render(section, {
+                        services: results[0]
                     });
                 });
             break;

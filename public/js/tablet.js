@@ -35,11 +35,6 @@ function configure_enquire() {
                 add_interaction('#footer-contact a, #footer-community a,' +
                     '#footer-nav a', 'hover-underline');
                 add_interaction('.center-navigation a', 'navbox-hover');
-                add_interaction('#services-wrapper > a', 'service-item-hover');
-                add_interaction('#services-wrapper > a', 'icon-text-hover');
-                // services template
-                add_interaction('.service-item', 'service-item-hover');
-                add_interaction('.service-item', 'icon-text-hover');
                 add_interaction('.services', function() {
                     if (_animating) {
                         $(_animating).stop();

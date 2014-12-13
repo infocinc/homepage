@@ -9,8 +9,8 @@
   -o-background-size: @val;
 }
 
-.bg(@path;@pattern:no-repeat;@x:center;@y:center;@size:cover) {
-    background: url(@path) @pattern @x @y;
+.bg(@path;@pattern:no-repeat;@x:center;@y:center;@size:cover;@fallback:white) {
+    background: url(@path) @pattern @x @y @fallback;
     .bg-size(@size);
 }
 

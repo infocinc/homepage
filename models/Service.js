@@ -9,6 +9,7 @@ Service.add({
 	icon: {type: Types.CloudinaryImage},
 	bubbles: {type: Types.CloudinaryImages},
 	row: {type: Types.Number},
+	target: {type: Types.Url},
 	timestamp: {type: Date, default: Date.now, format: "Do MMM YYYY, LT", noedit: true}
 });
 

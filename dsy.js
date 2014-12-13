@@ -22,7 +22,7 @@ dsy.init({
 	'views': 'templates/views',
 	'compress': true,
 	'view engine': 'jade',
-	'sections': ['contact','home','portfolio','services','terms'],
+	'sections': ['contact','home','projects','services','terms'],
 	'emails': 'templates/emails',
 	'auto update': true,
 	'session': true,
@@ -133,6 +133,7 @@ dsy.set('email tests', require('./routes/emails'));
 dsy.set('nav', {
 	'posts': ['posts', 'post-categories'],
 	'users': 'users',
+	'clients': 'clients',
 	'services': 'services',
 	'enquiries': 'enquiries',
 	'images': 'images'

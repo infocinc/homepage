@@ -9,9 +9,6 @@
 ///////////////////////////////////////////
 // HEADER BG
 ///////////////////////////////////////////
-header {
-	.bg('@{root}/bg-mobile.jpg');
-}
 
 
 ///////////////////////////////////////////
@@ -49,10 +46,10 @@ header {
 
 .axiom-bg(@fallback) {
 	.hidden-row {
-		.question {
+		.extra-caption:first-child {
 			background: url('@{root}/axiom-pattern-1.png') repeat @fallback;
 		}
-		.features {
+		.extra-caption:nth-child(3) {
 			background: url('@{root}/axiom-pattern-2.png') repeat @fallback;
 		}
 	}
@@ -61,7 +58,6 @@ header {
 // common base styling for services
 .services {
 //	.transition(@property:'background-position-x',@delay:0);
-
 }
 
 .service-wrapper {
@@ -71,9 +67,6 @@ header {
 	}
 	.brief {
 		font-size: 1.4em;
-	}
-	.btn-wide {
-		padding: 12px 20px;
 	}
 }
 
@@ -117,7 +110,7 @@ header {
 }
 
 .hidden-row {
-	.question {
+	.extra-caption {
 		p {
 			color: @white;
 			letter-spacing: 0.1em;
@@ -126,32 +119,36 @@ header {
 			margin: 0;
 		}
 	}
+	.bubbles,.features {
+		background: rgba(255,255,255,0.6);
+	}
 	.bubbles {
 		text-align: center;
-	}
-	.features {
-		p {
-			margin: 0;
-			color: @white;
-		}
-		ul {
-			color: @white;
-		}
 	}
 }
 
 // LAYOUT
 // ----------------------
 
+.hero-padding {
+	padding-top: 80px;
+}
 .hidden-row {
 	text-align: center;
 }
+
 
 .intro {
 	padding: 50px 0;
 	text-align: center;
 	h2 {
-		padding-bottom: 20px;
+		padding: 0px 15px 20px 15px;
+	}
+}
+
+.services {
+	a.btn-wide {
+		display: block;
 	}
 }
 
@@ -165,9 +162,18 @@ header {
 			max-width: 200px;
 		}
 	}
+	.btn-wide {
+		padding: 10px;
+		width: 100%;
+		max-width: 200px;
+		margin: 0 auto;
+	}
+	button.btn-wide {
+		margin-top: 20px;
+	}
 }
 .hidden-row {
-	.question,.bubbles,.features {
+	.extra-caption,.bubbles,.features {
 		padding: 30px;
 	}
 	.bubbles {
@@ -200,21 +206,28 @@ header {
 .shift-service-img {
 	text-align: center;
 }
+
 ///////////////////////////////////////////////
 // MEDIA QUERIES
 ///////////////////////////////////////////////
+
 
 //////////////////////
 // VERY SMALL DEVICES 
 //////////////////////
 @media screen and (max-width:(@screen-nano-max)) {
+	.service-wrapper .visual img {
+		width: 100%;
+	}
+	.hidden-row .bubbles .infobubble img {
+		width: 60%;
+	}
 }
 
 @media screen and (max-width:@screen-iphone-max) {
-  .service-item,.infobubble-wrapper {
-    width: 100%;
-  }
-
+	.service-link, .infobubble-wrapper {
+		width: 100%;
+	}
 }
 //////////////////
 // IPHONE PORTRAIT
@@ -226,7 +239,13 @@ header {
 // IPHONE LANDSCAPE
 //////////////////
 @media screen and (min-width:@screen-xs-min) {
+	.hero-padding {
+		padding-top: 100px; 
+	}
 	.service-wrapper {
+		.btn-wide {
+			max-width: 260px;
+		}
 		.visual {
 			img {
 				max-width: 220px;
@@ -239,23 +258,36 @@ header {
 // IPAD PORTRAIT
 //////////////////
 @media screen and (min-width:@screen-sm-min) {
-	header {
-		.bg('@{root}/bg-tablet.jpg');
-	}
 	.intro {
 		padding: 50px 0;
 		h2 {
-			font-size: 3em;
+			font-size: 3.1em;
 			letter-spacing: 0.1em;
 			padding-bottom: 20px;
 		}
+	}
+
+	.hero-text-wrapper {
+		padding-top: 180px;
+		h1 {
+			padding: 0 25px;
+		}
+	}
+	.services {
+		a.btn-wide {
+			display: inline-block;
+			text-align: center;
+		}
+
 	}
 	.service-wrapper {
 		padding: 60px;
 		text-align: center;
 		.btn-wide {
-			padding: 20px 30px;
+			padding: 12px 30px;
+			max-width: 370px;
 		}
+
 		h2 {
 			font-size: 3em;
 		}
@@ -271,7 +303,7 @@ header {
 		}
 	}
 	.hidden-row {
-		.question {
+		.extra-caption {
 			padding: 40px;
 			p {
 				font-size: 3em;
@@ -285,7 +317,7 @@ header {
 				}
 				h3 {
 					padding: 15px 0;
-					font-size: 1.2em;
+					font-size: 1.4em;
 				}
 			}
 		}
@@ -299,7 +331,7 @@ header {
 			}
 			ul {
 				margin: 0;
-				font-size: 1.3em;
+				font-size: 1.5em;
 				li {
 					padding: 10px 0;
 				}
@@ -319,9 +351,6 @@ header {
 // IPAD LANDSCAPE
 /////////////////////////
 @media screen and (min-width:@screen-md-min) {
-	header {
-		.bg('@{root}/bg-desktop.jpg');
-	}
 	.shift-service-img {
 		text-align: right;
 	}
@@ -332,6 +361,9 @@ header {
 		img {
 			width: 120px;
 		}
+	}
+	.hero-text-wrapper {
+		padding-top: 250px;
 	}
 	.service-wrapper {
 		padding: 60px 30px;
@@ -360,18 +392,31 @@ header {
 // LARGE SCREEN - LAPTOP
 /////////////////////////
 @media screen and (min-width:@screen-lg-min) {
+
 	.service-wrapper {
 		padding: 60px;
 		.visual img {
 			width: 320px;
 		}
+		.btn-wide {
+			max-width: 370px;
+			margin-right: 30px;
+		}
 	}
+	.hero-text-wrapper {
+		padding-top: 265px;
+	}
+
 }
 
 /////////////////////////
 // WIDE SCREEN
 /////////////////////////
 @media screen and (min-width:@screen-wide-min) {
+	.services {
+		max-width: 2200px;
+		overflow-x: hidden;
+	}
 	.service-wrapper {
 		padding: 60px;
 		.visual img {

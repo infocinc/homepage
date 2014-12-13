@@ -1,24 +1,20 @@
 extends ../layouts/default
+include ../mixins/service-link
 
-
-mixin service-item(name) 
-	-var images = { "base": "/images/home/" }
-	a.col-xs-6.col-md-3(href='/' + lang + '/services#' + name).service-item
-		.icon-logo
-			img(src=images.base + name + '.png')
-		.icon-text= t('home:' + name)
 
 block css
 	link(href="/styles/site/home.min.css", rel="stylesheet")
+	link(href="/styles/site/header.min.css", rel="stylesheet")
 block content
 	-var prefix = '/' + lang + '/'
-	#hero-wrapper
+	section#hero
+		canvas(id="fg-canvas-1" class="cubes overlay" width="100" height="100")
 		.overlay.overlay-tvnoise
 		.overlay.overlay-black
 		.overlay.overlay-open-menu
 		.logo
 			img(src="/images/infocinc-logo-white.png" alt="Infocinc Logo")
-		.hero-text-wrapper
+		.hero-text-wrapper.hero-relative.hero-padding
 			h1(itemprop="name")!= t('home:catchphrase')
 			a.white-box.front(href=prefix + 'services')
 				span= t('home:button')
@@ -34,25 +30,93 @@ block content
 					a(href=prefix + 'contact')
 						img(src="/images/arrow-right.png" alt="arrow right")
 						span= t('home:arrow-top-2')
-	#services-wrapper.container-fluid
-		-var i = 0
-		-var services = ['design','social','advice','training']
-		while i < 4
-			+service-item(services[i])
-			-i++
+	section#service-links.container-fluid
+		each service in services
+			+service-link(service,'services')
 block js
+	script(src="/js/plugins.js")
 	script.
-		var switchimg = function(e, state) {
-			var delim = state === 'on' ? '.' : "-",
-				suffix = state === 'on' ? "-hover" : "",
-				img = $(this).find('img');
 
-			var tkn = $(img).attr('src').split(delim).shift();
-			$(img).attr('src', tkn + suffix + '.png');
-		}
-		var toggle = function(state) {
-			return function(e) {
-				$.proxy(switchimg,this)(e,state)
+		window.requestAnimFrame = (function(callback) {
+			return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+			function(callback) {
+				window.setTimeout(callback, 1000 / 60);
+			};
+		})();
+
+		function resize() {
+			hh = $('#hero').height();
+			ww = $(window).width();
+
+			if (ww < 768) {
+				images[0].src = '/images/home/bg-mobile.jpg';
+			} else if (ww < 1200) {
+				images[0].src = '/images/home/bg-tablet.jpg';
+			} else {
+				images[0].src = '/images/home/bg-desktop.jpg'
 			}
+			fontsize = hh / 5;
+			cubes.each(function(i) {
+				$(this).attr({
+					'width': ww,
+					'height': hh 
+				});
+			});
 		}
-		$("#services-wrapper > a").hover(toggle('on'),toggle('off'));
+
+		function animate(i,c,ct,startTime,speed,direction) {
+			var time = (new Date()).getTime() - startTime,
+				delta = direction * speed * time / 5000,
+				dy = Math.sin(delta)*45 % hh,
+				dx = Math.cos(delta)*30 % ww,
+				s = 0.90 + Math.sin(Math.PI/8*time/1000)*0.10;
+			ct.clearRect(0,0,c.width,c.height);
+			scaleImage(images[i],c,ct,s,dx,dy);
+			requestAnimFrame(function() {
+				animate(i,c,ct,startTime,speed,direction)
+			});
+		}
+
+
+		function scaleImage(img,c,ct,s,tx,ty) {
+		var cw = c.width, ch = c.height,
+				w = img.width,h = img.height,
+				sw = Math.min(s*cw,w),
+				sh = Math.min(s*0.85*h,h),
+				tw = Math.max(tx+(w-sw)/2,0),
+				th = Math.max(ty+(h-sh)/2,0);
+				if (tw+sw > w) {
+					sw = w - tw;
+				} 
+				if (th + sh > h) {
+					sh = h - th;
+				}
+				ct.drawImage(img,tw,th,sw,sh,0,0,cw,ch);
+		}
+
+		var canvas = $('canvas'),
+			cubes = $('.cubes'),
+			images = [],
+			contexts = [],
+			props = [],
+			speed = ['3','120'],
+			radial = ['8','8'];
+
+		images[0] = new Image();
+
+		resize();
+		$(window).on('resize',resize);
+
+		cubes.each(function(i) {
+			contexts[i] = this.getContext('2d');
+			props[i] = {'direction': Math.pow(-1,(1-i)), 'speed': speed[i]};
+		});
+
+		images[0].onload = function() {
+			var c = $('.cubes').get(0);
+			scaleImage(images[0],c,c.getContext('2d'),1,0,0);
+			setTimeout(function() {
+				var startTime = (new Date()).getTime();
+				animate(0,c,c.getContext('2d'),startTime,props[0]['speed'],props[0]['direction']);
+			},10);
+		}

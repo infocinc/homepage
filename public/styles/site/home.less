@@ -8,30 +8,9 @@
 // HERO SECTION
 ////////////////////////////////////////////////////////////////
 
-.hero-text-wrapper {
-  position: relative;
-  color: @white;
-  width: 90%;
-  margin: 0 auto;
-  padding-top: 50px;
-  text-align: center;
-
-  h1 {
-    font-family: 'Lato', sans-serif;
-    text-align: center;
-    font-size: 2em;
-    padding: 0 20px;
-    line-height: 2;
-  }
-  .white-box {
-    display: none;
-  }
-}
-
-#hero-wrapper {
+#hero {
    position: relative;
-  .bg("@{root}/bg-mobile.jpg");
-   min-height: 480px;
+   height: 440px;
 
   .arrow-down {
     position: absolute;
@@ -45,9 +24,15 @@
   }
 }
 
-
-#services-wrapper {
+#service-links {
   text-align: center;
+}
+
+.white-box {
+  margin-top: 15px;
+  span {
+    letter-spacing: 0.2em;
+  }
 }
 
 
@@ -57,7 +42,7 @@
 
 // MAX WIDTHS
 @media screen and (max-width:@screen-iphone-max) {
-  .service-item {
+  .service-link {
     width: 100%;
   }
 
@@ -65,16 +50,9 @@
 
 // MIN WIDTHS
 @media screen and (min-width:@screen-iphone-min) {
-  #hero-wrapper {
-    min-height: 400px;
-  }
-  .hero-text-wrapper {
-    padding-top: 80px;
-    max-width: 320px;
-  }
 }
 @media screen and (min-width:@screen-xs-min) {
-  #services-wrapper {
+  #service-links {
     a:nth-child(2) {
       margin-top: 35px;
     }
@@ -82,8 +60,7 @@
 }
 
 @media screen and (min-width:@screen-sm-min) {
-  #hero-wrapper {
-    .bg(@path:"@{root}/bg-tablet.jpg",@x:0%,@y:5%);
+  #hero {
      height: 700px;
     .quick-links {
        position: absolute;
@@ -111,7 +88,7 @@
     }
   }
 
-  #services-wrapper {
+  #service-links {
     margin-bottom: 40px;
     a {
       margin-bottom: 15px;
@@ -120,53 +97,43 @@
       margin-top: 25px;
     }
   }
-  .hero-text-wrapper {
-    padding-top: 180px;
-    width: auto;
-    max-width: none;
-    h1 {
-      font-size: 3.8em;
-      letter-spacing: 1;
-      line-height: 1.4;
-      padding: 0;
-    }
-    .white-box {
+  .white-box {
       margin-top: 30px;
+      background: rgba(0,0,0,0.3);
+      width: 340px;
       display: inline-block;
-    }
+      padding-top: 16px;
+      padding-bottom: 16px;
+      span {
+       letter-spacing: 0.5em;
+     }
   }
 }
 
 @media screen and (min-width:@screen-md-min) {
-  #hero-wrapper {
-    .bg('@{root}/bg-desktop.jpg');
+  #hero {
+//    .bg('@{root}/bg-desktop.jpg');
     .arrow-down {
       width: 60px;
       bottom: -30px;
       margin-left: -30px;
     }
   }
-  #services-wrapper {
+  #service-links {
     margin-top: 35px;
     a:first-child,a:nth-child(2) {
       margin-top: 0;
     }
   }
-  .hero-text-wrapper {
-    padding-top: 250px;
-  }
 }
 
 @media screen and (min-width:@screen-lg-min) {
-  #services-wrapper {
+  #service-links {
      margin: 50px 0 40px 0;
   }
 
 }
 
 @media screen and (min-width:@screen-wide-min) {
-  .hero-text-wrapper {
-    width: 1200px;
-  }
 }
 

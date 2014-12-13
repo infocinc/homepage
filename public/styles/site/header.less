@@ -7,60 +7,101 @@
 // NON-LAYOUT
 // -----------------------
 
-header {
-	text-align: center;
-	h1 {
-		color: @white;
-		line-height: 2;
-		font-family: 'Lato', sans-serif;
-		font-size: 2em;
-	}
+.hero-text-wrapper {
+  color: @white;
+  text-align: center;
+  h1 {
+    font-family: 'Lato', sans-serif;
+    text-align: center;
+    font-size: 2em;
+  }
 }
+
 
 // LAYOUT
 // ------------------------
 
+.hero-text-wrapper {
+  width: 90%;
+  margin: 0 auto;
+  h1 {
+    padding: 0 20px;
+    line-height: 2;
+  }
+}
+
+.hero-relative {
+	position: relative;
+}
+.hero-padding {
+	padding-top: 60px;
+}
+
 header {
-	height: 550px;
-	line-height: 550px;
-	h1 {
-		display: inline-block;
-		vertical-align: middle;
-		padding: 0px 15px 0px 15px;
-		text-align: center;
-	}
+   position: relative;
+   min-height: 480px;
 }
 
 ///////////////////////////////////////////
 // INTRO
 ///////////////////////////////////////////
 
-/*.intro {
-	padding: 50px 30px;
-	h2 {
-		padding: 30px 0;
-		font-weight: 400;
-		color: @black;
-	}
-	p {
-		max-width: 700px;
-		margin: 0 auto;
-	}
-}
-*/
+
 ////////////////////////////////////////////
 // MEDIA QUERIES
 ////////////////////////////////////////////
 
 @media screen and (max-width:(@screen-nano-max)) {
-}
-@media screen and (min-width:@screen-sm-min) {
-	header {
+	header { 
+		min-height: 480px;
 		h1 {
-			font-size: 3.8em;
-			line-height: 1.4;
+			padding-top: 50px;
 		}
 	}
 }
+@media screen and (min-width:@screen-iphone-min) {
+  header {
+    min-height: 400px;
+  }
+  .hero-text-wrapper {
+    max-width: 320px;
+  }
+}
+@media screen and (min-width:@screen-xs-min) {
+	.hero-text-wrapper {
+		max-width: 400px;
+		h1 {
+
+		}
+	}
+}
+@media screen and (min-width:@screen-sm-min) {
+  header {
+  	height: 700px;
+  }
+  .hero-padding {
+  	padding-top: 180px;
+  }
+  .hero-text-wrapper {
+    width: auto;
+    max-width: 1100px;
+    h1 {
+      font-size: 3.8em;
+      letter-spacing: 1;
+      line-height: 1.4;
+      padding: 0;
+    }
+  }
+}
+@media screen and (min-width:@screen-md-min) {
+  .hero-padding {
+  	padding-top: 250px;
+  }
+}
 @media screen and (min-width:@screen-lg-min) {
+}
+@media screen and (min-width:@screen-wide-min) {
+  .hero-text-wrapper {
+    width: 1200px;
+  }
 }

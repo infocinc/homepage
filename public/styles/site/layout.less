@@ -31,17 +31,8 @@ body {
 	}
 }
 
-///////////////////////////////////////////////////////////////
-// JS CONTROLLED HOVERS
-///////////////////////////////////////////////////////////////
-.service-item-hover {
-  background: @dark-brown;
-}
-.icon-text-hover {
-  color: @white !important;
-}
 
-.service-item {
+.service-link {
 	display: inline-block;
 	margin-bottom: 15px;
 	color: black;
@@ -70,6 +61,11 @@ body {
 // MEDIA QUERIES
 ////////////////////////////////////////////////////////////////
 
+@media screen and (max-width:@screen-nano-max) {
+	.service-link  .icon-logo img {
+		width: 80%;
+	}
+}
 @media screen and (min-width:@screen-iphone-min) {
 	.logo {
 		left: 10px;
@@ -77,7 +73,7 @@ body {
 }
 
 @media screen and (min-width: @screen-xs-min) {
-	.service-item .icon-text {
+	.service-link .icon-text {
 		margin-top: 10px;
 	}
 }
@@ -93,7 +89,7 @@ body {
 	#menu {
 		.side-menu-full();
 	}
-	.service-item .icon-logo {
+	.service-link .icon-logo {
 		width: 110px;
 	}
 }
@@ -102,7 +98,7 @@ body {
 	.logo {
 		top: 10px;
 	}
-	.service-item {
+	.service-link {
 		.icon-logo {
 			width: 100px;
 			margin-bottom: 10px;
@@ -118,7 +114,7 @@ body {
 			height: 50px;
 		}
 	}
-	.service-item .icon-logo {
+	.service-link .icon-logo {
 		width: 120px;
 	}
 }

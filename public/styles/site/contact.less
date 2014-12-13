@@ -61,7 +61,7 @@ h1 {
   font-size: 14px;
 }
 #form-wrapper {
-  .bg("@{folder}/bg-mobile.jpg");
+//  .bg("@{folder}/bg-mobile.jpg");
   p {
     color: @white;
     font-size: 1.2em;
@@ -73,10 +73,10 @@ h1 {
 
 #form-wrapper {
   text-align: center;
-  padding-top: 70px;
   padding-bottom: 50px;
   #formContact {
-    margin-top: 30px;
+    max-width: 500px;
+    margin: 30px auto 0px auto;
     .form-group {
         position: relative;
         span {
@@ -190,16 +190,18 @@ h1 {
 
 @media screen and (min-width:@screen-sm-min) {
   #form-wrapper {
-    .bg("@{folder}/bg-tablet.jpg");
-    padding-top: 90px;
+//    .bg("@{folder}/bg-tablet.jpg");
     h1 {
       font-size: 4em;
     }
     p {
       font-size: 2em;
     }
-    #formContact .form-control-feedback {
-      top: 22px;
+    #formContact {
+      max-width: none;
+      .form-control-feedback {
+        top: 22px;
+      }
     }
     #formContact .form-submit-btn {
       padding: 30px;
@@ -219,8 +221,9 @@ h1 {
 }
 @media screen and (min-width:@screen-md-min) {
   #form-wrapper {
-      padding-top: 120px;
-      .bg(@path:"@{folder}/bg-desktop.jpg",@x:0%,@y:50%);
+    .hero-padding {
+      padding-top: 150px;
+    }
       #formContact {
         margin-top: 15px;
         .form-submit-btn {

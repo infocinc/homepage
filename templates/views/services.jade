@@ -1,17 +1,30 @@
 extends ../layouts/default
 include ../mixins/header
 include ../mixins/logo
+include ../mixins/service-link
 
+mixin header(section)
+	header
+		canvas(id="bg-canvas-1" class="cubes" width="100" height="100")
+		canvas(id="fg-canvas-1" class="cubes overlay" width="100" height="100")
+		.overlay.overlay-black
+		.overlay.overlay-open-menu
+		.hero-text-wrapper.hero-padding.overlay
+			h1.front!=t(section + ':catchphrase')
+		if block
+			block
 
-mixin service-link(service)
-	a.col-xs-6.col-md-3(href='#' + service.name).service-item
-		.icon-logo
-			img(src='/images/home/'+service.name+'.png')
-		.icon-text!=t('home:'+service.name)
-
-mixin service-descr(name,i) 
+mixin service-descr(service,i) 
+	-var name = service.name
+	-var target = service.target
 	h2!=t('services:' + name+".title") 
 	p.brief!=t('services:' + name + '.brief')
+	if (target && target.indexOf('http') === 0)
+		a(href=target).btn-wide 
+			span=t('services:'+name+'-calltoaction')
+	else 
+		a(href='/'+lang+'/'+target).btn-wide
+			span=t('services:'+name+'-calltoaction')
 	button(type="button",data-toggle="collapse" data-target='#hidden-row-' + i).btn-wide
 		span.hide=t('services:close')
 		span=t('services:learnmore')
@@ -26,7 +39,7 @@ block head
 	meta(name="description", content=t('services:description'))
 block content
 	+logo
-	+header('services','megaphone.png')
+	+header('services')
 	section.intro.clearfix
 		h2=t('services:intro')
 		each service in services
@@ -38,9 +51,9 @@ block content
 				div(class= i % 2 === 0 ? '' : 'shift-service-img col-md-push-6 col-lg-push-8').col-sm-6.col-sm-offset-3.col-md-offset-0.col-md-6.col-lg-4.visual
 					img.main(src=service.icon.secure_url)
 				div(class=i % 2 === 0 ? '' : 'col-md-pull-6').col-sm-12.col-md-6.col-lg-6.col-lg-offset-2.text
-					+service-descr(service.name,i)
+					+service-descr(service,i)
 			.row(id='hidden-row-' + i).hidden-row.collapse
-				.question
+				.extra-caption
 					p!=t(prefix+'.question')
 				.bubbles.clearfix
 					each bubble,j in service.bubbles
@@ -48,12 +61,12 @@ block content
 							.infobubble
 								img(src=bubble.secure_url)
 								h3!=t(prefix+'.bubbles.' + j)
+				.extra-caption
+					p!=t(prefix+'.features.p')
 				.features.clearfix
-					.col-md-3 
-						p!=t(prefix+'.features.p')
 					each j in [0,1,2]
 						-var k = j*3
-						.col-md-3
+						.col-md-4
 							ul
 								li=t(prefix + '.features.items.' + (k+1))
 								li=t(prefix + '.features.items.' + (k+2))
@@ -61,33 +74,156 @@ block content
 	include ../layouts/footer.jade
 
 block js
-
+	script(src="/js/plugins.js")
 	script.
-		$('.service-item').scrollTo({
+		$('.service-link').scrollTo({
 				speed: 800,
 				easing: 'easeInOutCubic'
-			});
-		$('.services').on('click', function(event) {
-				$(this).find('.collapse').collapse('toggle');
 		});
-		var switchimg = function(e, state) {
-			var delim = state === 'on' ? '.' : "-",
-				suffix = state === 'on' ? "-hover" : "",
-				_color = state === 'on' ? 'white' : 'black',
-				img = $(this).find('img');
+		$('[data-toggle=collapse]').on('click', function(event) {
+				$(this).find('.collapse').collapse('toggle');
+				$(this).children().toggleClass('hide');
+		});
 
-			var tkn = $(img).attr('src').split(delim).shift();
-			$(img).attr('src', tkn + suffix + '.png');
-			$(this).css({'color': _color });
-		}
-		var toggle = function(state) {
-			var w = query_screenwidth(app_config['screenwidth-tag']);
-			if (isMobile(w)) {
-				return null;
-			}
-			return function(e) {
-				$.proxy(switchimg,this)(e,state)
-			}
-		}
-		$(".intro > a").hover(toggle('on'),toggle('off'));
+		window.requestAnimFrame = (function(callback) {
+			return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+			function(callback) {
+				window.setTimeout(callback, 1000 / 60);
+			};
+		})();
 
+		function resize() {
+			hh = $('header').height();
+			ww = $(window).width();
+
+			fontsize = hh / 5;
+			cubes.each(function(i) {
+				$(this).attr({
+					'width': ww,
+					'height': hh 
+				});
+			});
+		}
+
+		function animate(i,c,ct,startTime,speed,direction) {
+			var time = (new Date()).getTime() - startTime,
+				color = 40+Math.floor(Math.sin(Math.PI/4*time/1000)*20),
+				delta = direction*(Math.PI / radial[i] * time/1000) ,
+				dy = speed*time/1000 % hh,
+				//- dx = Math.cos(delta)*100 % ww,
+				dx = speed*time/1000 % ww;
+			if (i === 0) {
+				$(c).css('background','rgb(' + 40 + ',' + color + ',' + 40 +')');
+			}
+			ct.clearRect(0,0,c.width,c.height);
+			drawBackground(images[i],c,ct,direction*dx*i,direction*dy*(1-i));
+
+			requestAnimFrame(function() {
+				animate(i,c,ct,startTime,speed,direction)
+			});
+		}
+
+
+		function drawBackground(img,c,ct,tx,ty) {
+			var cw = c.width, ch = c.height,
+				w = img.width,h = img.height,
+				x = tx, y = ty,
+				ix = 0, iy = 0, 
+				ry = 0, rx = 0, 
+				ih = h ,iw = w,
+				rw = w, rh = h, 
+				reset,resety,
+				paint = true,painty = true;
+			
+			while(painty) {
+				x = tx, ix= 0, iw = w, rw = w, rx = 0;
+				reset = false;
+				paint = true;
+				if (y + h > ch) {
+					ry = ih = ch - y;
+					rh = (y+h) - ch;
+				}
+				if (resety) {
+					if (y >= ty) {
+						painty = false;
+					} else if (y + ih > ty) {
+						ih = ty - y;
+					}
+				}
+				while(paint) {
+						if (x+w > cw) {
+							rx = iw = cw - x;
+							rw = (x+w) - cw;
+						}
+						if (reset) {
+							if (x >= tx) {
+								paint = false;
+							} else if (x + iw > tx) {
+								iw = tx - x;
+							}
+						}
+						if (paint) {
+							ct.drawImage(img,ix,iy,iw,ih,x,y,iw,ih);
+							x = x + iw;
+							iw = w;
+							ix = 0;
+						}
+						if (x == cw) {
+							reset = true;
+							x = 0;
+							ix = rx;
+							iw = rw;
+						}
+				}
+				y = y + ih;
+				ih = h;
+				iy = 0;
+				if (y >= ch) {
+					resety = true;
+					y = 0;
+					iy = ry;
+					ih = rh;
+				}
+			}
+		}
+	
+		var canvas = $('canvas'),
+			cubes = $('.cubes'),
+			images = [],
+			contexts = [],
+			props = [],
+			speed = ['90','120'],
+			radial = ['8','8'];
+
+		images[0] = new Image();
+		images[0].src = '/images/services/axiom-pattern-2.png';
+		images[1] = new Image();
+		images[1].src = '/images/services/axiom-pattern-1.png';
+
+		resize();
+		$(window).on('resize',resize);
+
+		cubes.each(function(i) {
+			contexts[i] = this.getContext('2d');
+			props[i] = {'direction': Math.pow(-1,(1-i)), 'speed': speed[i]};
+			if (i === 0) {
+				$(this).css('background','rgb(40,40,40)');
+			}
+		});
+
+		images[0].onload = function() {
+			var c = $('.cubes').get(0);
+			drawBackground(images[0],c,c.getContext('2d'),0,0);
+			setTimeout(function() {
+				var startTime = (new Date()).getTime();
+				animate(0,c,c.getContext('2d'),startTime,props[0]['speed'],props[0]['direction']);
+			},10);
+		}
+		images[1].onload = function() {
+			var c = $('.cubes').get(1);
+			drawBackground(images[1],c,c.getContext('2d'),0,0);
+			setTimeout(function() {
+				var startTime = (new Date()).getTime();
+				animate(1,c,c.getContext('2d'),startTime,props[1]['speed'],props[1]['direction']);
+			},10);
+		}

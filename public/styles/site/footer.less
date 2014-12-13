@@ -17,17 +17,24 @@
 }
 
 footer {
-  background: #545454;
+  background: rgb(40,30,40);
   color: @white;
   a {
     color: @white !important;
   }
+  .terms {
+    background: rgb(50,38,50);
+  }
   .terms span,.cookies-warning p {
       letter-spacing: 0.1em;
   }
+
   .infocinc {
     color: white;
     font-size: 1em;
+  }
+  ul {
+    font-size: 1.2em;
   }
 }
 
@@ -40,8 +47,7 @@ footer {
 }
 
 footer {
-  padding: 30px;
-  max-width: 2200px;
+  padding-top: 30px;
   margin: 0 auto;
   p {
     text-align: left;
@@ -65,10 +71,17 @@ footer {
     text-align: center;
   }
   .footer-logo {
+    position:relative;
+    left: -5px;
     img {
       height: 50px;
       padding-bottom: 10px;
     }
+  }
+  .row {
+    padding: 15px 0;
+    margin-left: 0px;
+    margin-right: 0px;
   }
   .row > div {
     text-align: center;
@@ -77,7 +90,7 @@ footer {
     .show-media(@min-width:@screen-md-min);
   }
   .row > div:nth-child(3) {
-    margin-top: 40px;
+    margin-top: 15px;
     margin-bottom: 20px;
   }
   .row > div:first-child .footer-logo {
@@ -85,10 +98,6 @@ footer {
   }
   
 
-  .terms {
-    text-align: center;
-    margin-top: 25px;
-  }
   .cookies-warning {
       p {
         margin: 0 !important;
@@ -109,7 +118,8 @@ footer {
 
   .terms {
     text-align: center;
-    margin-top: 25px;
+    margin-top: 10px;
+    padding: 30px 0;
     img {
       padding-right: 15px;
       width: 30px;
@@ -127,8 +137,12 @@ footer {
 }
 @media screen and (min-width:@screen-iphone-min) {
   footer {
-    .footer-logo img {
-      height: 60px;
+    .footer-logo {
+      position: relative;
+      left: -8px;
+      img {
+        height: 60px;
+      }
     }
     .terms img {
       width: 40px;
@@ -184,5 +198,11 @@ footer {
 
 }
 @media screen and (min-width:@screen-wide-min) {
+  .row:not(.terms) {
+    max-width: 2200px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-x: hidden;    
+  }
 }
 

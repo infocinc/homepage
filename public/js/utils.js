@@ -143,9 +143,6 @@ function add_interaction(selectors, interaction) {
     $(selectors).hover(getInHandler(),getOutHandler());
 }
 
-/*    $(selectors).focusin(function() {$(this).addClass(classname)});
-    $(selectors).focusout(function() {$(this).removeClass(classname)});
-*/
 
 
 
