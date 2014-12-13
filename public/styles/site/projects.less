@@ -1,0 +1,217 @@
+@import (reference) "../ifc-toolkit/presets/electro.less";
+
+
+@root: '@{kjs-img}/portfolio';
+
+@seriousgreen: #495C5D;
+@lightgreen: rgba(73,92,93,0.5);
+
+///////////////////////////////////////////
+// HEADER BG
+///////////////////////////////////////////
+/*header {
+	.bg('@{root}/bg-mobile.jpg');
+}
+*/
+
+///////////////////////////////////////////
+// SERVICES
+///////////////////////////////////////////
+
+
+// NON-LAYOUT
+// ---------------
+
+.intro {
+	border: 15px solid #111;
+	background: #222;
+	a {
+		.transition(@property:background;@delay:300ms);
+	}
+	h2 {
+		font-size: 1.8em;
+		color: #fcfcfc;
+		letter-spacing: 0.1em;
+		line-height: 1.2;
+	}
+}
+
+.more-btn(@color1,@color2) {
+	.btn-wide {
+		border: 1px solid @color1;
+		background: @color2;
+		color: @white;
+		border-radius: 3px;
+		&:hover {
+			background: @color1;
+		}
+		span {
+			font-size: 1.2em;
+		}
+	}
+}
+
+// LAYOUT
+// ----------------------
+
+.intro {
+	padding: 25px 20px;
+	text-align: center;
+}
+
+.portfolio {
+	padding: 25px 0px;
+}
+
+.client {
+	margin-bottom: 40px;
+	.client-link,.client-descriptor-wrapper {
+		position: relative;
+	}
+	.client-link {
+		display: block;
+		height: 180px;
+		overflow: hidden;
+		.client-bg,.client-descriptor-wrapper {
+			width: 100%;
+			height: 100%;
+		}
+		&:hover {
+			cursor: pointer;
+		}
+	}
+}
+
+.hidden-info(@font-size:1.4em;@img-width:45px;@label-pad-top:10px;@label-pad-bottom:10px;@padding-y:15px) {
+	.client-descriptor-wrapper {
+		.client-label {
+			padding-top: @label-pad-top;
+			padding-bottom: @label-pad-bottom;
+			font-size: @font-size;
+		}
+		.client-tags {
+			padding: @padding-y 0;
+			font-size: 0.8571428571 * @font-size;
+		}
+		.client-more {
+			padding-bottom: @padding-y;
+			font-size: 0.7142857 * @font-size;
+		}
+		img {
+			width:@img-width;
+		}
+	}
+}
+
+.client-descriptor-wrapper {
+	background: rgba(20,20,20,0.9);
+	color: white;
+	.transition(@property:all);
+	text-align: center;
+	p {
+		margin: 0;
+	}
+}
+.hidden-info();
+
+///////////////////////////////////////////////
+// MIXINS
+///////////////////////////////////////////////
+.project-dim(@width:90%;@max-width;@height;@margin-bottom:40px) {
+	.client {
+		margin-bottom: @margin-bottom;
+		.client-link {
+			width: @width;
+			max-width:@max-width;
+			margin: 0 auto;
+			height: @height;
+		}
+	}
+}
+
+
+///////////////////////////////////////////////
+// MEDIA QUERIES
+///////////////////////////////////////////////
+
+
+//////////////////////
+// VERY SMALL DEVICES 
+//////////////////////
+@media screen and (max-width:(@screen-nano-max)) {
+
+}
+
+@media screen and (max-width:@screen-iphone-max) {
+
+}
+//////////////////
+// IPHONE PORTRAIT
+//////////////////
+@media screen and (min-width:@screen-iphone-min) {
+
+}
+
+//////////////////
+// IPHONE LANDSCAPE
+//////////////////
+@media screen and (min-width:@screen-xs-min) {
+	.project-dim(90%,440px,219px);
+	.hidden-info(1.5em,50px,@label-pad-bottom:15px,@padding-y:20px);
+}
+
+//////////////////
+// IPAD PORTRAIT
+//////////////////
+@media screen and (min-width:@screen-sm-min) {
+	.intro {
+		padding-left: 40px;
+		padding-right: 40px;
+		h2 {
+			font-size: 3.1em;
+			letter-spacing: 0.1em;
+		}
+	}
+	.portfolio {
+		padding: 80px 0px 0px 0px;
+	}
+	.project-dim(90%,584px,292px,80px);
+	.hidden-info(1.8em;@img-width:70px;@label-pad-bottom:20px;@padding-y:25px)
+}
+
+/////////////////////////
+// IPAD LANDSCAPE
+/////////////////////////
+@media screen and (min-width:@screen-md-min) {
+	.intro {
+		padding: 40px;
+		h2 {
+			line-height: 1.2;
+		}
+	}
+	.portfolio {
+		padding-bottom: 80px;
+	}
+//	.project-dim(90%,584px,219px,0px);
+}
+
+/////////////////////////
+// LARGE SCREEN - LAPTOP
+/////////////////////////
+@media screen and (min-width:@screen-lg-min) {
+	.intro h2 {
+		max-width: 1200px;
+		margin: 0 auto !important;
+	}
+	
+	.project-dim(100%,584px,272px,0px);
+	.hidden-info(1.8em;@img-width:70px;@label-pad-bottom:20px;@padding-y:25px)
+}
+
+/////////////////////////
+// WIDE SCREEN
+/////////////////////////
+@media screen and (min-width:@screen-wide-min) {
+	.project-dim(100%,584px,292px,0px);
+}
+
