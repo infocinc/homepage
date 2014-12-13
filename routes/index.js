@@ -68,7 +68,7 @@ exports = module.exports = function(app) {
 			namespaces: [
 				'app','home','form','services',
 				'footer','portfolio','terms',
-				'contact'
+				'contact','projects'
 			],
 			resGetPath: 'locales/resources.json?lng=__lng__&ns=__ns__',
 			resChangePath: 'locales/change/__lng__/__ns__',
