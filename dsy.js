@@ -71,7 +71,7 @@ var options = {
 		namespaces: [
 			'app','home','form','services',
 			'footer','portfolio','terms',
-			'contact'
+			'contact','projects'
 		],
 		defaultNs: 'app'
 	},
