@@ -31,4 +31,6 @@ var toggle = function(state) {
 }
 
 // EFFECT applies to .service-link selector
-$(".service-link").hover(toggle('on'), toggle('off'));
+$(document).ready(function() {
+	$(".service-link").hover(toggle('on'), toggle('off'));
+});
