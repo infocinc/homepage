@@ -1,0 +1,50 @@
+extends ../layouts/default
+include ../mixins/header
+include ../mixins/logo
+
+block css
+	link(href="/styles/site/header.min.css", rel="stylesheet")
+	link(href='/styles/site/footer.min.css', rel="stylesheet")
+	link(href='/styles/site/terms.min.css', rel="stylesheet")
+block content
+	+logo
+	+header('terms','')
+	section#terms.container
+		.row
+			#text-wrapper
+				p!=t('terms:p1')
+				h2=t('terms:h2')
+				p!=t('terms:p2')
+				ul
+					li=t('terms:li-1')
+					li=t('terms:li-2')
+					li=t('terms:li-3')
+					li=t('terms:li-4')
+					li=t('terms:li-5')
+					li=t('terms:li-6')
+				p!=t('terms:p3')
+				h2=t('terms:h3')
+				p!=t('terms:p4')
+				p!=t('terms:p5')
+				ul
+					li
+						a(href="http://support.microsoft.com/gp/cookies/en")
+							| Internet Explorer
+					li
+						a(href="http://support.mozilla.com/en-US/kb/cookies")
+							| Mozilla Firefox
+					li
+						a(href="http://www.google.com/support/chrome/bin/answer.py?hl=en&answer=95647")
+							| Google Chrome
+					li
+						a(href="http://support.apple.com/kb/PH5042")
+							| Safari
+					li
+						a(href="http://www.opera.com/browser/tutorials/security/privacy/")
+							| opera
+				p!=t('terms:p6')
+				p!=t('terms:p7')
+				p!=t('terms:p8')
+				p!=t('terms:p9')
+				p!=t('terms:p10')
+	include ../layouts/footer.jade
