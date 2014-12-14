@@ -18,7 +18,8 @@
 //////////////////////////////////////////////////////////////////////
 
 // GLOBAL
-var MEDIA_STATE = {}
+var MEDIA_STATE = {},
+    INITIALIZED = false;
 
 var app_config = {
     'main-wrapper' : '#main',
@@ -149,4 +150,5 @@ function init() {
 
 $(document).ready(function() {
     init();
+    INITIALIZED = true;
 });
