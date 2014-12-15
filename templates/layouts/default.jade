@@ -119,13 +119,13 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
             ul.lang
                 a#english-hero-anchor.nav-grey-bg.clearfix(href='/'+t('app.switchlng') +'/' + section)
                     li.nav-item=t('app.switchlng-label')
-            ul.cms
-                if user 
+            if user 
+                ul.cms
                     if user.canAccessKeystone
                         a.nav-grey-bg.clearfix(href='/dsy')
-                            li.nav-item=t('app.admin')
-                    a.nav-grey-bg.clearfix(href='/dsy/signout')
-                        li.nav-item=t('app.signout')
+                                li.nav-item=t('app.admin')
+                        a.nav-grey-bg.clearfix(href='/dsy/signout')
+                            li.nav-item=t('app.signout')
             ul.menu-buttons
                 .fb-like(data-href="http://www.facebook.com/infocinc" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false")
                 a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.infocinc.com")=t('app.tweet')
