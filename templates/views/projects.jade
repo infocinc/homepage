@@ -10,7 +10,7 @@ mixin header(section)
 		canvas(id="bg-canvas-2" class="parallax" width="100" height="100")
 		canvas(id="bg-canvas-3" class="parallax" width="100" height="100")
 		canvas(id="bg-canvas-4" class="parallax" width="100" height="100")
-		canvas(id="fg-canvas-1" class="overlay" width="100" height="100")
+		canvas(id="fg-canvas-1" class="overlay ticker" width="100" height="100")
 		.overlay.overlay-black
 		.overlay.overlay-open-menu
 		if block
@@ -50,171 +50,13 @@ block content
 	include ../layouts/footer.jade
 
 block js
-	script(src="/js/plugins.js")
 	script.
-		window.requestAnimFrame = (function(callback) {
-			return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-			function(callback) {
-				window.setTimeout(callback, 1000 / 60);
-			};
-		})();
+		var textmsg = [
+			!{JSON.stringify(t('portfolio:msg-1'))}, 
+			!{JSON.stringify(t('portfolio:msg-2'))}, 
+			!{JSON.stringify(t('portfolio:msg-3'))}, 
+			!{JSON.stringify(t('portfolio:msg-4'))}
+		];
+	script(src="/js/parallax.min.js")
+	script(src="/js/projects.min.js")
 
-		function resize() {
-			ch = parseInt($('.client-label').css('height'),10);
-			ah = $('.client-link').height();
-			hh = $('header').height();
-			ww = $(window).width();
-			ty = hh / 2;
-
-			$('.client-descriptor-wrapper').css({
-				'top': -ch
-			});
-			fontsize = hh / 5;
-			parallax.each(function(i) {
-				$(this).attr({
-					'width': ww,
-					'height': hh / parallax.length
-				});
-			});
-			text_fg.attr({'width': ww, 'height': hh});
-			text_ct.font = fontsize + 'px Time Square';
-			text_ct.textAlign = 'left';
-			text_ct.textBaseline = 'middle';
-			text_ct.fillStyle = 'yellow';
-		}
-
-		function drawText(c,ct,lastTime,tx,speed,direction,index) {
-			var currentTime = (new Date()).getTime();
-			var deltaTime = currentTime - lastTime,
-				delta = (speed * deltaTime/1000),
-				tx = tx - delta;
- 
-			ct.clearRect(0,0,c.width,c.height);
-			if (tx + text_widths[index] > 0) {
-				ct.fillText(msg[index],tx,ty);
-			} else {
-				tx = ww;
-				index = (index + 1) % msg.length;
-			}
-
-			requestAnimFrame(function() {
-				drawText(c,ct,currentTime,tx,speed,direction,index)
-			});
-		}
-
-		function animate(c,ct,startTime,speed,direction) {
-			var time = (new Date()).getTime() - startTime,
-				delta = (speed * time/1000),
-				displacement = delta % ww;
-
-			ct.clearRect(0,0,c.width,c.height);
-			drawBackground(c,ct,direction*displacement);
-
-			requestAnimFrame(function() {
-				animate(c,ct,startTime,speed,direction)
-			});
-		}
-
-
-		function drawBackground(c,ct,tx) {
-			var cw = c.width,
-				ch = c.height,
-				x = tx, y = 0,
-				w = image.width,h = image.height,
-				ix = 0, iw = w,rw = w, rx = 0, reset;
-			var paint = true;
-			
-			while(paint) {
-				if (x+w > cw) {
-					rx = iw = cw - x;
-					rw = (x+w) - cw;
-				}
-				if (reset) {
-					if (x >= tx) {
-						paint = false;
-					} else if (x + iw > tx) {
-						iw = tx - x;
-					}
-				}
-				if (paint) {
-					ct.drawImage(image,ix,0,iw,h,x,y,iw,h);
-					x = x + iw;
-					iw = w;
-					ix = 0;
-				}
-				if (x == cw) {
-					reset = true;
-					x = 0;
-					ix = rx;
-					iw = rw;
-				}
-			}
-		}
-		var ah = $('.client-link').height(),
-			ch = parseInt($('.client-label').css('height'),10);
-
-		$('.client-link').on('click', function(e) {
-			var descriptor = $(this).find('.client-descriptor-wrapper');
-			if (parseInt(descriptor.css('top'),10) !== -ah) {
-				e.preventDefault();
-				descriptor.css('top',-ah);
-			}
-		});
-
-		$('.client-descriptor-wrapper').hover(function(e) {
-			$(this).css({
-				'top': -ah
-			});
-		}, function(e) {
-			$(this).css({
-				'top': -ch
-			});
-		});
-
-				//- "AVEZ-VOUS DES IDÉES À RÉALISER ?",
-				//- "INFOCINC PEUT VOUS AIDER À LES RÉALISER!",
-				//- "CONTACTEZ-NOUS POUR DISCUTER DE VOS PROJETS!"
-
-		var canvas = $('canvas'),
-			parallax = $('.parallax'),
-			text_fg = $('#fg-canvas-1'),
-			text_ct = text_fg.get(0).getContext('2d'),
-			image = new Image(),
-			contexts = [],
-			props = [],
-			msg = [
-				!{JSON.stringify(t('portfolio:msg-1'))},
-				!{JSON.stringify(t('portfolio:msg-2'))},
-				!{JSON.stringify(t('portfolio:msg-3'))},
-				!{JSON.stringify(t('portfolio:msg-4'))}
-			],
-			text_widths = [];
-
-		image.src = '/images/portfolio/bg-desktop.png';
-		resize();
-		$(window).on('resize',resize);
-
-		parallax.each(function(i) {
-			contexts[i] = this.getContext('2d');
-			props[i] = {'direction': Math.pow(-1,i), 'speed': 20+Math.random()*20};
-			$(this).css('background','#281928');
-
-		});
-
-		msg.forEach(function(value,index) {
-			text_widths[index] = text_ct.measureText(value).width;
-		});
-
-		image.onload = function() {
-			parallax.each(function() {
-				drawBackground(this,this.getContext('2d'),0);
-			});
-
-			setTimeout(function() {
-				var startTime = (new Date()).getTime();
-				parallax.each(function(i) {
-					animate(this,this.getContext('2d'),startTime,props[i]['speed'],props[i]['direction']);
-				});
-				drawText(text_fg.get(0),text_ct,startTime,ww,300,1,0);
-			},10);
-		}

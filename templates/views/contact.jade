@@ -12,8 +12,8 @@ block content
 	section#form-wrapper
 		if enquirySubmitted 
 			h3.sent.front=t('contact:sent')
-		canvas(id="fg-canvas-1" class="cubes overlay" width="100" height="100")
-		canvas(id="fg-canvas-2" class="cubes overlay" width="100" height="100")
+		canvas(id="fg-canvas-1" class="overlay" width="100" height="100")
+		canvas(id="fg-canvas-2" class="overlay" width="100" height="100")
 
 		.overlay.overlay-black
 		.overlay.overlay-open-menu
@@ -77,184 +77,15 @@ block content
 			#map_canvas
 	include ../layouts/footer
 block js
+	script.
+		var required = !{JSON.stringify(t('contact:required'))},
+			maxlength = !{JSON.stringify(t('contact:maxlength'))},
+			textareamaxlength = !{JSON.stringify(t('contact:textareamaxlength'))},
+			validemail = !{JSON.stringify(t('contact:validemail'))}
 	script(src="/js/gmap.min.js")
 	script(src="/js/vendor/jquery.placeholder.min.js")
 	script(src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.13.0/jquery.validate.min.js")
-	script.
-		window.requestAnimFrame = (function(callback) {
-			return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-			function(callback) {
-				window.setTimeout(callback, 1000 / 60);
-			};
-		})();
-
-		function resize() {
-			hh = parseInt($('#form-wrapper').css('height'),10);
-			ww = $(window).width();
-
-			fontsize = hh / 5;
-			cubes.each(function(i) {
-				$(this).attr({
-					'width': ww,
-					'height': hh 
-				});
-			});
-		}
-
-		function animate(i,c,ct,lastTime,speed,dy) {
-			var now = new Date().getTime(),
-				delta = now- lastTime,
-				color = 20+Math.floor(Math.sin(Math.PI/8*now/1000)*30),
-				dy = dy + speed*delta/1000;
-			
-			i == 0 ? $(c).css('background','rgb(' + 20 + ',' + (color) + ',' + color +')') : '';
-
-			ct.clearRect(0,0,c.width,c.height);
-			drawBackground(images[i],c,ct,0,-dy);
-			requestAnimFrame(function() {
-				animate(i,c,ct,now,speed,dy)
-			});
-		}
-
-		function drawBackground(img,c,ct,tx,ty) {
-			var cw = c.width, ch = c.height,
-				w = img.width,h = img.height,
-				x = tx, y = ty,
-				ix = 0, iy = 0, 
-				ry = 0, rx = 0, 
-				ih = h ,iw = w,
-				rw = w, rh = h, 
-				reset,resety,
-				paint = true,painty = true;
-			
-			while(painty) {
-				x = tx, ix= 0, iw = w, rw = w, rx = 0;
-				reset = false;
-				paint = true;
-				if (y + h > ch) {
-					ry = ih = ch - y;
-					rh = (y+h) - ch;
-				}
-				if (resety) {
-					if (y >= ty) {
-						painty = false;
-					} else if (y + ih > ty) {
-						ih = ty - y;
-					}
-				}
-				while(paint) {
-						if (x+w > cw) {
-							rx = iw = cw - x;
-							rw = (x+w) - cw;
-						}
-						if (reset) {
-							if (x >= tx) {
-								paint = false;
-							} else if (x + iw > tx) {
-								iw = tx - x;
-							}
-						}
-						if (paint) {
-							ct.drawImage(img,ix,iy,iw,ih,x,y,iw,ih);
-							x = x + iw;
-							iw = w;
-							ix = 0;
-						}
-						if (x == cw) {
-							reset = true;
-							x = 0;
-							ix = rx;
-							iw = rw;
-						}
-				}
-				y = y + ih;
-				ih = h;
-				iy = 0;
-				if (y >= ch) {
-					resety = true;
-					y = 0;
-					iy = ry;
-					ih = rh;
-				}
-			}
-		}
-
-	
-		var canvas = $('canvas'),
-			cubes = $('.cubes'),
-			images = [],
-			contexts = [],
-			props = [],
-			speed = ['20','50'],
-			radial = ['8','8'];
-
-		images[0] = new Image();
-		images[0].src = '/images/services/stardust.png';
-		images[1] = new Image();
-		images[1].src = '/images/services/stardust.png';
-
-		resize();
-		$(window).on('resize',resize);
-
-		cubes.each(function(i) {
-			contexts[i] = this.getContext('2d');
-			props[i] = {'direction': -1, 'speed': speed[i]};
-			if (i === 0) {
-				$(this).css('background','rgb(0,0,0)');
-			}
-		});
-
-		images[0].onload = function() {
-			var c = $('.cubes').get(0);
-			//scaleImage(images[0],c,c.getContext('2d'),1,0,0);
-			drawBackground(images[0],c,c.getContext('2d'),0,0);
-			setTimeout(function() {
-				var startTime = (new Date()).getTime();
-				animate(0,c,c.getContext('2d'),startTime,props[0]['speed'],0);
-			},10);
-
-		}
-		images[1].onload = function() {
-			var c = $('.cubes').get(1);
-			drawBackground(images[1],c,c.getContext('2d'),0,0);
-			setTimeout(function() {
-				var startTime = (new Date()).getTime();
-				animate(1,c,c.getContext('2d'),startTime,props[1]['speed'],0);
-			},10);
-		}
+	script(src="/js/canvas-utils.min.js")
+	script(src="/js/contact.min.js")
 
 
-
-
-		//- $.validator || document.write('<script src="/js/vendor/jquery.validate.min.js"><\/script>')
-		//- var required = !{JSON.stringify(t('contact:required'))},
-		//- 	maxlength = !{JSON.stringify(t('contact:maxlength'))},
-		//- 	textareamaxlength = !{JSON.stringify(t('contact:textareamaxlength'))},
-		//- 	validemail = !{JSON.stringify(t('contact:validemail'))}
-
-		//- $.validator.addMethod("cRequired", $.validator.methods.required, required)
-		//- $.validator.addMethod("cMaxLength", $.validator.methods.maxlength, maxlength)
-		//- $.validator.addMethod("cTextAreaMaxLength", $.validator.methods.maxlength, textareamaxlength)
-		//- $.validator.addClassRules("constrained", {
-		//- 	cRequired: true,
-		//- 	cMaxLength: 50
-		//- })
-		//- $.validator.addClassRules("msg-constrained", {
-		//- 	cRequired: true,
-		//- 	cTextAreaMaxLength: 2000
-		//- })
-
-		//- $('#formContact').validate({
-		//- 	messages: {
-		//- 		"email": validemail
-		//- 	},
-		//- 	success: function(label, element) {
-		//- 		$(element).removeClass('has-error');
-		//- 		$(element).addClass('has-success');
-		//- 	},
-		//- 	errorPlacement: function(error, element) {
-		//- 		$(element).addClass('has-error');
-		//- 		$(element).closest("div").append(error);
-		//- 	},
-		//- 	errorElement: "span"
-		//- })

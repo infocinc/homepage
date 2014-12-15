@@ -8,7 +8,7 @@ block css
 block content
 	-var prefix = '/' + lang + '/'
 	section#hero
-		canvas(id="fg-canvas-1" class="cubes overlay" width="100" height="100")
+		canvas(id="scaler" class="overlay" width="100" height="100")
 		.overlay.overlay-tvnoise
 		.overlay.overlay-black
 		.overlay.overlay-open-menu
@@ -34,89 +34,6 @@ block content
 		each service in services
 			+service-link(service,'services')
 block js
-	script(src="/js/plugins.js")
-	script.
+	script(src="/js/servicelink.min.js")
+	script(src="/js/scale.min.js")
 
-		window.requestAnimFrame = (function(callback) {
-			return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-			function(callback) {
-				window.setTimeout(callback, 1000 / 60);
-			};
-		})();
-
-		function resize() {
-			hh = $('#hero').height();
-			ww = $(window).width();
-
-			if (ww < 768) {
-				images[0].src = '/images/home/bg-mobile.jpg';
-			} else if (ww < 1200) {
-				images[0].src = '/images/home/bg-tablet.jpg';
-			} else {
-				images[0].src = '/images/home/bg-desktop.jpg'
-			}
-			fontsize = hh / 5;
-			cubes.each(function(i) {
-				$(this).attr({
-					'width': ww,
-					'height': hh 
-				});
-			});
-		}
-
-		function animate(i,c,ct,startTime,speed,direction) {
-			var time = (new Date()).getTime() - startTime,
-				delta = direction * speed * time / 5000,
-				dy = Math.sin(delta)*45 % hh,
-				dx = Math.cos(delta)*30 % ww,
-				s = 0.90 + Math.sin(Math.PI/8*time/1000)*0.10;
-			ct.clearRect(0,0,c.width,c.height);
-			scaleImage(images[i],c,ct,s,dx,dy);
-			requestAnimFrame(function() {
-				animate(i,c,ct,startTime,speed,direction)
-			});
-		}
-
-
-		function scaleImage(img,c,ct,s,tx,ty) {
-		var cw = c.width, ch = c.height,
-				w = img.width,h = img.height,
-				sw = Math.min(s*cw,w),
-				sh = Math.min(s*0.85*h,h),
-				tw = Math.max(tx+(w-sw)/2,0),
-				th = Math.max(ty+(h-sh)/2,0);
-				if (tw+sw > w) {
-					sw = w - tw;
-				} 
-				if (th + sh > h) {
-					sh = h - th;
-				}
-				ct.drawImage(img,tw,th,sw,sh,0,0,cw,ch);
-		}
-
-		var canvas = $('canvas'),
-			cubes = $('.cubes'),
-			images = [],
-			contexts = [],
-			props = [],
-			speed = ['3','120'],
-			radial = ['8','8'];
-
-		images[0] = new Image();
-
-		resize();
-		$(window).on('resize',resize);
-
-		cubes.each(function(i) {
-			contexts[i] = this.getContext('2d');
-			props[i] = {'direction': Math.pow(-1,(1-i)), 'speed': speed[i]};
-		});
-
-		images[0].onload = function() {
-			var c = $('.cubes').get(0);
-			scaleImage(images[0],c,c.getContext('2d'),1,0,0);
-			setTimeout(function() {
-				var startTime = (new Date()).getTime();
-				animate(0,c,c.getContext('2d'),startTime,props[0]['speed'],props[0]['direction']);
-			},10);
-		}

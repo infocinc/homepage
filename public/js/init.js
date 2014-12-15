@@ -73,7 +73,6 @@ function init_sidemenu() {
       side = menu['side'],
       size = (screenwidth < SCREEN_WIDTHS.TABLET_PORTRAIT) ? menu['minisize'] : menu['fullsize'];
 
-  console.log('calling bigSlide script with width ' + size);
   link.off('click.bigSlide');
   $(document).off('click.bigSlide');
   link.bigSlide({
