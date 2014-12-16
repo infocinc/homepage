@@ -24,19 +24,15 @@ var scene = {
         var o = {},
             v = velocities[index],
             delta = now - lastTime,
-            w = v.speed * delta / 1024;
-
-        translateY[index] += w;
-        translateX[index] += w;
-        if (translateX[index] >= c.width ) {
-        	translateX[index] -= c.width;
-        }
+            w = v.speed * now / 1024,
+            dy = v.direction*(index)*w % c.height,
+            dx = v.direction*(1-index) * w % c.width;
 
         if (index == 0) {
             var color = 40 + Math.floor(Math.sin(Math.PI / 4 * now / 1024) * 20);
             $(c).css('background', 'rgb(' + 40 + ',' + color + ',' + 40 + ')');
         }
-        drawBackground(index, c, ct, (1-index)*translateX[index], v.direction*index * translateY[index]);
+        drawBackground(index, c, ct, dx,dy);
     }
 }
 

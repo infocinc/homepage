@@ -45,12 +45,12 @@ block content
 	each service,i in services
 		-var prefix = 'services:' + service.name
 		section(id=service.name).services.clearfix.container-fluid
-			.row.service-wrapper
+			.service-wrapper.clearfix
 				div(class= i % 2 === 0 ? '' : 'shift-service-img col-md-push-6 col-lg-push-8').col-sm-6.col-sm-offset-3.col-md-offset-0.col-md-6.col-lg-4.visual
 					img.main(src=service.icon.secure_url)
 				div(class=i % 2 === 0 ? '' : 'col-md-pull-6').col-sm-12.col-md-6.col-lg-6.col-lg-offset-2.text
 					+service-descr(service,i)
-			.row(id='hidden-row-' + i).hidden-row.collapse
+			.clearfix.hidden-row.collapse(id='hidden-row-' + i)
 				.extra-caption
 					p!=t(prefix+'.question')
 				.bubbles.clearfix

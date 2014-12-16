@@ -70,13 +70,13 @@
 	}
 }
 
-.make-service(@text-color;@border-color;@button-bg;@bubbles-bg) {
+.make-service(@text-color;@border-color;@button-bg;@bubbles-bg;@fallback:white) {
 	border: 15px solid @border-color;
 	color: @text-color;
 	.axiom-bg(@text-color);
 	.more-btn(@text-color,@button-bg);
 	& {
-		background: url('@{root}/@{bubbles-bg}') repeat 0% 0%;
+		background: url('@{root}/@{bubbles-bg}') repeat 0% 0% @fallback;
 	}
 }
 
@@ -91,7 +91,7 @@
 	@text-color: #3B5998;
 	@border-color: #8b9dc3;
 	@button-bg: rgba(139,157,195,0.7);
-	@bubbles-bg: 'cubes.png'; 
+	@bubbles-bg: 'cubes1.png'; 
 	.make-service(@text-color,@border-color,@button-bg,@bubbles-bg);
 }
 #advice {
@@ -106,7 +106,7 @@
 	@border-color: lighten(#576F84,30%);
 	@button-bg: rgba(141,162,180,0.7);
 	@bubbles-bg: 'crissxcross.png'; 
-	.make-service(@text-color,@border-color,@button-bg,@bubbles-bg);
+	.make-service(@text-color,@border-color,@button-bg,@bubbles-bg,@white);
 }
 
 .hidden-row {
