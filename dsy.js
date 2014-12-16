@@ -139,6 +139,12 @@ dsy.set('nav', {
 	'images': 'images'
 });
 
+if (dsy.get('env') === 'production') {
+	dsy.set('signout redirect','http://www.infocinc.com/fr/home');
+	dsy.set('back url', 'https://infocinc.herokuapp.com/fr/home');
+	dsy.set('secure admin','https://infocinc.herokuapp.com'); 
+}
+
 // Start dsy to connect to your database and initialise the web server
 var events = {
 	'onMount' : function() {
