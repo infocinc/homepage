@@ -2,17 +2,17 @@
 // TRANSFORMS
 ///////////////////////////////////
 
-.translate3d(@x:0,@y:0,@z:0) {
-  -webkit-transform: translate3d(@x,@y,@z);
+.translate3d(@x:0px,@y:0px,@z:0px) {
   transform: translate3d(@x,@y,@z);
   -ms-transform: translate(@x,@y,@z);
+  -webkit-transform: translate3d(@x,@y,@z);
 }
 
 .rotate(@theta: 90deg, @zoom: 1)
 {
   transform:rotate(@theta) scale(@zoom);
- -webkit-transform:rotate(@theta) scale(@zoom); /* Opera, Chrome, and Safari */
  -ms-transform:rotate(@theta) scale(@zoom); /* IE 9 */
+ -webkit-transform:rotate(@theta) scale(@zoom); /* Opera, Chrome, and Safari */
 }
 
 /////////////////////

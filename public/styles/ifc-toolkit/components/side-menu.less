@@ -148,19 +148,20 @@
 
 .side-menu-mobile(@bg;@width:200px;@side:right;@text-color:white;@font;@font-size) {
   position: fixed;
-  z-index: 9999;
+  z-index:  0;
   overflow-y: auto;
   width: @width;
-  .translate3d(@x:@width);
   .bg(@bg);
   height: 100%;
   padding-left: 40px;
 
   & when (@side = right) {
+    top: 0px;
     right: 0px;
     .remove-btn();
   }
   & when (@side = left) {
+    top: 0px;
     left: 0px;
     .remove-btn(left);
   }
@@ -245,7 +246,6 @@
 
 .side-menu-full(@width:250px;@font-size:15px) {
   width: @width;
-  .translate3d(@x:@width);
   li {
     font-size: @font-size;
   } 
