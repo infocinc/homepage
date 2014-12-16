@@ -23,7 +23,6 @@ var scene = {
     'refresh': function(index, c, ct, now, lastTime) {
         var o = {},
             v = velocities[index],
-            delta = now - lastTime,
             w = v.speed * now / 1024,
             dy = v.direction*(index)*w % c.height,
             dx = v.direction*(1-index) * w % c.width;

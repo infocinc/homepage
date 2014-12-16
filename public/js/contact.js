@@ -20,14 +20,14 @@ var scene = {
     'refresh': function(index, c, ct, now, lastTime) {
         var o = {},
             v = velocities[index],
-            delta = now - lastTime;
+            w = v.speed * now / 1024,
+            dy = v.direction*w % c.height;
 
-        translateY[index] += v.speed * delta / 1024;
         if (index == 0) {
             var color = 20 + Math.floor(Math.sin(Math.PI / 8 * now / 1000) * 30);
             $(c).css('background', 'rgb(' + 20 + ',' + (color) + ',' + color + ')');
         }
-        drawBackground(index, c, ct, 0, v.direction * translateY[index]);
+        drawBackground(index, c, ct, index*100, dy);
     }
 }
 
