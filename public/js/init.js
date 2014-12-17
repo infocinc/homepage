@@ -160,7 +160,7 @@ $(document).ready(function() {
     INITIALIZED = true;
     if (section === "home") {
         serviceLinkRegister();
-        loadScript("/js/scale.js", function(script,textStatus) {
+        loadScript("/js/scale.min.js", function(script,textStatus) {
             ifc.scale.init();
         }, function(jqxhr,settings,exception) {
             console.log("ERROR: failed to load scale");
