@@ -109,7 +109,23 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
                 s.parentNode.insertBefore(po, s);
             })();    
         #fb-root
+
         script.
+            (function() {
+                var _fbq = window._fbq || (window._fbq = []);
+                if (!_fbq.loaded) {
+                    var fbds = document.createElement('script');
+                    fbds.async = true;
+                    fbds.src = '//connect.facebook.net/en_US/fbds.js';
+                    var s = document.getElementsByTagName('script')[0];
+                    s.parentNode.insertBefore(fbds, s);
+                    _fbq.loaded = true;
+                }
+                _fbq.push(['addPixelId','868526663199184']);
+            })();
+            window._fbq = window._fbq || [];
+            window._fbq.push(['track', 'PixelInitialized', {}]);
+
             (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
             if (d.getElementById(id)) return;
@@ -118,6 +134,8 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
             js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=712675532159199&version=v2.0";
             fjs.parentNode.insertBefore(js, fjs);
             }(document, 'script', 'facebook-jssdk'));
+        noscript
+            img(height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=868526663199184&amp;ev=PixelInitialized")
         //- BODY
         nav#menu.bar-items.invisible
             button(type="button")#remove-btn
