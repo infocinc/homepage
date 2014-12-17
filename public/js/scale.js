@@ -1,7 +1,7 @@
 // SCALING ANIMATION
 // LIMITED TO 1 CANVAS FOR NOW
 var scale = namespace('ifc.scale'),
-	canvas = $('canvas').get(0),
+    canvas = $('canvas').get(0),
     scaler = {};
 
 scale.init = function(options) {
@@ -25,8 +25,8 @@ scale.init = function(options) {
     scaler.img.onload = function() {
         scale.scaleImage(1, 0, 0);
         setTimeout(function() {
-            scale.animate();
-        }, 10);
+            scale.animate(new Date().getTime());
+        }, 500);
     }
 
 }
@@ -34,7 +34,7 @@ scale.init = function(options) {
 scale.refreshImage = function(w, h) {
     var imgPath;
 
-    if (w > 1000) {
+    if (w > 991) {
         imgPath = '/images/home/bg-desktop.jpg';
     } else if (w > 767) {
         imgPath = '/images/home/bg-tablet.jpg';
@@ -58,16 +58,15 @@ scale.resize = function(pre, post) {
     }
 }
 
-scale.animate = function() {
-    var now = (new Date()).getTime(),
-    	sin = Math.sin(now/3000),
-        s = sin*0.10 + 0.90;
+scale.animate = function(firstTime) {
+    var now = (new Date()).getTime() - firstTime,
+        s = Math.sin(Math.PI/2 + now/3000) * 0.10 + 0.90;
 
     scaler.context.clearRect(0, 0, canvas.width, canvas.height);
-    scale.scaleImage(s,0,0);
+    scale.scaleImage(s, 0, 0);
 
     requestAnimFrame(function() {
-        scale.animate();
+        scale.animate(firstTime);
     });
 }
 
@@ -79,9 +78,8 @@ scale.scaleImage = function(s, tx, ty) {
         h = scaler.img.height,
         sw = s * w,
         sh = s * 0.85 * h,
-        tw = (w - sw ) / 2,
-        th = (h - sh ) / 2;
-    
+        tw = (w - sw) / 2,
+        th = (h - sh) / 2;
+
     scaler.context.drawImage(scaler.img, tw, th, sw, sh, 0, 0, cw, ch);
 }
-
