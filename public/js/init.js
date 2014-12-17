@@ -22,14 +22,14 @@ var MEDIA_STATE = {},
     INITIALIZED = false;
 
 var app_config = {
-    'main-wrapper' : '#main',
-    'screenwidth-tag' : '#media-state',
-    'side-menu' :  true,
-    'menu' : {
-        'side' : 'right',
+    'main-wrapper': '#main',
+    'screenwidth-tag': '#media-state',
+    'side-menu': true,
+    'menu': {
+        'side': 'right',
         'anchor': '.menu-link',
-        'minisize' : '200px',
-        'fullsize' : '250px'
+        'minisize': '200px',
+        'fullsize': '250px'
     }
 }
 
@@ -44,21 +44,21 @@ var app_config = {
     }
 }
 */
-function register_scrolltos() {
-}
+function register_scrolltos() {}
 
 function register_waypoints() {
-/*    $('#apropos-banner').waypoint(navBarResizeHandler, {
-        offset: '0%'
-    });
-*/};
+    /*    $('#apropos-banner').waypoint(navBarResizeHandler, {
+            offset: '0%'
+        });
+    */
+};
 
 
 function init_scrolldepth() {
     $.getScript('/js/vendor/jquery.scrolldepth.min.js')
-    .done(function(script,status) {
-        $.scrollDepth();
-    });
+        .done(function(script, status) {
+            $.scrollDepth();
+        });
 }
 
 ///////////////////////////////
@@ -67,18 +67,18 @@ function init_scrolldepth() {
 ///////////////////////////////
 
 function init_sidemenu() {
-  var screenwidth= query_screenwidth(app_config['screenwidth-tag']);
-  var menu = app_config['menu'],
-      link = $(menu['anchor']),
-      side = menu['side'],
-      size = (screenwidth < SCREEN_WIDTHS.TABLET_PORTRAIT) ? menu['minisize'] : menu['fullsize'];
+    var screenwidth = query_screenwidth(app_config['screenwidth-tag']);
+    var menu = app_config['menu'],
+        link = $(menu['anchor']),
+        side = menu['side'],
+        size = (screenwidth < SCREEN_WIDTHS.TABLET_PORTRAIT) ? menu['minisize'] : menu['fullsize'];
 
-  link.off('click.bigSlide');
-  $(document).off('click.bigSlide');
-  link.bigSlide({
-    'side': side,
-    'menuWidth': size
-  });
+    link.off('click.bigSlide');
+    $(document).off('click.bigSlide');
+    link.bigSlide({
+        'side': side,
+        'menuWidth': size
+    });
 }
 
 function twitter(d, s, id) {
@@ -99,13 +99,13 @@ function common() {
     register_waypoints();
 
     if (app_config['side-menu']) {
-        $.getScript('/js/vendor/bigSlide.js')
-         .done(function(script, textStatus) {
-            init_sidemenu();
-         })
-         .fail(function(jqxhr, settings, exception) {            
-            console.log("ERROR: failed to load big slide.")
-         });     
+        $.getScript('/js/vendor/bigSlide.min.js')
+            .done(function(script, textStatus) {
+                init_sidemenu();
+            })
+            .fail(function(jqxhr, settings, exception) {
+                console.log("ERROR: failed to load big slide.")
+            });
     }
 }
 
@@ -127,11 +127,13 @@ function init() {
     if (old_ie) {
         return;
     }
-    $.ajaxSetup({cache:true});
+    $.ajaxSetup({
+        cache: true
+    });
 
     MEDIA_STATE['init'] = query_screenwidth(app_config['screenwidth-tag']);
     common();
-    switch(MEDIA_STATE['init']) {
+    switch (MEDIA_STATE['init']) {
         case SCREEN_WIDTHS.XSMALL:
         case SCREEN_WIDTHS.MOBILE:
         case SCREEN_WIDTHS.MOBILE_LANDSCAPE:
@@ -147,7 +149,22 @@ function init() {
     init_scrolldepth();
 }
 
+function loadScript(name,success,error) {
+    $.getScript(name)
+        .done(success)
+        .fail(error);
+}
+
 $(document).ready(function() {
     init();
     INITIALIZED = true;
+    if (section === "home") {
+        serviceLinkRegister();
+        loadScript("/js/scale.min.js", function(script,textStatus) {
+            ifc.scale.init();
+        }, function(jqxhr,settings,exception) {
+            console.log("ERROR: failed to load scale");
+        });
+    } 
+
 });

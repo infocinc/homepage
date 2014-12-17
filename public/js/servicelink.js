@@ -30,16 +30,7 @@ var toggle = function(state) {
     }
 }
 
-function tryRegister() {
-	if (INITIALIZED) {
-		$(".service-link").hover(toggle('on'), toggle('off'));
-	} else {
-		setTimeout(tryRegister,5);
-	}
+function serviceLinkRegister() {
+	$(".service-link").hover(toggle('on'), toggle('off'));
 }
 
-
-// EFFECT applies to .service-link selector
-$(document).ready(function() {
-	tryRegister();
-});

@@ -85,6 +85,3 @@ scale.scaleImage = function(s, tx, ty) {
     scaler.context.drawImage(scaler.img, tw, th, sw, sh, 0, 0, cw, ch);
 }
 
-$(document).ready(function() {
-    scale.init();
-});
