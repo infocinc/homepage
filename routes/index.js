@@ -82,11 +82,11 @@ exports = module.exports = function(app) {
 	app.all('/:lng/contact', function(req,res) {
 		routes.views.contact(req,res);
 	});
-/*	// Accept post request for home (Facebook App does a post)
+	// Accept post request for home (Facebook App does a post)
 	app.all('/:lng/home', function(req,res) {
-		routes.views.contact(req,res);
+		routes.views.index(req,res);
 	});
-*/
+
 	app.get('/:lng/:section', function(req,res) {
 		routes.views.index(req,res);
 	});
