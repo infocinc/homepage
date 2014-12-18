@@ -39,9 +39,14 @@ $('.service-link').scrollTo({
     speed: 800,
     easing: 'easeInOutCubic'
 });
-$('[data-toggle=collapse]').on('click', function(event) {
-    $(this).find('.collapse').collapse('toggle');
-    $(this).children().toggleClass('hide');
+
+
+$('.collapse').on('shown.bs.collapse', function(event) {
+    var top = $(this).offset().top;
+
+    $('html,body').stop().animate({
+    	scrollTop : top
+	},800,'easeInOutCubic');
 });
 
 $(document).ready(function() {
