@@ -49,6 +49,9 @@ $('.collapse').on('shown.bs.collapse', function(event) {
 	},800,'easeInOutCubic');
 });
 
+$('[data-toggle=collapse]').on('click', function(event) {
+	$(this).children().toggleClass('hide');
+});
 $(document).ready(function() {
 	serviceLinkRegister();
     initScene(scene);
