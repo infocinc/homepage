@@ -45,5 +45,6 @@ $('[data-toggle=collapse]').on('click', function(event) {
 });
 
 $(document).ready(function() {
+	serviceLinkRegister();
     initScene(scene);
 });
