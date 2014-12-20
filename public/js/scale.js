@@ -51,8 +51,10 @@ scale.resize = function(pre, post) {
     if (pre) {
         pre(w, h);
     }
+
     canvas.width = w;
     canvas.height = h;
+    $(scaler.tag).css('width',w);
     if (post) {
         post();
     }
