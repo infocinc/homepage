@@ -10,12 +10,11 @@ mixin if-ie(condition, showInNonIeBrowser)
     != "<!--"
   != "<![endif]-->"
 
-
+doctype html
 +if-ie("lt IE 10") Please update your browser or use Google Chrome for optimal viewing experience !
 
 
 
-doctype html
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
