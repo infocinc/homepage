@@ -23,6 +23,7 @@ function loadImages(sourceSet, refresh) {
     }
 }
 
+
 function initScene(scene) {
     resize(scene.container);
     $(window).on('resize', function() {
