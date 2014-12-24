@@ -140,37 +140,39 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
             button(type="button")#remove-btn
                 span.glyphicon.glyphicon-remove
             ul.principal
-                a.nav-grey-bg.clearfix(href='/' + lang + '/home')
-                    li.nav-item=t('app.home')
-                a.nav-grey-bg.clearfix(href='/' + lang + '/services')
-                    li.nav-item=t('app.services')
-                a.nav-grey-bg.clearfix(href='/' + lang + '/projects')
-                    li.nav-item=t('app.portfolio')     
-                a.nav-grey-bg.clearfix(href='/' + lang + '/contact')
-                    li.nav-item=t('app.contact')
+                li.nav-grey-bg.clearfix
+                    a.nav-item(href='/' + lang + '/home')=t('app.home')
+                li.nav-grey-bg.clearfix
+                    a.nav-item(href='/' + lang + '/services')=t('app.services')
+                li.nav-grey-bg.clearfix
+                    a.nav-item(href='/' + lang + '/projects')=t('app.portfolio')
+                li.nav-grey-bg.clearfix
+                    a.nav-item(href='/' + lang + '/contact')=t('app.contact')
             ul.lang
-                a#english-hero-anchor.nav-grey-bg.clearfix(href='/'+t('app.switchlng') +'/' + section)
-                    li.nav-item=t('app.switchlng-label')
+                li.nav-grey-bg.clearfix 
+                    a(href='/'+t('app.switchlng') +'/' + section)=t('app.switchlng-label')
             if user 
                 ul.cms
                     if user.canAccessKeystone
-                        a.nav-grey-bg.clearfix(href='/dsy')
-                                li.nav-item=t('app.admin')
-                        a.nav-grey-bg.clearfix(href='/dsy/signout')
-                            li.nav-item=t('app.signout')
+                        li.nav-grey-bg.clearfix
+                            a.nav-item(href='/dsy')=t('app.admin')
+                        li.nav-grey-bg.clearfix
+                            a(href='/dsy/signout')=t('app.signout')
             ul.menu-buttons
-                .fb-like(data-href="http://www.facebook.com/infocinc" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false")
-                a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.infocinc.com")=t('app.tweet')
+                li
+                    .fb-like(data-href="http://www.facebook.com/infocinc" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false")
+                li
+                    a(href="https://twitter.com/share" class="twitter-share-button" data-url="http://www.infocinc.com")=t('app.tweet')
             ul.menu-footer
                 li#social-icons.clearfix
                     a(target="_blank" href="//twitter.com/InfoCinc") 
-                        img(src="/images/twitterlogo.png")   
+                        img(src="/images/twitterlogo.png" alt="twitter logo")   
                     a(target="_blank" href="//facebook.com/Infocinc")
-                        img(src="/images/facebooklogo.png")
+                        img(src="/images/facebooklogo.png" alt="facebook logo")
                     a(target="_blank" href="//plus.google.com/+Infocinc1")  
-                        img(src="/images/googlepluslogo.png") 
+                        img(src="/images/googlepluslogo.png" alt="googleplus logo") 
                     a(target="_blank" href="//www.linkedin.com/company/infocinc")  
-                        img(src="/images/linkedin.png") 
+                        img(src="/images/linkedin.png" alt="linkedin logo") 
                 li.nav-item
                     | &copy;2014 INFOCINC
                 li.nav-item
