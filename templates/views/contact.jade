@@ -5,12 +5,12 @@ block css
 	link(href='/styles/site/footer.min.css', rel="stylesheet")
 	link(href="/styles/site/contact.min.css", rel="stylesheet")
 	link(href="/styles/site/header.min.css", rel="stylesheet")
-block noscript
-	img(height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6021411515317&amp;cd[value]=0.00&amp;cd[currency]=CAD&amp;noscript=1")
 block head
 	script(src="https://maps.google.com/maps/api/js?sensor=false")
 	script.
 		window._fbq.push(['track', '6021411515317', {'value':'0.00','currency':'CAD'}]);
+block noscript
+	img(height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6021411515317&amp;cd[value]=0.00&amp;cd[currency]=CAD&amp;noscript=1")
 block content
 	section#form-wrapper
 		if enquirySubmitted 

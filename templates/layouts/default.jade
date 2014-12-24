@@ -84,16 +84,12 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
             })();
             window._fbq = window._fbq || [];
             window._fbq.push(['track', 'PixelInitialized', {}]);
-        noscript
-            img(height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=868526663199184&amp;ev=PixelInitialized")
-            block noscript
         block head
     //- HTML BODY
     body
-        //-[if lt IE 9]
-            p.chromeframe 
-                |   Votre navigateur est passé date. SVP  <a href="http://browsehappy.com/">faite une mise à jour.</a> 
-        //-[endif]
+        noscript
+            img(height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?id=868526663199184&amp;ev=PixelInitialized")
+            block noscript
         #fb-root
         script.
             (function(d, s, id) {
