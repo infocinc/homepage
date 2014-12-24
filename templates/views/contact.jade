@@ -28,7 +28,7 @@ block content
 		.container.front
 			+flash-messages(messages).front
 
-			form(name="formContact" id="formContact" action="" method="post" role="form").clearfix.row
+			form(name="formContact" id="formContact" method="post" role="form").clearfix.row
 				input(type='hidden', name='action', value='contact')
 				.form-group.col-sm-offset-1.col-sm-10.col-md-4.col-md-offset-2
 					input#fullname(type="text",name="name.full",value=formData['name.full'],placeholder=t('form:fullname'),class=validationErrors.name ? 'has-error': ' ').form-control.constrained
@@ -51,7 +51,7 @@ block content
 	section#address-wrapper.container-fluid
 		.row
 			.col-xs-10.col-xs-offset-1.col-sm-6.col-sm-offset-3.col-md-5.col-md-offset-1.col-lg-3.col-lg-offset-2
-				p.address-caption=t('contact:address-caption')
+				h2.address-caption=t('contact:address-caption')
 				p=t('contact:address-p')
 			.col-xs-10.col-xs-offset-1.col-sm-6.col-sm-offset-3.col-md-5.col-md-offset-1.col-lg-3.col-lg-offset-3
 				p.address-caption
@@ -73,9 +73,9 @@ block content
 					-var i = 0
 					while i < 4
 						a(target="_blank",href=href[i])
-							img(src="/images/" + img[i] + '.png')
+							img(src="/images/" + img[i] + '.png' alt=img[i])
 						-i++
-	section#gmap-wrapper.container-fluid
+	#gmap-wrapper.container-fluid
 		#gmap.col-md-10.col-md-offset-1
 			#map_canvas
 	include ../layouts/footer

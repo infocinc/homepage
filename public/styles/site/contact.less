@@ -10,8 +10,11 @@
 
 // NON LAYOUT STYLING (MOBILE)
 // --------------------
+textarea {
+  resize: none;
+}
 .sent {
-  color: @white;
+  color: yellow;
 }
 .error {
   color: @red;
@@ -79,6 +82,11 @@ h1 {
 // LAYOUT STYLING (MOBILE)
 // --------------
 
+.sent {
+  position: relative;
+  font-size: 1.4em;
+  top: 53px;
+}
 #form-wrapper {
   text-align: center;
   padding-bottom: 50px;
@@ -87,8 +95,11 @@ h1 {
     margin: 30px auto 0px auto;
     .form-group {
         position: relative;
+        margin-bottom: 20px;
         span {
             margin: 0;
+            position: absolute;
+            left: 15px;
         }
     }
     .form-submit-btn {
@@ -149,7 +160,7 @@ h1 {
   ul {
     margin-top: 0px !important;
   }
-  p,li {
+  h2,p,li {
     margin: 0 !important;
     line-height: 1.7 !important;
     text-align: center;
@@ -210,6 +221,9 @@ h1 {
       .form-control-feedback {
         top: 22px;
       }
+      .form-group {
+        margin-bottom: 30px;
+      }
     }
     #formContact .form-submit-btn {
       padding: 30px;
@@ -245,7 +259,7 @@ h1 {
   }
   #address-wrapper {
     padding: 70px;
-    p,li,#social-icons {
+    h2,p,li,#social-icons {
       text-align: left;
     }
     p,li {
