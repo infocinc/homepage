@@ -48,7 +48,7 @@ block content
 			section(id=service.name).services.clearfix.container-fluid
 				.service-wrapper.clearfix
 					div(class= i % 2 === 0 ? '' : 'shift-service-img col-md-push-6 col-lg-push-8').col-sm-6.col-sm-offset-3.col-md-offset-0.col-md-6.col-lg-4.visual
-						img.main(src=service.icon.secure_url)
+						img.main(src=service.icon.secure_url alt=service.name)
 					div(class=i % 2 === 0 ? '' : 'col-md-pull-6').col-sm-12.col-md-6.col-lg-6.col-lg-offset-2.text
 						+service-descr(service,i)
 				.clearfix.hidden-row.collapse(id='hidden-row-' + i)
@@ -58,8 +58,9 @@ block content
 						each bubble,j in service.bubbles
 							.col-xs-6.col-sm-6.col-md-3.infobubble-wrapper
 								.infobubble
-									img(src=bubble.secure_url)
-									h3!=t(prefix+'.bubbles.' + j)
+									-var bubble_text = t(prefix+'.bubbles.' + j)
+									img(src=bubble.secure_url alt=bubble_text)
+									h3!=bubble_text
 					.extra-caption
 						p!=t(prefix+'.features.p')
 					.features.clearfix
