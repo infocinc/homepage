@@ -31,8 +31,9 @@ block content
 	+logo
 	+header('portfolio')
 	section.intro.clearfix
+		h1!=t('portfolio:h1')
 		h2!=t('portfolio:intro')
-	section.portfolio.clearfix
+	.portfolio.clearfix
 		each client in clients 
 			.col-lg-4.client
 				a.client-link(href=client.image_url, target="_blank")
