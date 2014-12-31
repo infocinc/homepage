@@ -62,7 +62,7 @@ function configure_enquire() {
                     }
                     _animating = this;
                     var _bgPos = parseInt($(this).css('background-position')),
-                        _duration = (100 - _bgPos)* 140;
+                        _duration = (100 - _bgPos) * 140;
 
                     $(this).animate({
                         'background-position': '100%'
@@ -123,13 +123,35 @@ function init_sidemenu() {
     link.off('click.SideMenu');
     $(document).off('click.SideMenu');
 
-    var sidemenu = new SideMenu({'side': side,'width': size});
+    var sidemenu = new SideMenu({
+        'side': side,
+        'width': size
+    });
     sidemenu.registerHandlers();
 }
 
+function initTwitter() {
+    window.twttr = (function(d, s, id) {
+        var t, js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {
+            return
+        }
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        fjs.parentNode.insertBefore(js, fjs);
+        return window.twttr || (t = {
+            _e: [],
+            ready: function(f) {
+                t._e.push(f)
+            }
+        })
+    }(document, "script", "twitter-wjs"));
+}
 
 exports.init = function() {
     MEDIA_STATE['init'] = utils.query_screenwidth(app_config['screenwidth-tag']);
+    initTwitter();
     if (app_config['side-menu']) {
         init_sidemenu();
     }
@@ -146,8 +168,5 @@ exports.init = function() {
         default:
             detect_features(configure_enquire);
     }
-//    init_scrolldepth();
+    //    init_scrolldepth();
 }
-
-
-
