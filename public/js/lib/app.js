@@ -13,11 +13,32 @@
 // limitations under the License.
 */
 
-///////////////////////////////////////////////////////////////////////
-// Globals
-///////////////////////////////////////////////////////////////////////
-var tablet = namespace('ifc.tablet');
-var notouch = $('html').hasClass('no-touch');
+/////////////////////////////////////////////////////////////////////
+//  Initialization
+//////////////////////////////////////////////////////////////////////
+
+// GLOBAL
+require('modernizr');
+
+var utils = require('./app-utils.js'),
+    SideMenu = require('./sidemenu.js'),
+    $ = require('jquery');
+
+var MEDIA_STATE = {},
+    notouch = $('html').hasClass('no-touch');
+
+var app_config = {
+    'main-wrapper': '#main',
+    'screenwidth-tag': '#media-state',
+    'side-menu': true,
+    'menu': {
+        'side': 'right',
+        'anchor': '.menu-link',
+        'minisize': '200px',
+        'fullsize': '250px'
+    }
+}
+
 
 //////////////////////////////////////////////////////////////////////////////////
 // Enquire registering
@@ -32,10 +53,10 @@ function configure_enquire() {
         deferSetup: true,
         setup: function() {
             if (notouch) {
-                add_interaction('#footer-contact a, #footer-community a,' +
+                utils.add_interaction('#footer-contact a, #footer-community a,' +
                     '#footer-nav a', 'hover-underline');
-                add_interaction('.center-navigation a', 'navbox-hover');
-                add_interaction('.services', function() {
+                utils.add_interaction('.center-navigation a', 'navbox-hover');
+                utils.add_interaction('.services', function() {
                     if (_animating) {
                         $(_animating).stop();
                     }
@@ -64,27 +85,14 @@ function configure_enquire() {
             }
         },
         match: function() {
-            if (_switch || isMobile(MEDIA_STATE['init']) && app_config['side-menu']) {
+            if (_switch || utils.isMobile(MEDIA_STATE['init']) && app_config['side-menu']) {
                 init_sidemenu();
             }
         }
     });
 }
 
-
-/////////////////////////////////////////////////////////////////
-// Resize handler
-/////////////////////////////////////////////////////////////////
-tablet.resize = function() {
-    mediaState = query_screenwidth(app_config['screenwidth-tag']);
-}
-
-tablet.bind_resizehandler = function() {
-    window.addEventListener('resize', tablet.resize, false);
-}
-
-
-tablet.detect_features = function(complete) {
+function detect_features(complete) {
     var load = [{
         test: window.matchMedia,
         nope: "/js/vendor/matchMedia.min.js"
@@ -100,10 +108,46 @@ tablet.detect_features = function(complete) {
     Modernizr.load(load);
 }
 
+///////////////////////////////
+// detectIE
+// no support below IE 9 as of 2014.09.02
+///////////////////////////////
 
-tablet.init = function() {
-    //    tablet.bind_resizehandler();
+function init_sidemenu() {
+    var screenwidth = utils.query_screenwidth(app_config['screenwidth-tag']);
+    var menu = app_config['menu'],
+        link = $(menu['anchor']),
+        side = menu['side'],
+        size = (screenwidth < utils.SCREEN_WIDTHS.TABLET_PORTRAIT) ? menu['minisize'] : menu['fullsize'];
 
-    tablet.detect_features(configure_enquire);
+    link.off('click.SideMenu');
+    $(document).off('click.SideMenu');
 
+    var sidemenu = new SideMenu({'side': side,'width': size});
+    sidemenu.registerHandlers();
 }
+
+
+exports.init = function() {
+    MEDIA_STATE['init'] = utils.query_screenwidth(app_config['screenwidth-tag']);
+    if (app_config['side-menu']) {
+        init_sidemenu();
+    }
+
+    switch (MEDIA_STATE['init']) {
+        case utils.SCREEN_WIDTHS.XSMALL:
+        case utils.SCREEN_WIDTHS.MOBILE:
+        case utils.SCREEN_WIDTHS.MOBILE_LANDSCAPE:
+            detect_features(configure_enquire);
+            break;
+        case utils.SCREEN_WIDTHS.TABLET:
+            detect_features(configure_enquire);
+            break;
+        default:
+            detect_features(configure_enquire);
+    }
+//    init_scrolldepth();
+}
+
+
+

@@ -1,6 +1,8 @@
 ///////////////////////////////////////////
 // HOVER EFFECT ON SERVICE LINK ICONS
 //////////////////////////////////////////
+var $ = require('jquery'),
+    utils = require('../lib/app-utils.js');
 
 var switchimg = function(e, state) {
     function Config(delim, suffix, color, bg) {
@@ -21,8 +23,8 @@ var switchimg = function(e, state) {
 }
 
 var toggle = function(state) {
-    var w = query_screenwidth(app_config['screenwidth-tag']);
-    if (isMobile(w)) {
+    var w = utils.query_screenwidth('#media-state');
+    if (utils.isMobile(w)) {
         return null;
     }
     return function(e) {
@@ -30,7 +32,7 @@ var toggle = function(state) {
     }
 }
 
-function serviceLinkRegister() {
+exports = module.exports = function register() {
 	$(".service-link").hover(toggle('on'), toggle('off'));
 }
 

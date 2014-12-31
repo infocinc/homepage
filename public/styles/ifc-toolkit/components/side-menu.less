@@ -28,11 +28,10 @@
 // OVERLAYS  
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-.overlay-open-menu {
+.overlay-menu-open {
   background: @black;
   opacity: 0;
   .transition(opacity);
-  .front;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////
@@ -52,7 +51,7 @@
 
 .menu-toggle(@font:'Open Sans Condensed';@text-color:white;@invert-color:black) {
     position: absolute;
-    z-index: 9999;
+    z-index: @z-max;
     right: 0px;
     top: 0px;
     padding: 15px;

@@ -1,37 +1,11 @@
 // SCALING ANIMATION
 // LIMITED TO 1 CANVAS FOR NOW
-var scale = namespace('ifc.scale'),
+var $ = require('jquery'),
     canvas = $('canvas').get(0),
     scaler = {};
 
-scale.init = function(options) {
-    var settings = {
-        tag: '#hero',
-    }
 
-    if (options) {
-        $.extend(settings, options);
-    }
-    scaler.img = new Image();
-    scaler.tag = settings.tag;
-    scaler.context = canvas.getContext('2d');
-    // resize canvas
-    $(window).on('resize', function() {
-        scale.resize(scale.refreshImage);
-    });
-
-    scale.resize(scale.refreshImage)
-
-    scaler.img.onload = function() {
-        scale.scaleImage(1, 0, 0);
-        setTimeout(function() {
-            scale.animate(new Date().getTime());
-        }, 500);
-    }
-
-}
-
-scale.refreshImage = function(w, h) {
+ function refreshImage(w, h) {
     var imgPath;
 
     if (w > 991) {
@@ -44,7 +18,7 @@ scale.refreshImage = function(w, h) {
     scaler.img.src = imgPath;
 }
 
-scale.resize = function(pre, post) {
+function resize(pre, post) {
     var h = $(scaler.tag).height(),
         w = $(window).width();
 
@@ -60,20 +34,20 @@ scale.resize = function(pre, post) {
     }
 }
 
-scale.animate = function(firstTime) {
+function animate(firstTime) {
     var now = (new Date()).getTime() - firstTime,
         s = Math.sin(Math.PI/2 + now/3000) * 0.10 + 0.90;
 
     scaler.context.clearRect(0, 0, canvas.width, canvas.height);
-    scale.scaleImage(s, 0, 0);
+    scaleImage(s, 0, 0);
 
     requestAnimFrame(function() {
-        scale.animate(firstTime);
+        animate(firstTime);
     });
 }
 
 
-scale.scaleImage = function(s, tx, ty) {
+function scaleImage(s, tx, ty) {
     var cw = canvas.width,
         ch = canvas.height,
         w = scaler.img.width,
@@ -84,4 +58,31 @@ scale.scaleImage = function(s, tx, ty) {
         th = (h - sh) / 2;
 
     scaler.context.drawImage(scaler.img, tw, th, sw, sh, 0, 0, cw, ch);
+}
+
+exports.start = function(options) {
+    var settings = {
+        tag: '#hero',
+    }
+
+    if (options) {
+        $.extend(settings, options);
+    }
+    scaler.img = new Image();
+    scaler.tag = settings.tag;
+    scaler.context = canvas.getContext('2d');
+    // resize canvas
+    $(window).on('resize', function() {
+        resize(refreshImage);
+    });
+
+    resize(refreshImage)
+
+    scaler.img.onload = function() {
+        scaleImage(1, 0, 0);
+        setTimeout(function() {
+            animate(new Date().getTime());
+        }, 500);
+    }
+
 }

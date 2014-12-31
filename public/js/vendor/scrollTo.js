@@ -3,7 +3,7 @@
  * Site: http://www.individual11.com/
  * Description: animated scroll to anchor
  * Version: 0.3
- * Mods by CINC, 2014
+ * Mods by Infocinc, 2014
  * Added callback function upon complete of scrollTo
  */
 /*
@@ -19,7 +19,7 @@
 (function($) {
     "use strict";
 
-    $.fn.scrollTo = function(options) {
+    module.exports = $.fn.scrollTo = function(options) {
 
         var settings = {
             offset: 0, //an integer allowing you to offset the position by a certain number of pixels. Can be negative or positive
@@ -37,7 +37,6 @@
             }
             $.extend(settings, options);
         }
-
         return this.each(function(i, el) {
             $(el).click(function(e) {
                 var idToLookAt;

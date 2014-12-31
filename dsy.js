@@ -40,7 +40,7 @@ dsy.init({
 
 
 // compress js script 
-new compressor.minify({
+/*new compressor.minify({
     type: 'gcc',
     fileIn: ['public/js/vendor/jquery.easing.1.3.js', 'public/js/vendor/bootstrap.js',
     	'public/js/vendor/scrollTo.js', 'public/js/vendor/waypoints.js',
@@ -52,7 +52,7 @@ new compressor.minify({
       //  console.log(err);
     }
 });
-
+*/
 dsy.import('models');
 
 // Setup common locals for your templates. The following are required for the

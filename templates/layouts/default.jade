@@ -55,8 +55,8 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
         link(href="/styles/site.min.css", rel="stylesheet")
 
         //- This file provides the default styling for the KeystoneJS Content Editor
-        if user && user.canAccessKeystone
-            link(href="/dsy/styles/content/editor.min.css", rel="stylesheet")
+        //- if user && user.canAccessKeystone
+        //-     link(href="/dsy/styles/content/editor.min.css", rel="stylesheet")
 
         //- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
         //- Safely remove this block if you are not targeting IE8
@@ -172,6 +172,7 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
                     a(href='/' + lang + '/terms').nav-grey-bg.clearfix=t('app.terms')
 
         #main.push
+            .overlay.overlay-menu-open
             .menu-link.menu-toggle
                 span.menu= t('app.menu')
                 #hamburger
@@ -196,17 +197,16 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
         //- and the KeystoneJS Content Editor. If you are not targeting IE8,
         //- you can upgrade to 2.1.1 (also bundled) for better performance.
         #media-state.hide.screenwidth
-        script(src="https://code.jquery.com/jquery-2.1.0.min.js")
-        script.
-            var tag = '<script src="/js/vendor/jquery-2.1.0.min.js"<\/script>'
-            window.jQuery || document.write(tag)
-            var section = !{JSON.stringify(section)}
-        script(src="/js-dist/base-min.js")
+        //- script(src="https://code.jquery.com/jquery-2.1.0.min.js")
+        //- script.
+        //-     var tag = '<script src="/js/vendor/jquery-2.1.0.min.js"<\/script>'
+        //-     window.jQuery || document.write(tag)
+            //- var section = !{JSON.stringify(section)}
+        //- script(src="/js-dist/base-min.js")
 
         //- The KeystoneJS Content Editor provides support for ks-editable data attributes,
         //- which generate links to edit content for users who can access Keystone
-        if user && user.canAccessKeystone
-            script(src='/dsy/js/content/editor.js')
+        script(src="/js/app/" + section + '.min.js' async)
 
         //- Add scripts that are globally required by your site here.
 

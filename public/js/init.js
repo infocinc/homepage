@@ -44,15 +44,6 @@ var app_config = {
     }
 }
 */
-function register_scrolltos() {}
-
-function register_waypoints() {
-    /*    $('#apropos-banner').waypoint(navBarResizeHandler, {
-            offset: '0%'
-        });
-    */
-};
-
 
 function init_scrolldepth() {
     $.getScript('/js/vendor/jquery.scrolldepth.min.js')
@@ -149,22 +140,59 @@ function init() {
     init_scrolldepth();
 }
 
-function loadScript(name,success,error) {
+function loadScript(name,cb) {
     $.getScript(name)
-        .done(success)
-        .fail(error);
+        .done(function(script,textStatus){
+            if (cb)
+                cb();
+        })
+        .fail(function(jqxhr,settings,exception){
+            console.log("ERROR: failed to load" + name);
+        });
 }
 
+require.config({
+    baseUrl: 'js/lib',
+    paths: {
+        jquery: 
+    }
+})
 $(document).ready(function() {
     init();
     INITIALIZED = true;
+ 
     if (section === "home") {
-        serviceLinkRegister();
-        loadScript("/js/scale.min.js", function(script,textStatus) {
-            ifc.scale.init();
-        }, function(jqxhr,settings,exception) {
-            console.log("ERROR: failed to load scale");
+        loadScript("/js/servicelink.min.js",function() {
+            serviceLinkRegister();
         });
-    } 
+        loadScript("/js/home.min.js", function() {
+            $(window).on('resize', resizeHeight);
+            resizeHeight();
+        });
+        loadScript("/js/scale.min.js", function(){
+            ifc.scale.init();
+        });
+    } else if (section === "contact") {
+        loadScript("/js/canvas-utils.min.js", function() {
+            loadScript("/js/contact.mins.js", function() {
+                initScene(scene);
+            });
+        });
+    } else if (section === "services") {
+        loadScript("/js/servicelink.min.js", function() {
+            serviceLinkRegister();
+        });
+        loadScript("/js/canvas-utils.min.js", function() {
+            loadScript("/js/services.mins.js", function() {
+                serviceLinkRegister();
+                initScene(scene);
+            });
+        });
+    } else if (section === "projects") {
+        loadScript("/js/parallax.min.js", function() {
+            loadScript("/js/projects.min.js")
+        });
+
+    }
 
 });

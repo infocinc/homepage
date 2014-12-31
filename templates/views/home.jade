@@ -11,7 +11,6 @@ block content
 		canvas(id="scaler" class="overlay" width="100" height="100")
 		.overlay.overlay-tvnoise
 		.overlay.overlay-black
-		.overlay.overlay-open-menu
 		.logo
 			img(src="/images/infocinc-logo-white.png" alt="Infocinc Logo")
 		.hero-text-wrapper.hero-relative.hero-padding
@@ -33,6 +32,3 @@ block content
 	#service-links.container-fluid
 		each service in services
 			+service-link(service,'services')
-block js
-	script(src="/js/servicelink.min.js")
-	script(src="/js/home.min.js")

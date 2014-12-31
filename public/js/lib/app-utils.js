@@ -17,6 +17,8 @@
 // Globals
 //////////////////////////////////////////////////////////////////////
 
+var $ = require('jquery');
+
 var SCREEN_WIDTHS = {
     XSMALL: 0,    
     MOBILE: 1,
@@ -26,32 +28,11 @@ var SCREEN_WIDTHS = {
     DESKTOP_LG: 5,
     DESKTOP_WIDE: 6
 };
-
-////////////////////////////////////////////////////////////////////////
-// namespace function
-////////////////////////////////////////////////////////////////////////
-
-function namespace(namespaceString) {
-    var parts = namespaceString.split('.'),
-        parent = window,
-        currentPart = '';
-
-    for (var i = 0, length = parts.length; i < length; i++) {
-        currentPart = parts[i];
-        parent[currentPart] = parent[currentPart] || {};
-        parent = parent[currentPart];
-    }
-
-    return parent;
-}
+exports.SCREEN_WIDTHS = SCREEN_WIDTHS;
 
 ///////////////////////////////////////////////////////////////////////
 // Utilities
 //////////////////////////////////////////////////////////////////////
-
-function hashTag(id) {
-    return '#' + id
-};
 
 Array.prototype.last = function() {
     return this[this.length - 1];
@@ -77,14 +58,14 @@ $.fn.isOnScreen = function() {
     bounds.bottom = bounds.top + this.outerHeight();
 
     return (!(viewport.right < bounds.left || viewport.left > bounds.right || viewport.bottom < bounds.top || viewport.top > bounds.bottom));
-
 };
 
-function isMobile(screenwidth) { 
+
+exports.isMobile = function(screenwidth) { 
     return screenwidth < SCREEN_WIDTHS.TABLET_PORTRAIT;
 }
 
-function query_screenwidth(tag) {
+exports.query_screenwidth = function(tag) {
     var size = parseInt($(tag).css('font-size'), 10);
     var screenwidth;
 
@@ -116,7 +97,7 @@ function query_screenwidth(tag) {
 }
 
 
-function add_interaction(selectors, interaction) {
+exports.add_interaction = function(selectors, interaction) {
     function getInHandler() {
         if (typeof interaction === "string") {
             return function() {

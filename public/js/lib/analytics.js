@@ -2,9 +2,8 @@
 // Google Analytics & FB SDK
 ///////////////////////////////////////////////////////////////////////////
 
-var ganal = namespace('ifc.analytics');
 
-ganal.create_event = function(label, value, url) {
+exports.create_event = function(label, value, url) {
     e = {
         'hitType': 'event',
         'eventCategory': 'button',

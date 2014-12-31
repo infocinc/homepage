@@ -15,8 +15,8 @@ var $ = require('jquery'),
         'nav': ('nav'),
         'push': ('.push'),
         'side': 'left',
-        'menuSwitch': '.menu-link',
-        'menuWidth': '15.625em',
+        'toggle': '.menu-link',
+        'width': '200px',
         'speed': '200',
         'activeBtn': 'menu-open',
         'overlay': '.overlay-menu-open',
@@ -25,8 +25,7 @@ var $ = require('jquery'),
     };
 
 // HELPER FUNCTIONS
-function translateX(menuState) {
-    var w = (menuState === 'shift') ? -this.menuWidth : 0;
+function translate3DX(w) {
     return {
         "-webkit-transform": 'translated3d(' + w + ',0,0)',
         "transform": 'translate3d(' + w + ',0,0)',
@@ -38,8 +37,8 @@ SideMenu.prototype.open = function() {
     this.state = 'open';
 
     this.nav.removeClass('invisible');
-    this.push.css(translateX('shift'));
-    this.menuSwitch.addClass(settings.activeBtn);
+    this.push.css(translate3DX('-' + this.width));
+    this.toggle.addClass(this.activeBtn);
 
     this.push.bind('touchmove', function(e) {
         e.preventDefault()
@@ -47,7 +46,7 @@ SideMenu.prototype.open = function() {
 
     this.overlay.css({
         'opacity': '0.4',
-        'z-index': '1000',
+        'z-index': '9999',
         'cursor': 'pointer'
     });
 };
@@ -55,16 +54,17 @@ SideMenu.prototype.open = function() {
 SideMenu.prototype.close = function() {
     this.state = 'closed';
 
-    this.nav.css(translateX('origin'));
-    this.menuSwitch.removeClass(settings.activeBtn);
+    this.push.css(translate3DX('0'));
+    this.toggle.removeClass(this.activeBtn);
     this.push.unbind('touchmove');
 
     this.overlay.css({
         'opacity': '0',
         'cursor': 'auto',
-        'z-index': '999'
+        'z-index': '0'
     });
 };
+
 
 function SideMenu(options) {
     var settings = $.extend(defaults, options),
@@ -80,9 +80,10 @@ function SideMenu(options) {
     this.nav = $(settings.nav);
     this.push = $(settings.push);
     this.overlay = $(settings.overlay);
-    this.menuSwitch = $(settings.menuSwitch);
+    this.toggle = $(settings.toggle);
+    this.activeBtn = $(settings.activeBtn);
     this.closeBtn = $(settings.closeBtn);
-    this.width = settings.menuWidth;
+    this.width = settings.width;
     this.state = 'closed';
 
     this.body = $('body');
@@ -91,12 +92,11 @@ function SideMenu(options) {
         'opacity': '0',
         'cursor': 'auto'
     });
-
     this.push.css(animateSlide);
-    this.push.css(translateX(0));
+    this.push.css(translate3DX('0'));
+}
 
-
-
+SideMenu.prototype.registerHandlers = function() {
     var clickHandler = function(e) {
         if (this.state === 'closed') {
             this.open();
@@ -106,17 +106,16 @@ function SideMenu(options) {
     }.bind(this);
 
     var pushHandler = function(e) {
-        var len = $(e.target).closest(menuSwitch).length;
+        var len = $(e.target).closest(this.toggle).length;
         if ((len === 0) && (this.state === 'open')) {
-            menu.close();
+            this.close();
         }
     }.bind(this);
 
     // register handlers
     this.push.on('click.SideMenu', pushHandler);
-    this.menuSwitch.on('click.SideMenu', clickHandler);
+    this.toggle.on('click.SideMenu', clickHandler);
     this.closeBtn.on('click.SideMenu', clickHandler);
-
 }
 
 exports = module.exports = SideMenu;
