@@ -10,10 +10,10 @@ function resizeHeight() {
 };
 
 
-(function() {
+$(document).ready(function() {
 	app.init();
 	scaler.start();
 	resizeHeight();
 	$(window).on('resize',resizeHeight);
-})();
+});
 
