@@ -1,12 +1,66 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
-var	app = require('../lib/app.js');
+
+var	app = require('../lib/app.js'),
+	$ = require('jquery'),
+	scaler = require('../lib/canvas/scale.js'),
+	servicelink = require('./servicelink.js')();
+
+
+function resizeHeight() {
+	var h = Math.max($(window).height(),$(document).height());
+	$('#main').css('height', h);
+};
 
 
 $(document).ready(function() {
 	app.init();
+	scaler.start();
+	resizeHeight();
+	$(window).on('resize',resizeHeight);
 });
 
-},{"../lib/app.js":3}],2:[function(require,module,exports){
+
+},{"../lib/app.js":4,"../lib/canvas/scale.js":5,"./servicelink.js":2,"jquery":7}],2:[function(require,module,exports){
+///////////////////////////////////////////
+// HOVER EFFECT ON SERVICE LINK ICONS
+//////////////////////////////////////////
+var $ = require('jquery'),
+    utils = require('../lib/app-utils.js');
+
+var switchimg = function(e, state) {
+    function Config(delim, suffix, color, bg) {
+        this.delim = delim;
+        this.suffix = suffix;
+        this.color = color;
+        this.background = bg
+    }
+    var config = state === 'on' ? new Config('.', '-hover', 'white', 'rgb(40,25,40)') : new Config('-', '', 'black', 'white'),
+        img = $(this).find('img'),
+        tkn = $(img).attr('src').split(config.delim).shift();
+
+    $(img).attr('src', tkn + config.suffix + '.png');
+    $(this).css({
+        'color': config.color,
+        'background': config.background
+    });
+}
+
+var toggle = function(state) {
+    var w = utils.query_screenwidth('#media-state');
+    if (utils.isMobile(w)) {
+        return null;
+    }
+    return function(e) {
+        $.proxy(switchimg, this)(e, state)
+    }
+}
+
+exports = module.exports = function register() {
+	$(".service-link").hover(toggle('on'), toggle('off'));
+}
+
+
+},{"../lib/app-utils.js":3,"jquery":7}],3:[function(require,module,exports){
 /*! Copyright 2014 Infocinc (www.infocinc.com)
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -145,7 +199,7 @@ window.requestAnimFrame = (function(callback) {
 
 
 
-},{"jquery":5}],3:[function(require,module,exports){
+},{"jquery":7}],4:[function(require,module,exports){
 (function (global){
 /*! Copyright 2014 Infocinc (www.infocinc.com)
 //
@@ -321,7 +375,97 @@ exports.init = function() {
 }
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./app-utils.js":2,"./sidemenu.js":4,"jquery":5}],4:[function(require,module,exports){
+},{"./app-utils.js":3,"./sidemenu.js":6,"jquery":7}],5:[function(require,module,exports){
+// SCALING ANIMATION
+// LIMITED TO 1 CANVAS FOR NOW
+var $ = require('jquery'),
+    canvas = $('canvas').get(0),
+    scaler = {};
+
+
+ function refreshImage(w, h) {
+    var imgPath;
+
+    if (w > 991) {
+        imgPath = '/images/home/bg-desktop.jpg';
+    } else if (w > 767) {
+        imgPath = '/images/home/bg-tablet.jpg';
+    } else {
+        imgPath = '/images/home/bg-mobile.jpg';
+    }
+    scaler.img.src = imgPath;
+}
+
+function resize(pre, post) {
+    var h = $(scaler.tag).height(),
+        w = $(window).width();
+
+    if (pre) {
+        pre(w, h);
+    }
+
+    canvas.width = w;
+    canvas.height = h;
+    $(scaler.tag).css('width',w);
+    if (post) {
+        post();
+    }
+}
+
+function animate(firstTime) {
+    var now = (new Date()).getTime() - firstTime,
+        s = Math.sin(Math.PI/2 + now/3000) * 0.10 + 0.90;
+
+    scaler.context.clearRect(0, 0, canvas.width, canvas.height);
+    scaleImage(s, 0, 0);
+
+    requestAnimFrame(function() {
+        animate(firstTime);
+    });
+}
+
+
+function scaleImage(s, tx, ty) {
+    var cw = canvas.width,
+        ch = canvas.height,
+        w = scaler.img.width,
+        h = scaler.img.height,
+        sw = s * w,
+        sh = s * 0.85 * h,
+        tw = (w - sw) / 2,
+        th = (h - sh) / 2;
+
+    scaler.context.drawImage(scaler.img, tw, th, sw, sh, 0, 0, cw, ch);
+}
+
+exports.start = function(options) {
+    var settings = {
+        tag: '#hero',
+    }
+
+    if (options) {
+        $.extend(settings, options);
+    }
+    scaler.img = new Image();
+    scaler.tag = settings.tag;
+    scaler.context = canvas.getContext('2d');
+    // resize canvas
+    $(window).on('resize', function() {
+        resize(refreshImage);
+    });
+
+    resize(refreshImage)
+
+    scaler.img.onload = function() {
+        scaleImage(1, 0, 0);
+        setTimeout(function() {
+            animate(new Date().getTime());
+        }, 500);
+    }
+
+}
+
+},{"jquery":7}],6:[function(require,module,exports){
 /*! sidemenu - v0.1.0 
  * node module
  * translate3D to use accelerated hardware
@@ -444,7 +588,7 @@ SideMenu.prototype.registerHandlers = function() {
 
 exports = module.exports = SideMenu;
 
-},{"jquery":5}],5:[function(require,module,exports){
+},{"jquery":7}],7:[function(require,module,exports){
 (function (global){
 ;__browserify_shim_require__=require;(function browserifyShim(module, exports, require, define, browserify_shim__define__module__export__) {
 /*! jQuery v2.1.0 | (c) 2005, 2014 jQuery Foundation, Inc. | jquery.org/license */

@@ -81,10 +81,18 @@
        ul {
          margin: 0;
          li {
+          .transition(@property:all);
           display: inline-block;
          }
          li:first-child {
           margin-right: 20px;
+         }
+         li:hover {
+          padding: 0px 10px 0px 10px;
+          background: white;
+          span {
+            color:black;
+          }
          }
        }
        img {

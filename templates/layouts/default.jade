@@ -167,7 +167,7 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
                     a(target="_blank" href="//www.linkedin.com/company/infocinc")  
                         img(src="/images/linkedin.png" alt="linkedin logo") 
                 li.nav-item
-                    | &copy;2014 INFOCINC
+                    span: &copy;2014 INFOCINC
                 li.nav-item
                     a(href='/' + lang + '/terms').nav-grey-bg.clearfix=t('app.terms')
 
@@ -206,7 +206,7 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
 
         //- The KeystoneJS Content Editor provides support for ks-editable data attributes,
         //- which generate links to edit content for users who can access Keystone
-        script(src="/js/app/" + section + '.min.js' async)
+        script(src="/js/app/" + section + '.min.js' )
 
         //- Add scripts that are globally required by your site here.
 

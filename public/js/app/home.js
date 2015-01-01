@@ -6,7 +6,8 @@ var	app = require('../lib/app.js'),
 
 
 function resizeHeight() {
-	$('#main').css('height', $(window).height());
+	var h = Math.max($(window).height(),$(document).height());
+	$('#main').css('height', h);
 };
 
 
