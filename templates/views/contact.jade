@@ -17,8 +17,6 @@ block noscript
 	img(height="1" width="1" alt="" style="display:none" src="https://www.facebook.com/tr?ev=6021411515317&amp;cd[value]=0.00&amp;cd[currency]=CAD&amp;noscript=1")
 block content
 	header#form-wrapper
-		if enquirySubmitted 
-			h3.sent.front=t('contact:sent')
 		canvas(id="fg-canvas-1" class="overlay" width="100" height="100")
 		canvas(id="fg-canvas-2" class="overlay" width="100" height="100")
 		.overlay.overlay-black
@@ -26,6 +24,8 @@ block content
 			img(src="/images/infocinc-logo-white.png" alt="Infocinc Logo")
 		.hero-text-wrapper.clearfix
 			.container
+				if enquirySubmitted 
+					h3.sent.front=t('contact:sent')
 				.row.clearfix
 					.col-md-12
 						h1!=t('contact:catchphrase')
@@ -46,11 +46,6 @@ block content
 					.form-actions.col-sm-offset-1.col-sm-10.col-md-4.col-md-offset-4
 						button.form-submit-btn(type="submit")
 							span=t('form:submit')
-		if trySubmit
-			if sent
-				h3.sent=t('contact:sent')
-			else 
-				h3.error=t('contact:notsent')
 	section#address-wrapper.container-fluid
 		.row
 			.col-xs-10.col-xs-offset-1.col-sm-6.col-sm-offset-3.col-md-5.col-md-offset-1.col-lg-3.col-lg-offset-2
