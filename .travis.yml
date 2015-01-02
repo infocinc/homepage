@@ -1,5 +1,7 @@
 before_script: "npm install --dev"
 
+script: gulp
+
 language: node_js
 node_js:
   - 0.8
