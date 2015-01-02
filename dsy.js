@@ -7,7 +7,7 @@ var express = require("express"),
 	app = express(),
 	dsy = require(__dirname + '/lib/dsy').connect(app),
 	compressor = require('node-minify'),
-    i18n = require('i18next')
+	i18n = require('i18next')
 
 
 // Initialise dsy with your project's configuration.
@@ -22,18 +22,18 @@ dsy.init({
 	'views': 'templates/views',
 	'compress': true,
 	'view engine': 'jade',
-	'sections': ['contact','home','projects','services','terms'],
+	'sections': ['contact', 'home', 'projects', 'services', 'terms'],
 	'emails': 'templates/emails',
 	'auto update': true,
 	'session': true,
 	'signout redirect': '/fr/home',
 	'signin redirect': '/fr/home',
 	'auth': true,
-	'signin logo':  '/dsy/images/logo.png',
+	'signin logo': '/dsy/images/logo.png',
 	'user model': 'User',
 	'cookie secret': ']>.N%h]>4H_e=(Sifsks!NUPe_tsv=qAGZbqNfI_`B%h:T^JL2r^~)GOdf3/-XU;',
 	'model prefix': "infocinc",
-	'mongo' : process.env.MONGOHQ_URL,
+	'mongo': process.env.MONGOHQ_URL,
 	'mandrill api key': process.env.MANDRILL_API_KEY,
 	'mandrill username': 'nicolas.dutil@infocinc.com'
 });
@@ -69,14 +69,14 @@ dsy.set('locals', {
 var options = {
 	ns: {
 		namespaces: [
-			'app','home','form','services',
-			'footer','portfolio','terms',
-			'contact','projects'
+			'app', 'home', 'form', 'services',
+			'footer', 'portfolio', 'terms',
+			'contact', 'projects'
 		],
 		defaultNs: 'app'
 	},
-	preload: ['en','fr'],
-	supportedLngs: ['en','fr'],
+	preload: ['en', 'fr'],
+	supportedLngs: ['en', 'fr'],
 	load: 'unspecific',
 	resSetPath: 'locales/__lng__/__ns__.json',
 	detectLngFromPath: 0,
@@ -115,7 +115,7 @@ dsy.set('email locals', {
 
 
 if (dsy.get('env') === 'production') {
-	dsy.set('secure signin','https://infocinc.herokuapp.com/dsy/signin'); 
+	dsy.set('secure signin', 'https://infocinc.herokuapp.com/dsy/signin');
 }
 
 dsy.set('email rules', [{
@@ -140,14 +140,14 @@ dsy.set('nav', {
 });
 
 if (dsy.get('env') === 'production') {
-	dsy.set('signout redirect','http://www.infocinc.com/fr/home');
+	dsy.set('signout redirect', 'http://www.infocinc.com/fr/home');
 	dsy.set('back url', 'https://infocinc.herokuapp.com/fr/home');
-	dsy.set('secure admin','https://infocinc.herokuapp.com'); 
+	dsy.set('secure admin', 'https://infocinc.herokuapp.com');
 }
 
 // Start dsy to connect to your database and initialise the web server
 var events = {
-	'onMount' : function() {
+	'onMount': function() {
 		i18n.backend(require('./backend'));
 		i18n.init(options);
 		i18n.registerAppHelper(app);

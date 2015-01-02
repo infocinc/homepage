@@ -1,8 +1,8 @@
 /**
  * This file contains the common middleware used by your routes.
- * 
+ *
  * Extend or replace these functions as your application requires.
- * 
+ *
  * This structure is not enforced, and just a starting point. If
  * you have more middleware you may want to group it as separate
  * modules in your project's /lib directory.
@@ -22,21 +22,30 @@ var _ = require('underscore'),
 */
 
 exports.initLocals = function(req, res, next) {
-	
+
 
 	var locals = res.locals;
-	locals.navLinks = [		
-		{ key: 'home',		href: '/welcome.html' },
-		{ key: 'blog',		href: '/blog' },
-		{ key: 'services',    href: '/services.html'},
-		{ key: 'contact',		href: '/contact.html' },
-		{ key: 'about',		href: '/about.html' }
-	];
-	
+	locals.navLinks = [{
+		key: 'home',
+		href: '/welcome.html'
+	}, {
+		key: 'blog',
+		href: '/blog'
+	}, {
+		key: 'services',
+		href: '/services.html'
+	}, {
+		key: 'contact',
+		href: '/contact.html'
+	}, {
+		key: 'about',
+		href: '/about.html'
+	}];
+
 	locals.user = req.user;
-	
+
 	next();
-	
+
 };
 
 
@@ -45,30 +54,32 @@ exports.initLocals = function(req, res, next) {
 */
 
 exports.flashMessages = function(req, res, next) {
-	
+
 	var flashMessages = {
 		info: req.flash('info'),
 		success: req.flash('success'),
 		warning: req.flash('warning'),
 		error: req.flash('error')
 	};
-	
-	res.locals.messages = _.any(flashMessages, function(msgs) { return msgs.length; }) ? flashMessages : false;
-	
+
+	res.locals.messages = _.any(flashMessages, function(msgs) {
+		return msgs.length;
+	}) ? flashMessages : false;
+
 	next();
-	
+
 };
 
 exports.initErrorHandler = function(req, res, next) {
-    
-    res.err = function(err,req,res,next) {
+
+	res.err = function(err, req, res, next) {
 		if (dsy.get('logger')) {
 			if (err instanceof Error) {
 				console.log((err.type ? err.type + ' ' : '') + 'Error thrown for request: ' + req.url);
 			} else {
 				console.log('Error thrown for request: ' + req.url);
 			}
-				console.log(err.stack || err);
+			console.log(err.stack || err);
 		}
 		var msg = '';
 		if (dsy.get('env') === 'development') {
@@ -88,20 +99,20 @@ exports.initErrorHandler = function(req, res, next) {
 		res.status(500).send(dsy.wrapHTMLError('Sorry, an error occurred loading the page (500)', msg));
 	}
 
-    next();
-    
+	next();
+
 };
 /**
 	Prevents people from accessing protected pages when they're not signed in
  */
 
 exports.requireUser = function(req, res, next) {
-	
+
 	if (!req.user) {
 		req.flash('error', 'Please sign in to access this page.');
 		res.redirect('/dsy/signin');
 	} else {
 		next();
 	}
-	
+
 };

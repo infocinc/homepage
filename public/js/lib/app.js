@@ -21,22 +21,22 @@
 require('modernizr');
 
 var utils = require('./app-utils.js'),
-    SideMenu = require('./sidemenu.js'),
-    $ = require('jquery');
+	SideMenu = require('./sidemenu.js'),
+	$ = require('jquery');
 
 var MEDIA_STATE = {},
-    notouch = $('html').hasClass('no-touch');
+	notouch = $('html').hasClass('no-touch');
 
 var app_config = {
-    'main-wrapper': '#main',
-    'screenwidth-tag': '#media-state',
-    'side-menu': true,
-    'menu': {
-        'side': 'right',
-        'anchor': '.menu-link',
-        'minisize': '250px',
-        'fullsize': '250px'
-    }
+	'main-wrapper': '#main',
+	'screenwidth-tag': '#media-state',
+	'side-menu': true,
+	'menu': {
+		'side': 'right',
+		'anchor': '.menu-link',
+		'minisize': '250px',
+		'fullsize': '250px'
+	}
 }
 
 
@@ -45,67 +45,67 @@ var app_config = {
 //////////////////////////////////////////////////////////////////////////////////
 
 function configure_enquire() {
-    var _switch = false,
-        _animating;
+	var _switch = false,
+		_animating;
 
-    enquire.register("screen and (min-width:768px)", {
+	enquire.register("screen and (min-width:768px)", {
 
-        deferSetup: true,
-        setup: function() {
-            if (notouch) {
-                utils.add_interaction('#footer-contact a, #footer-community a,' +
-                    '#footer-nav a', 'hover-underline');
-                utils.add_interaction('.center-navigation a', 'navbox-hover');
-                utils.add_interaction('.services', function() {
-                    if (_animating) {
-                        $(_animating).stop();
-                    }
-                    _animating = this;
-                    var _bgPos = parseInt($(this).css('background-position')),
-                        _duration = (100 - _bgPos) * 140;
+		deferSetup: true,
+		setup: function() {
+			if (notouch) {
+				utils.add_interaction('#footer-contact a, #footer-community a,' +
+					'#footer-nav a', 'hover-underline');
+				utils.add_interaction('.center-navigation a', 'navbox-hover');
+				utils.add_interaction('.services', function() {
+					if (_animating) {
+						$(_animating).stop();
+					}
+					_animating = this;
+					var _bgPos = parseInt($(this).css('background-position')),
+						_duration = (100 - _bgPos) * 140;
 
-                    $(this).animate({
-                        'background-position': '100%'
-                    }, {
-                        duration: _duration,
-                        queue: false,
-                        easing: 'linear',
-                        complete: function() {
-                            _animating = undefined;
-                            $(this).css('background-position', '0%');
-                        }
-                    });
-                });
-            }
-        },
-        unmatch: function() {
-            _switch = true;
-            if (app_config['side-menu']) {
-                init_sidemenu();
-            }
-        },
-        match: function() {
-            if (_switch || utils.isMobile(MEDIA_STATE['init']) && app_config['side-menu']) {
-                init_sidemenu();
-            }
-        }
-    });
+					$(this).animate({
+						'background-position': '100%'
+					}, {
+						duration: _duration,
+						queue: false,
+						easing: 'linear',
+						complete: function() {
+							_animating = undefined;
+							$(this).css('background-position', '0%');
+						}
+					});
+				});
+			}
+		},
+		unmatch: function() {
+			_switch = true;
+			if (app_config['side-menu']) {
+				init_sidemenu();
+			}
+		},
+		match: function() {
+			if (_switch || utils.isMobile(MEDIA_STATE['init']) && app_config['side-menu']) {
+				init_sidemenu();
+			}
+		}
+	});
 }
 
 function detect_features(complete) {
-    var load = [{
-        test: window.matchMedia,
-        nope: "/js/vendor/matchMedia.min.js"
-    }, {
-        test: window.matchMedia.addListener,
-        nope: "/js/vendor/matchMedia.addListener.min.js"
-    }, {
-        both: ['/js/vendor/enquire.min.js'],
-        complete: function() {
-            complete();
-        }
-    }];
-    Modernizr.load(load);
+	var load = [{
+		test: window.matchMedia,
+		nope: "/js/vendor/matchMedia.min.js"
+	}, {
+		test: window.matchMedia.addListener,
+		nope: "/js/vendor/matchMedia.addListener.min.js"
+	}, {
+		both: ['/js/vendor/enquire.min.js'],
+		complete: function() {
+			complete();
+		}
+	}];
+	Modernizr.load(load);
 }
 
 ///////////////////////////////
@@ -114,58 +114,58 @@ function detect_features(complete) {
 ///////////////////////////////
 
 function init_sidemenu() {
-    var screenwidth = utils.query_screenwidth(app_config['screenwidth-tag']);
-    var menu = app_config['menu'],
-        link = $(menu['anchor']),
-        side = menu['side'],
-        size = (screenwidth < utils.SCREEN_WIDTHS.TABLET_PORTRAIT) ? menu['minisize'] : menu['fullsize'];
+	var screenwidth = utils.query_screenwidth(app_config['screenwidth-tag']);
+	var menu = app_config['menu'],
+		link = $(menu['anchor']),
+		side = menu['side'],
+		size = (screenwidth < utils.SCREEN_WIDTHS.TABLET_PORTRAIT) ? menu['minisize'] : menu['fullsize'];
 
-    link.off('click.SideMenu');
-    $(document).off('click.SideMenu');
-    var sidemenu = new SideMenu({
-        'side': side,
-        'width': size
-    });
-    sidemenu.registerHandlers();
+	link.off('click.SideMenu');
+	$(document).off('click.SideMenu');
+	var sidemenu = new SideMenu({
+		'side': side,
+		'width': size
+	});
+	sidemenu.registerHandlers();
 }
 
 function initTwitter() {
-    window.twttr = (function(d, s, id) {
-        var t, js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) {
-            return
-        }
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://platform.twitter.com/widgets.js";
-        fjs.parentNode.insertBefore(js, fjs);
-        return window.twttr || (t = {
-            _e: [],
-            ready: function(f) {
-                t._e.push(f)
-            }
-        })
-    }(document, "script", "twitter-wjs"));
+	window.twttr = (function(d, s, id) {
+		var t, js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) {
+			return
+		}
+		js = d.createElement(s);
+		js.id = id;
+		js.src = "https://platform.twitter.com/widgets.js";
+		fjs.parentNode.insertBefore(js, fjs);
+		return window.twttr || (t = {
+			_e: [],
+			ready: function(f) {
+				t._e.push(f)
+			}
+		})
+	}(document, "script", "twitter-wjs"));
 }
 
 exports.init = function() {
-    MEDIA_STATE['init'] = utils.query_screenwidth(app_config['screenwidth-tag']);
-    initTwitter();
-    if (app_config['side-menu']) {
-        init_sidemenu();
-    }
+	MEDIA_STATE['init'] = utils.query_screenwidth(app_config['screenwidth-tag']);
+	initTwitter();
+	if (app_config['side-menu']) {
+		init_sidemenu();
+	}
 
-    switch (MEDIA_STATE['init']) {
-        case utils.SCREEN_WIDTHS.XSMALL:
-        case utils.SCREEN_WIDTHS.MOBILE:
-        case utils.SCREEN_WIDTHS.MOBILE_LANDSCAPE:
-            detect_features(configure_enquire);
-            break;
-        case utils.SCREEN_WIDTHS.TABLET:
-            detect_features(configure_enquire);
-            break;
-        default:
-            detect_features(configure_enquire);
-    }
-    //    init_scrolldepth();
+	switch (MEDIA_STATE['init']) {
+		case utils.SCREEN_WIDTHS.XSMALL:
+		case utils.SCREEN_WIDTHS.MOBILE:
+		case utils.SCREEN_WIDTHS.MOBILE_LANDSCAPE:
+			detect_features(configure_enquire);
+			break;
+		case utils.SCREEN_WIDTHS.TABLET:
+			detect_features(configure_enquire);
+			break;
+		default:
+			detect_features(configure_enquire);
+	}
+	//    init_scrolldepth();
 }

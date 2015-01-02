@@ -1,4 +1,4 @@
-var	app = require('../lib/app.js');
+var app = require('../lib/app.js');
 
 
 $(document).ready(function() {
