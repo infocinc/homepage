@@ -137,9 +137,6 @@
 // LAYOUT
 // ----------------------
 
-.hero-padding {
-	padding-top: 80px;
-}
 .hidden-row {
 	text-align: center;
 }
@@ -214,7 +211,9 @@
 .shift-service-img {
 	text-align: center;
 }
-
+.hero-text-wrapper {
+	position: relative;
+}
 ///////////////////////////////////////////////
 // MEDIA QUERIES
 ///////////////////////////////////////////////
@@ -247,9 +246,6 @@
 // IPHONE LANDSCAPE
 //////////////////
 @media screen and (min-width:@screen-xs-min) {
-	.hero-padding {
-		padding-top: 100px; 
-	}
 	.service-wrapper {
 		.btn-wide {
 			max-width: 260px;
@@ -272,13 +268,6 @@
 			font-size: 3.1em;
 			letter-spacing: 0.1em;
 			padding-bottom: 20px;
-		}
-	}
-
-	.hero-text-wrapper {
-		padding-top: 180px;
-		h1 {
-			padding: 0 25px;
 		}
 	}
 	.service-wrapper {
@@ -361,9 +350,6 @@
 			width: 120px;
 		}
 	}
-	.hero-text-wrapper {
-		padding-top: 250px;
-	}
 	.service-wrapper {
 		padding: 60px 30px;
 		text-align: left;
@@ -396,17 +382,12 @@
 // LARGE SCREEN - LAPTOP
 /////////////////////////
 @media screen and (min-width:@screen-lg-min) {
-
 	.service-wrapper {
 		padding: 60px;
 		.visual img {
 			width: 320px;
 		}
 	}
-	.hero-text-wrapper {
-		padding-top: 265px;
-	}
-
 }
 
 /////////////////////////

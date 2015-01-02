@@ -39,11 +39,6 @@ textarea {
 .has-success {
   border-color: @green !important;
 }
-h1 {
-  font-family: 'Lato', sans-serif;
-  font-size: 2em;
-  color: @white;  
-}
 .form-group span {
   display: inline;
   font-size: 1em;
@@ -72,13 +67,17 @@ h1 {
   font-size: 14px;
 }
 #form-wrapper {
-//  .bg("@{folder}/bg-mobile.jpg");
   p {
     color: @white;
     font-size: 1.2em;
+    margin-top: 5px;
+    margin-bottom: 0px;
   }
 }
 
+.hero-text-wrapper h1 {
+  font-size: 2em;
+}
 // LAYOUT STYLING (MOBILE)
 // --------------
 
@@ -87,9 +86,12 @@ h1 {
   font-size: 1.4em;
   top: 53px;
 }
+.hero-text-wrapper {
+  position: relative;
+}
 #form-wrapper {
+  height: 900px;
   text-align: center;
-  padding-bottom: 50px;
   #formContact {
     max-width: 500px;
     margin: 30px auto 0px auto;
@@ -205,16 +207,20 @@ h1 {
   }
 }
 @media screen and (min-width:@screen-xs-min) {
+  .hero-text-wrapper h1 {
+    font-size: 2.6em;
+  }
 }
 
 @media screen and (min-width:@screen-sm-min) {
+  .hero-text-wrapper h1 {
+    font-size: 3.8em;
+  }
   #form-wrapper {
-//    .bg("@{folder}/bg-tablet.jpg");
-    h1 {
-      font-size: 4em;
-    }
+    height: 1100px;
     p {
       font-size: 2em;
+
     }
     #formContact {
       max-width: none;
@@ -243,8 +249,9 @@ h1 {
 }
 @media screen and (min-width:@screen-md-min) {
   #form-wrapper {
-    .hero-padding {
-      padding-top: 150px;
+    height: 900px;
+    p {
+      margin-bottom: 5px;
     }
       #formContact {
         margin-top: 15px;
@@ -252,7 +259,6 @@ h1 {
           margin-top: 30px;
         }
       }
-
   }
   #gmap-wrapper #map_canvas {
     height: 400px;

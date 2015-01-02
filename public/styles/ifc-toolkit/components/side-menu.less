@@ -176,7 +176,6 @@
       color: @black  !important;
     }
   }
-
   ul {
     margin: 0;
   }
@@ -184,11 +183,15 @@
     word-wrap: normal !important;
     border: none;
     max-width: 90px;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.15em;
     font-family: @font, sans-serif;
     font-size: @font-size;
   }
-
+  #menu-logo {
+    position: relative;
+    padding: 5px 0px;
+    width: 75px;
+  }
   .principal {
     margin-top: 30px;
   }
@@ -198,7 +201,9 @@
     width: 90px;
     overflow-x: visible;
   }
-
+  .cms > li > a{
+    letter-spacing: 0.03em;
+  }
   .lang,.menu-buttons {
     & > iframe, & > div > iframe  {
       max-width: 100px !important;
@@ -251,10 +256,14 @@
 
 }
 
-.side-menu-full(@width:250px;@font-size:15px) {
+.side-menu-full(@width:250px;@font-size:17px) {
   width: @width;
   li {
     font-size: @font-size;
   } 
+  #menu-logo {
+    padding: 5px 0px;
+    width: 85px;
+  }
 }
 

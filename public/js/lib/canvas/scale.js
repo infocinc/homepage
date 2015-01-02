@@ -28,7 +28,7 @@ function resize(pre, post) {
 
     canvas.width = w;
     canvas.height = h;
-    $(scaler.tag).css('width',w);
+//    $(scaler.tag).css('width',w);
     if (post) {
         post();
     }

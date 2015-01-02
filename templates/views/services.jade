@@ -1,16 +1,14 @@
 extends ../layouts/default
-include ../mixins/header
 include ../mixins/logo
 include ../mixins/service-link
 
 mixin header(section)
 	header
-		canvas(id="bg-canvas-1" width="100" height="100")
+		canvas(id="bg-canvas-1" class="overlay" width="100" height="100")
 		canvas(id="fg-canvas-1" class="overlay" width="100" height="100")
 		.overlay.overlay-black
-		.overlay.overlay-open-menu
-		.hero-text-wrapper.hero-padding.overlay
-			h1.front!=t(section + ':catchphrase')
+		.hero-text-wrapper
+			h1!=t(section + ':catchphrase')
 		if block
 			block
 

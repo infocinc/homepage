@@ -18,7 +18,9 @@
 #hero {
 //  .bg(@path:"@{kjs-img}/home/bg-mobile.jpg");
    position: relative;
+   display: table;
    height: 440px;
+   width: 100%;
    .transition(@property:opacity);
   .arrow-down {
     position: absolute;
@@ -30,6 +32,9 @@
     img {
      width: 100%;
     }
+  }
+  .hero-text-wrapper {
+    position: relative;
   }
 }
 

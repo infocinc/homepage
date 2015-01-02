@@ -34,7 +34,7 @@ var app_config = {
     'menu': {
         'side': 'right',
         'anchor': '.menu-link',
-        'minisize': '200px',
+        'minisize': '250px',
         'fullsize': '250px'
     }
 }
@@ -122,7 +122,6 @@ function init_sidemenu() {
 
     link.off('click.SideMenu');
     $(document).off('click.SideMenu');
-
     var sidemenu = new SideMenu({
         'side': side,
         'width': size
