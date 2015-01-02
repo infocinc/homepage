@@ -81,7 +81,7 @@ function SideMenu(options) {
     this.push = $(settings.push);
     this.overlay = $(settings.overlay);
     this.toggle = $(settings.toggle);
-    this.activeBtn = $(settings.activeBtn);
+    this.activeBtn = settings.activeBtn;
     this.closeBtn = $(settings.closeBtn);
     this.width = settings.width;
     this.state = 'closed';
