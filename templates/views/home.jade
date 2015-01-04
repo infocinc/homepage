@@ -1,6 +1,6 @@
 extends ../layouts/default
 include ../mixins/service-link
-
+include ../mixins/logo
 
 block css
 	link(href="/styles/site/home.min.css", rel="stylesheet")
@@ -11,8 +11,7 @@ block content
 		canvas(id="scaler" class="overlay" width="100" height="100")
 		.overlay.overlay-tvnoise
 		.overlay.overlay-black
-		.logo
-			img(src="/images/infocinc-logo-white.png" alt="Infocinc Logo")
+		+logo
 		.hero-text-wrapper
 			h1!= t('home:catchphrase')
 			a.white-box(href=prefix + 'services')

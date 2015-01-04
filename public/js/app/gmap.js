@@ -54,7 +54,7 @@ exports.init = function(mapId, marker_title, styles, lat, lng) {
 		mapTypeControlOptions: {
 			mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
 		}
-	}
+	};
 
 	var map = new google.maps.Map(map_canvas, map_options);
 
@@ -65,17 +65,17 @@ exports.init = function(mapId, marker_title, styles, lat, lng) {
 		animation: google.maps.Animation.DROP,
 		draggable: false
 	});
+	
+	
 	map.mapTypes.set('map_style', styledMap);
 	map.setMapTypeId('map_style');
 
-	google.maps.event.addListener(marker, 'click', toggleBounce);
-}
+	google.maps.event.addListener(marker, 'click', function() {
+		if (marker.getAnimation() != null) {
+			marker.setAnimation(null);
+		} else {
+			marker.setAnimation(google.maps.Animation.BOUNCE);
+		}
+	});
+};
 
-function toggleBounce() {
-
-	if (marker.getAnimation() != null) {
-		marker.setAnimation(null);
-	} else {
-		marker.setAnimation(google.maps.Animation.BOUNCE);
-	}
-}

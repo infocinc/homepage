@@ -29,14 +29,13 @@ var options = {
 		'sourceSet': [
 			'/images/portfolio/bg-desktop.png'
 		],
-		'refresh': function(index, c, ct, now, lastTime, velocity) {
-			var o = {},
-				v = velocities[index],
+		'refresh': function(index, c, ct, now) {
+			var v = velocities[index],
 				w = v.speed * now / 1024,
 				dx = v.direction * w % c.width;
 			return {
 				'tx': dx
-			}
+			};
 		}
 	},
 	'ticker': {
@@ -63,11 +62,11 @@ function registerHandlers() {
 		}
 	});
 
-	$('.client-descriptor-wrapper').hover(function(e) {
+	$('.client-descriptor-wrapper').hover(function() {
 		$(this).css({
 			'top': -linkHeight
 		});
-	}, function(e) {
+	}, function() {
 		$(this).css({
 			'top': -labelHeight
 		});

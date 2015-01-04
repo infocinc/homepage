@@ -158,7 +158,8 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
                 li.nav-item
                     a(href='/' + lang + '/terms')=t('app.terms')
                 li.nav-item
-                    span: &copy;2014
+                    span
+                        | &copy;2014
                     img#menu-logo(src="/images/infocinc-logo-white.png" alt="Infocinc Logo")
 
         //- MAIN CONTENT WRAPPER
@@ -188,7 +189,7 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
             //- var section = !{JSON.stringify(section)}
 
         //- Add scripts that are globally required by your site here.
-        script(src="/js/app/" + section + '.min.js' )
+        script(src="/js/dist/" + section + '.min.js' )
 
 
         //- Include template-specific javascript files by extending the js block
