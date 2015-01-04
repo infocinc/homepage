@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MongoConfiguration">
+    <option name="serverConfigurations">
+      <list>
+        <ServerConfiguration>
+          <option name="label" value="Local MongoDB" />
+          <option name="serverUrls">
+            <list>
+              <option value="localhost:27017" />
+            </list>
+          </option>
+          <option name="shellArgumentsLine" value="--dbpath /data/db" />
+        </ServerConfiguration>
+      </list>
+    </option>
+    <option name="shellPath" value="E:\MongoDB 2.6 Standard\bin\mongod.exe" />
+  </component>
+</project>

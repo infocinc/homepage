@@ -43,3 +43,7 @@ new.ns.*
 
 # Can also ignore all directories and files in a directory.
 
+# ide settings 
+**/.idea/workspace.xml
+**/.idea/watcherTasks.xml
+
