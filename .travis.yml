@@ -1,6 +1,6 @@
 before_script: "npm install --dev"
 
-script: gulp
+script: gulp phantomjs-test
 
 language: node_js
 node_js:

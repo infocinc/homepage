@@ -4,12 +4,12 @@
 var $ = require('jquery'),
 	utils = require('../lib/app-utils.js');
 
-var switchimg = function(e, state) {
+function _switchimg(e, state) {
 	function Config(delim, suffix, color, bg) {
 		this.delim = delim;
 		this.suffix = suffix;
 		this.color = color;
-		this.background = bg
+		this.background = bg;
 	}
 	var config = state === 'on' ? new Config('.', '-hover', 'white', 'rgb(40,25,40)') : new Config('-', '', 'black', 'white'),
 		img = $(this).find('img'),
@@ -22,16 +22,17 @@ var switchimg = function(e, state) {
 	});
 }
 
-var toggle = function(state) {
+function _toggle(state) {
 	var w = utils.query_screenwidth('#media-state');
 	if (utils.isMobile(w)) {
 		return null;
 	}
 	return function(e) {
-		$.proxy(switchimg, this)(e, state)
-	}
+		$.proxy(_switchimg, this)(e, state);
+	};
 }
 
-exports = module.exports = function register() {
-	$(".service-link").hover(toggle('on'), toggle('off'));
+module.exports = function register() {
+	$('.service-link').hover(_toggle('on'), _toggle('off'));
 }
+

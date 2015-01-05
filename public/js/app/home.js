@@ -1,8 +1,8 @@
-require('./servicelink.js')();
 
 var app = require('../lib/app.js'),
 	$ = require('jquery'),
-	scaler = require('../lib/canvas/scale.js');
+	scaler = require('../lib/canvas/scale.js'),
+	registerLinks = require('./servicelink.js');
 	
 
 function resizeHeight() {
@@ -13,6 +13,7 @@ function resizeHeight() {
 
 $(document).ready(function() {
 	app.init();
+	registerLinks();
 	scaler.start();
 	resizeHeight();
 	$(window).on('resize', resizeHeight);

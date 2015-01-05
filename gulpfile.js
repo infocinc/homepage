@@ -4,6 +4,7 @@ var gulp = require('gulp'),
 	chalk = require('chalk'),
 	uglify = require('gulp-uglify'),
 	rename = require('gulp-rename'),
+	mochaPhantomJS = require('gulp-mocha-phantomjs'),
 	source = require('vinyl-source-stream'),
 	streamify = require('gulp-streamify'),
 	transform = require('vinyl-transform'),
@@ -11,6 +12,8 @@ var gulp = require('gulp'),
 	jshint = require('gulp-jshint');
 
 var paths = {
+	'testpages': ['./test/browser/pages/*.html'],
+	'browserify': ['./public/js/app/*.js', './test/browser/*.test.js'],
 	'src': ['./dsy.js', './routes/**/*.js','./backend/**/*.js'],
 	'tests': ['./test/**/*.js']
 };
@@ -64,7 +67,7 @@ gulp.task('browserify-watch', function() {
 		return w.bundle();
 	});
 
-	return gulp.src('./public/js/app/*.js')
+	return gulp.src(paths.browserify)
 		.pipe(watchified)
 		.pipe(uglify())
 		.pipe(rename({'suffix': '.min'}))
@@ -107,6 +110,11 @@ gulp.task('browserify-watch', function() {
 
 });
 */
+
+gulp.task('phantomjs-test', function() {
+	gulp.src(paths.testpages)
+		.pipe(mochaPhantomJS({reporter: 'spec'}));
+});
 
 gulp.task('watch', ['browserify-watch'], function() {
 	

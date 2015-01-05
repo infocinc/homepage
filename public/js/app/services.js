@@ -4,9 +4,9 @@
 
 var app = require('../lib/app.js'),
 	$ = require('jquery'),
-	Background = require('../lib/canvas/background.js');
+	Background = require('../lib/canvas/background.js'),
+	registerLinks = require('./servicelink.js');
 
-require('./servicelink.js')();
 require('scrollTo');
 require('easing');
 require('bootstrap');
@@ -46,6 +46,7 @@ var scene = {
 
 $(document).ready(function() {
 	app.init();
+	registerLinks();
 	var bg = new Background(scene);
 	bg.play();
 	$('.service-link').scrollTo({
