@@ -34,5 +34,5 @@ function _toggle(state) {
 
 module.exports = function register() {
 	$('.service-link').hover(_toggle('on'), _toggle('off'));
-}
+};
 
