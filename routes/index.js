@@ -91,7 +91,9 @@ exports = module.exports = function(app) {
 		routes.views.index(req,res);
 	});
 
-
+	app.get('/canvas-redirect', function(req,res) {
+		res.send("<script>top.location='https://www.facebook.com/infocinc/app_712675532159199'</script>");
+	});
 	app.get('/', function(req,res) {
 		res.redirect(301,'/fr/home');
 	});

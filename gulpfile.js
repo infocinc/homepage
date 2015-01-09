@@ -19,8 +19,8 @@ var paths = {
 	'tests': ['./test/**/*.js']
 };
 var dests = {
-	'app': ['./public/js/dist'],
-	'tests-browser': ['./test/browser/js/browserified']
+	'app': './public/js/dist',
+	'tests-browser': './test/browser/pages/js/browserified'
 };
 
 
@@ -70,7 +70,6 @@ function browserifyWatch(paths,dest) {
 		}
 		return w.bundle();
 	});
-
 	return gulp.src(paths)
 		.pipe(watchified)
 		.pipe(uglify())

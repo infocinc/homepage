@@ -1,5 +1,6 @@
 // Karma configuration
 // Generated on Tue Jan 06 2015 03:19:45 GMT-0500 (Eastern Standard Time)
+var istanbul = require('browserify-istanbul');
 
 module.exports = function(config) {
   config.set({
@@ -15,8 +16,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-		'./public/js/app/servicelink.js',
-		'./test/browser/servicelink.test.js'
+		'test/browser/servicelink.test.js'
     ],
 
 
@@ -28,8 +28,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-		'./test/browser/servicelink.test.js': ['browserify'],
-		'./public/js/app/servicelink.js': ['browserify','coverage']
+		'test/browser/servicelink.test.js': ['browserify']
     },
 
 
@@ -62,13 +61,17 @@ module.exports = function(config) {
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
     browsers: ['PhantomJS'],
-
+	browserify: {
+		debug: true,
+		transform: [istanbul({
+			ignore:['**/node_modules**','**/test/**',
+				'**/routes/**', '**/public/js/dist/**',
+				'**/public/js/vendor/**','**/updates/**']
+		})]
+	},
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: true,
-	browserify: {
-		debug: true
-	}
+    singleRun: true
   });
 };

@@ -1,8 +1,8 @@
 ///////////////////////////////////////////
 // HOVER EFFECT ON SERVICE LINK ICONS
 //////////////////////////////////////////
-var $ = require('jquery'),
-	utils = require('../lib/app-utils.js');
+var	utils = require('../lib/app-utils.js'),
+	$ = require('jquery');
 
 function _switchimg(e, state) {
 	function Config(delim, suffix, color, bg) {
