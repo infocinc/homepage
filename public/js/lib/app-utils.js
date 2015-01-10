@@ -36,7 +36,7 @@ exports.SCREEN_WIDTHS = SCREEN_WIDTHS;
 
 Array.prototype.last = function() {
 	return this[this.length - 1];
-}
+};
 
 //////////////////////////////////////////////////////////////////////
 // DOM related utils
@@ -63,7 +63,7 @@ $.fn.isOnScreen = function() {
 
 exports.isMobile = function(screenwidth) {
 	return screenwidth < SCREEN_WIDTHS.TABLET_PORTRAIT;
-}
+};
 
 exports.query_screenwidth = function(tag) {
 	var size = parseInt($(tag).css('font-size'), 10);
@@ -94,7 +94,7 @@ exports.query_screenwidth = function(tag) {
 	}
 
 	return screenwidth;
-}
+};
 
 
 exports.add_interaction = function(selectors, interaction) {
@@ -122,11 +122,12 @@ exports.add_interaction = function(selectors, interaction) {
 	}
 
 	$(selectors).hover(getInHandler(), getOutHandler());
-}
+};
 
-window.requestAnimFrame = (function(callback) {
-	return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+exports.requestAnimFrame = function(callback) {
+	var f = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
 		function(callback) {
 			window.setTimeout(callback, 1000 / 60);
 		};
-})();
+	f(callback);
+};

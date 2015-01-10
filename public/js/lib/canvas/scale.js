@@ -2,10 +2,11 @@
 // LIMITED TO 1 CANVAS FOR NOW
 var $ = require('jquery'),
 	canvas = $('canvas').get(0),
+	utils = require('../app-utils'),
 	scaler = {};
 
 
-function refreshImage(w, h) {
+function refreshImage(w) {
 	var imgPath;
 
 	if (w > 991) {
@@ -18,14 +19,19 @@ function refreshImage(w, h) {
 	scaler.img.src = imgPath;
 }
 
+function resizeHeight() {
+	var h = Math.max($(window).height(), $(document).height());
+	$('#main').css('height', h);
+}
+
 function resize(pre, post) {
-	var h = $(scaler.tag).height(),
-		w = $(window).width();
+	var h = parseInt($(scaler.tag).css('height'),10),
+		w = $(scaler.tag).width();
 
 	if (pre) {
 		pre(w, h);
 	}
-
+	resizeHeight();
 	canvas.width = w;
 	canvas.height = h;
 	//    $(scaler.tag).css('width',w);
@@ -34,20 +40,8 @@ function resize(pre, post) {
 	}
 }
 
-function animate(firstTime) {
-	var now = (new Date()).getTime() - firstTime,
-		s = Math.sin(Math.PI / 2 + now / 3000) * 0.10 + 0.90;
 
-	scaler.context.clearRect(0, 0, canvas.width, canvas.height);
-	scaleImage(s, 0, 0);
-
-	requestAnimFrame(function() {
-		animate(firstTime);
-	});
-}
-
-
-function scaleImage(s, tx, ty) {
+function scaleImage(s) {
 	var cw = canvas.width,
 		ch = canvas.height,
 		w = scaler.img.width,
@@ -60,10 +54,23 @@ function scaleImage(s, tx, ty) {
 	scaler.context.drawImage(scaler.img, tw, th, sw, sh, 0, 0, cw, ch);
 }
 
+function animate(firstTime) {
+	var now = (new Date()).getTime() - firstTime,
+		s = Math.sin(Math.PI / 2 + now / 3000) * 0.10 + 0.90;
+
+	scaler.context.clearRect(0, 0, canvas.width, canvas.height);
+	scaleImage(s, 0, 0);
+
+	utils.requestAnimFrame(function() {
+		animate(firstTime);
+	});
+}
+
+
 exports.start = function(options) {
 	var settings = {
-		tag: '#hero',
-	}
+		tag: '#hero'
+	};
 
 	if (options) {
 		$.extend(settings, options);
@@ -72,17 +79,25 @@ exports.start = function(options) {
 	scaler.tag = settings.tag;
 	scaler.context = canvas.getContext('2d');
 	// resize canvas
+	var h = parseInt($(scaler.tag).css('height'),10),
+		w = $(window).width();
+	
+	canvas.width = w;
+	canvas.height = h;
+	
+	refreshImage(w);
+	
 	$(window).on('resize', function() {
 		resize(refreshImage);
 	});
-
-	resize(refreshImage)
-
+	
 	scaler.img.onload = function() {
 		scaleImage(1, 0, 0);
+
+// 		resizeHeight();
 		setTimeout(function() {
 			animate(new Date().getTime());
 		}, 500);
-	}
+	};
 
-}
+};

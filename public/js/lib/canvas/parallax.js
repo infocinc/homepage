@@ -17,7 +17,7 @@ Parallax.prototype.resize = function(canvas, container) {
 		'w': w,
 		'h': h
 	};
-}
+};
 
 Parallax.prototype.repaint = function(index, c, ct, lastTime, refresh) {
 	var now = new Date().getTime();
@@ -30,10 +30,10 @@ Parallax.prototype.repaint = function(index, c, ct, lastTime, refresh) {
 
 	this.draw(index, c, ct, v.tx);
 
-	requestAnimFrame(function() {
+	utils.requestAnimFrame(function() {
 		this.repaint(index, c, ct, now, refresh);
 	}.bind(this));
-}
+};
 
 
 Parallax.prototype.draw = function(index, c, ct, tx) {
@@ -76,7 +76,7 @@ Parallax.prototype.draw = function(index, c, ct, tx) {
 			iw = rw;
 		}
 	}
-}
+};
 
 
 Parallax.prototype.startAnimation = function(i, refresh) {
@@ -90,7 +90,7 @@ Parallax.prototype.startAnimation = function(i, refresh) {
 		var startTime = (new Date()).getTime();
 		this.repaint(i, c, ct, startTime, refresh);
 	}.bind(this), 10);
-}
+};
 
 
 Parallax.prototype.loadImages = function(sourceSet, refresh) {
@@ -109,11 +109,11 @@ Parallax.prototype.loadImages = function(sourceSet, refresh) {
 			}
 		}(i);
 	}
-}
+};
 
 Parallax.prototype.play = function() {
 	this.loadImages(this.settings.sourceSet, this.settings.refresh);
-}
+};
 
 
 function Parallax(options) {

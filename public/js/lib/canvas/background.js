@@ -132,7 +132,7 @@ Background.prototype.repaint = function(index, c, ct, lastTime, refresh) {
 
 	this.draw(index, c, ct, v.tx, v.ty);
 
-	requestAnimFrame(function() {
+	utils.requestAnimFrame(function() {
 		this.repaint(index, c, ct, now, refresh);
 	}.bind(this));
 }

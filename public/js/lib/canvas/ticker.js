@@ -46,7 +46,7 @@ Ticker.prototype.repaint = function(id, lastTime, tx) {
 		id = (id + 1) % settings.headlines.length;
 	}
 
-	requestAnimFrame(function() {
+	utils.requestAnimFrame(function() {
 		this.repaint(id, now, tx);
 	}.bind(this));
 }
