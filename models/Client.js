@@ -1,7 +1,7 @@
-var dsy = require('../lib/dsy'),
-	Types = dsy.Field.Types;
+var keystone = require('keystone'),
+	Types = keystone.Field.Types;
 
-var Client = new dsy.List("Client", {autokey: {from: 'name', path: 'key', unique: true}, track: true});
+var Client = new keystone.List("Client", {autokey: {from: 'name', path: 'key', unique: true}, track: true});
 
 
 Client.add({

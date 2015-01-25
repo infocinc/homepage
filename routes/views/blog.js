@@ -1,9 +1,9 @@
-var dsy = require('../../lib/dsy'),
+var keystone = require('keystone'),
 	async = require('async');
 
 exports = module.exports = function(req, res) {
 	
-	var view = new dsy.View(req, res),
+	var view = new keystone.View(req, res),
 		locals = res.locals;
 	
 	// Init locals
@@ -19,7 +19,7 @@ exports = module.exports = function(req, res) {
 	// Load all categories
 	view.on('init', function(next) {
 		
-		dsy.list('PostCategory').model.find().sort('name').exec(function(err, results) {
+		keystone.list('PostCategory').model.find().sort('name').exec(function(err, results) {
 			
 			if (err || !results.length) {
 				return next(err);
@@ -30,7 +30,7 @@ exports = module.exports = function(req, res) {
 			// Load the counts for each category
 			async.each(locals.data.categories, function(category, next) {
 				
-				dsy.list('Post').model.count().where('category').in([category.id]).exec(function(err, count) {
+				keystone.list('Post').model.count().where('category').in([category.id]).exec(function(err, count) {
 					category.postCount = count;
 					next(err);
 				});
@@ -47,7 +47,7 @@ exports = module.exports = function(req, res) {
 	view.on('init', function(next) {
 		
 		if (req.params.category) {
-			dsy.list('PostCategory').model.findOne({ key: locals.filters.category }).exec(function(err, result) {
+			keystone.list('PostCategory').model.findOne({ key: locals.filters.category }).exec(function(err, result) {
 				locals.data.category = result;
 				next(err);
 			});
@@ -60,7 +60,7 @@ exports = module.exports = function(req, res) {
 	// Load the posts
 	view.on('init', function(next) {
 		
-		var q = dsy.list('Post').paginate({
+		var q = keystone.list('Post').paginate({
 				page: req.query.page || 1,
 				perPage: 10,
 				maxPages: 10

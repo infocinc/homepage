@@ -1,5 +1,5 @@
 var fs = require('fs'),
-	dsy = require('../lib/dsy');
+	keystone = require('keystone');
 
 var namespaces = [
 		'app','home','form','services',
@@ -23,7 +23,6 @@ function loadResource($ns,$lng) {
 }
 
 
-var tuples = [];
 // create tuples of ns, lng
 namespaces.forEach(function(ns) {
 	lngs.forEach(function(lng) {

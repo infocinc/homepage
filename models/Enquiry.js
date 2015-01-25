@@ -1,4 +1,4 @@
-var keystone = require('../lib/dsy'),
+var keystone = require('keystone'),
 	Types = keystone.Field.Types;
 
 var Enquiry = new keystone.List("Enquiry", {nocreate: true, track: true});

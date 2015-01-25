@@ -1,7 +1,7 @@
-var dsy = require('../lib/dsy'),
-	Types = dsy.Field.Types;
+var keystone = require('keystone'),
+	Types = keystone.Field.Types;
 
-var Service = new dsy.List("Service", {nocreate: false, track: true});
+var Service = new keystone.List("Service", {nocreate: false, track: true});
 
 
 Service.add({

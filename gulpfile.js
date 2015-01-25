@@ -15,7 +15,7 @@ var paths = {
 	'testpages': ['./test/browser/pages/*.html'],
 	'tests-browser': ['./test/browser/*.test.js'],
 	'app': ['./public/js/app/*.js'],
-	'src': ['./dsy.js', './routes/**/*.js','./backend/**/*.js'],
+	'src': ['./keystone.js', './routes/**/*.js','./backend/**/*.js'],
 	'tests': ['./test/**/*.js']
 };
 var dests = {

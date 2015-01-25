@@ -10,7 +10,7 @@
 
 var _ = require('underscore'),
 	querystring = require('querystring'),
-	dsy = require('../lib/dsy');
+	keystone = require('keystone');
 
 
 /**
@@ -72,8 +72,8 @@ exports.flashMessages = function(req, res, next) {
 
 exports.initErrorHandler = function(req, res, next) {
 
-	res.err = function(err, req, res, next) {
-		if (dsy.get('logger')) {
+	res.err = function(err, req, res) {
+		if (keystone.get('logger')) {
 			if (err instanceof Error) {
 				console.log((err.type ? err.type + ' ' : '') + 'Error thrown for request: ' + req.url);
 			} else {
@@ -82,7 +82,7 @@ exports.initErrorHandler = function(req, res, next) {
 			console.log(err.stack || err);
 		}
 		var msg = '';
-		if (dsy.get('env') === 'development') {
+		if (keystone.get('env') === 'development') {
 			if (err instanceof Error) {
 				if (err.type) {
 					msg += '<h2>' + err.type + '</h2>';
@@ -96,8 +96,8 @@ exports.initErrorHandler = function(req, res, next) {
 		} else {
 			msg += '<h2>' + "We've been notified about this issue and we'll take a look at it shortly" + '</h2>';
 		}
-		res.status(500).send(dsy.wrapHTMLError('Sorry, an error occurred loading the page (500)', msg));
-	}
+		res.status(500).send(keystone.wrapHTMLError('Sorry, an error occurred loading the page (500)', msg));
+	};
 
 	next();
 
@@ -110,7 +110,7 @@ exports.requireUser = function(req, res, next) {
 
 	if (!req.user) {
 		req.flash('error', 'Please sign in to access this page.');
-		res.redirect('/dsy/signin');
+		res.redirect('/keystone/signin');
 	} else {
 		next();
 	}

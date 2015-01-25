@@ -2,17 +2,17 @@
 // customising the .env file in your project's root folder.
 require('dotenv').load();
 
-// Require dsy
+// Require keystone
 var express = require('express'),
 	app = express(),
-	dsy = require(__dirname + '/lib/dsy').connect(app),
+	keystone = require('keystone').connect(app),
 	i18n = require('i18next');
 
 
-// Initialise dsy with your project's configuration.
-// See http://dsyjs.com/guide/config for available options
+// Initialise keystone with your project's configuration.
+// See http://keystonejs.com/guide/config for available options
 // and documentation.
-dsy.init({
+keystone.init({
 	'name': 'infocinc',
 	'brand': 'infocinc',
 	'less': 'public',
@@ -28,7 +28,7 @@ dsy.init({
 	'signout redirect': '/fr/home',
 	'signin redirect': '/fr/home',
 	'auth': true,
-	'signin logo': '/dsy/images/logo.png',
+	'signin logo': '/keystone/images/logo.png',
 	'user model': 'User',
 	'cookie secret': ']>.N%h]>4H_e=(Sifsks!NUPe_tsv=qAGZbqNfI_`B%h:T^JL2r^~)GOdf3/-XU;',
 	'model prefix': 'infocinc',
@@ -38,16 +38,16 @@ dsy.init({
 });
 
 
-dsy.import('models');
+keystone.import('models');
 
 // Setup common locals for your templates. The following are required for the
 // bundled templates and layouts. Any runtime locals (that should be set uniquely
 // for each request) should be added to ./routes/middleware.js
-dsy.set('locals', {
+keystone.set('locals', {
 	_: require('underscore'),
-	env: dsy.get('env'),
-	utils: dsy.utils,
-	editable: dsy.content.editable
+	env: keystone.get('env'),
+	utils: keystone.utils,
+	editable: keystone.content.editable
 });
 
 // Load i18n options
@@ -72,12 +72,12 @@ var options = {
 
 
 // Load your project's Routes
-dsy.set('routes', require('./routes'));
+keystone.set('routes', require('./routes'));
 
 
-// Setup common locals for your emails. The following are required by dsy's
+// Setup common locals for your emails. The following are required by keystone's
 // default email templates, you may remove them if you're using your own.
-dsy.set('email locals', {
+keystone.set('email locals', {
 	logo_src: '/images/logo-email.gif',
 	logo_width: 194,
 	logo_height: 76,
@@ -99,23 +99,23 @@ dsy.set('email locals', {
 // other rules your email templates require.
 
 
-if (dsy.get('env') === 'production') {
-	dsy.set('secure signin', 'https://infocinc.herokuapp.com/dsy/signin');
+if (keystone.get('env') === 'production') {
+	keystone.set('secure signin', 'https://infocinc.herokuapp.com/keystone/signin');
 }
 
-dsy.set('email rules', [{
+keystone.set('email rules', [{
 	find: '/images/',
-	replace: dsy.get('env') === 'production' ? 'http://infocinc.herokuapp.com/images/' : 'http://localhost:3000/images/'
+	replace: keystone.get('env') === 'production' ? 'http://infocinc.herokuapp.com/images/' : 'http://localhost:3000/images/'
 }, {
-	find: '/dsy/',
-	replace: dsy.get('env') === 'production' ? 'http://infocinc.herokuapp.com/dsy/' : 'http://localhost:3000/dsy/'
+	find: '/keystone/',
+	replace: keystone.get('env') === 'production' ? 'http://infocinc.herokuapp.com/keystone/' : 'http://localhost:3000/keystone/'
 }]);
 
 // Load your project's email test routes
-dsy.set('email tests', require('./routes/emails'));
+keystone.set('email tests', require('./routes/emails'));
 
-// Configure the navigation bar in dsy's Admin UI
-dsy.set('nav', {
+// Configure the navigation bar in keystone's Admin UI
+keystone.set('nav', {
 	'posts': ['posts', 'post-categories'],
 	'users': 'users',
 	'clients': 'clients',
@@ -124,13 +124,13 @@ dsy.set('nav', {
 	'images': 'images'
 });
 
-if (dsy.get('env') === 'production') {
-	dsy.set('signout redirect', 'http://www.infocinc.com/fr/home');
-	dsy.set('back url', 'https://infocinc.herokuapp.com/fr/home');
-	dsy.set('secure admin', 'https://infocinc.herokuapp.com');
+if (keystone.get('env') === 'production') {
+	keystone.set('signout redirect', 'http://www.infocinc.com/fr/home');
+	keystone.set('back url', 'https://infocinc.herokuapp.com/fr/home');
+	keystone.set('secure admin', 'https://infocinc.herokuapp.com');
 }
 
-// Start dsy to connect to your database and initialise the web server
+// Start keystone to connect to your database and initialise the web server
 var events = {
 	'onMount': function() {
 		i18n.backend(require('./backend'));
@@ -138,4 +138,4 @@ var events = {
 		i18n.registerAppHelper(app);
 	}
 };
-dsy.start(events);
+keystone.start(events);

@@ -1,1 +1,1 @@
-web: node dsy.js
+web: node main.js

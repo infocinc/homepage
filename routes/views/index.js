@@ -1,4 +1,4 @@
-var dsy = require('../../lib/dsy'),
+var keystone = require('keystone'),
     _ = require('underscore'),
     async = require('async');
 
@@ -7,7 +7,7 @@ var dsy = require('../../lib/dsy'),
 // -------------------
 function taskFactory(key, options) {
     return function(callback) {
-        var q = dsy.list(key).model.find();
+        var q = keystone.list(key).model.find();
         if (options && options.ref) {
             q = q.populate(options.ref)
         }
@@ -25,13 +25,13 @@ function taskFactory(key, options) {
 
 exports = module.exports = function(req, res) {
 
-    var view = new dsy.View(req, res),
+    var view = new keystone.View(req, res),
         locals = res.locals,
         section = locals.section = req.params.section || 'home',
         lng = locals.lang = req.params.lng || 'fr';
 
 
-    if (_.contains(['fr', 'en'], lng) == false || _.contains(dsy.get('sections'), section) == false) {
+    if (_.contains(['fr', 'en'], lng) == false || _.contains(keystone.get('sections'), section) == false) {
         return res.render('errors/404');
     }
 

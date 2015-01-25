@@ -19,30 +19,27 @@
  */
 
 var _ = require('underscore'),
-	dsy = require('../lib/dsy'),
+	keystone = require('keystone'),
 	i18n = require("i18next"),
 	middleware = require('./middleware'),
 	utils = require('keystone-utils'),
-	importRoutes = dsy.importer(__dirname);
+	importRoutes = keystone.importer(__dirname);
 
-
-function custom500Handler(err, req, res, next) {
-};
 
 
 // Common Middleware
-dsy.pre('routes', i18n.handle);
-dsy.pre('routes', middleware.initLocals);
-dsy.pre('routes', middleware.initErrorHandler);
-dsy.pre('render', middleware.flashMessages);
+keystone.pre('routes', i18n.handle);
+keystone.pre('routes', middleware.initLocals);
+keystone.pre('routes', middleware.initErrorHandler);
+keystone.pre('render', middleware.flashMessages);
 
 // Import Route Controllers
 var routes = {
 	views: importRoutes('./views')
 };
 
-dsy.set('404', 'errors/404');
-dsy.set('500', function(err,req,res,next) { res.err(err,req,res);});
+keystone.set('404', 'errors/404');
+keystone.set('500', function(err,req,res,next) { res.err(err,req,res);});
 
 
 
@@ -51,8 +48,8 @@ exports = module.exports = function(app) {
 
 	function isAuth(req,res) {
 		if (!req.user || !req.user.canAccessKeystone) {
-			var from = new RegExp('^\/dsy\/?$', 'i').test(req.url) ? '' : '?from=' + req.url;
-			return res.redirect(dsy.get('signin url') + from);
+			var from = new RegExp('^\/keystone\/?$', 'i').test(req.url) ? '' : '?from=' + req.url;
+			return res.redirect(keystone.get('signin url') + from);
 		} else {
 			return true;
 		}
