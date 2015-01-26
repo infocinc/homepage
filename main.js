@@ -34,7 +34,7 @@ keystone.init({
 	'model prefix': 'infocinc',
 	'mongo': process.env.MONGOHQ_URL,
 	'mandrill api key': process.env.MANDRILL_API_KEY,
-	'mandrill username': 'nicolas.dutil@infocinc.com'
+	'mandrill username': process.env.MANDRILL_USERNAME
 });
 
 
@@ -99,9 +99,14 @@ keystone.set('email locals', {
 // other rules your email templates require.
 
 
+// env specific configuration of keystone
 if (keystone.get('env') === 'production') {
 	keystone.set('secure signin', 'https://infocinc.herokuapp.com/keystone/signin');
+	keystone.set('signout redirect', 'http://www.infocinc.com/fr/home');
+	keystone.set('back url', 'https://infocinc.herokuapp.com/fr/home');
+	keystone.set('secure admin', 'https://infocinc.herokuapp.com');
 }
+
 
 keystone.set('email rules', [{
 	find: '/images/',
@@ -124,11 +129,7 @@ keystone.set('nav', {
 	'images': 'images'
 });
 
-if (keystone.get('env') === 'production') {
-	keystone.set('signout redirect', 'http://www.infocinc.com/fr/home');
-	keystone.set('back url', 'https://infocinc.herokuapp.com/fr/home');
-	keystone.set('secure admin', 'https://infocinc.herokuapp.com');
-}
+
 
 // Start keystone to connect to your database and initialise the web server
 var events = {

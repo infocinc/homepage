@@ -75,6 +75,8 @@ exports = module.exports = function(app) {
 		},
 		authenticated: isAuth
 	});
+	
+	
 	// Views
 	app.all('/:lng/contact', function(req,res) {
 		routes.views.contact(req,res);
