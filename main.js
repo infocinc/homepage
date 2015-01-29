@@ -110,10 +110,10 @@ if (keystone.get('env') === 'production') {
 
 keystone.set('email rules', [{
 	find: '/images/',
-	replace: keystone.get('env') === 'production' ? 'http://infocinc.herokuapp.com/images/' : 'http://localhost:3000/images/'
+	replace: keystone.get('env') === 'production' ? 'http://infocinc.herokuapp.com/images/' : 'http://192.168.1.5:3000/images/'
 }, {
 	find: '/keystone/',
-	replace: keystone.get('env') === 'production' ? 'http://infocinc.herokuapp.com/keystone/' : 'http://localhost:3000/keystone/'
+	replace: keystone.get('env') === 'production' ? 'http://infocinc.herokuapp.com/keystone/' : 'http://192.168.1.5:3000/keystone/'
 }]);
 
 // Load your project's email test routes
