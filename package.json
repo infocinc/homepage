@@ -14,7 +14,7 @@
     "express": "~3.3.8",
     "i18next": "1.7.4",
     "jade": "~1.7.0",
-    "keystone": "^0.2.42",
+    "keystone": "0.2.38",
     "keystone-utils": "~0.1.12",
     "knox": "~0.9.1",
     "less-middleware": "~1.0.4",
