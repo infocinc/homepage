@@ -5,6 +5,8 @@ require('dotenv').load();
 // Require keystone
 var express = require('express'),
 	app = express(),
+	ghost = require('ghost'),
+	path = require('path'),
 	keystone = require('keystone').connect(app),
 	i18n = require('i18next');
 
@@ -139,4 +141,11 @@ var events = {
 		i18n.registerAppHelper(app);
 	}
 };
-keystone.start(events);
+
+ghost({
+	config: path.join(__dirname, 'ghostconfig.js')
+}).then(function(ghostServer) {
+	app.use('/blog', ghostServer.rootApp);
+	ghostServer.start(app);
+	keystone.start(events);
+});

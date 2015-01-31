@@ -20,9 +20,8 @@
 
 var _ = require('underscore'),
 	keystone = require('keystone'),
-	i18n = require("i18next"),
+	i18n = require('i18next'),
 	middleware = require('./middleware'),
-	utils = require('keystone-utils'),
 	importRoutes = keystone.importer(__dirname);
 
 
@@ -70,7 +69,7 @@ exports = module.exports = function(app) {
 			resGetPath: 'locales/resources.json?lng=__lng__&ns=__ns__',
 			resChangePath: 'locales/change/__lng__/__ns__',
 			resRemovePath: 'locales/remove/__lng__/__ns__',
-			fallbackLng: "fr",
+			fallbackLng: 'fr',
 			dynamicLoad: true
 		},
 		authenticated: isAuth
@@ -100,9 +99,11 @@ exports = module.exports = function(app) {
 	app.get('/welcome.html', function(req,res) {
 		res.redirect(301,'/en/home');
 	});
+	
 
-	app.get('/blog/:category?', routes.views.blog);
-	app.get('/blog/post/:post', routes.views.post);
+
+//	app.get('/blog/:category?', routes.views.blog);
+//	app.get('/blog/post/:post', routes.views.post);
 	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
 	// app.get('/protected', middleware.requireUser, routes.views.protected);
 };
