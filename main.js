@@ -142,10 +142,21 @@ var events = {
 	}
 };
 
-ghost({
-	config: path.join(__dirname, 'ghostconfig.js')
-}).then(function(ghostServer) {
-	app.use('/blog', ghostServer.rootApp);
-	ghostServer.start(app);
-	keystone.start(events);
-});
+if (keystone.get('env') === 'production') {
+	console.log('production');
+	ghost({
+		config: path.join(__dirname, 'ghostconfig_prod.js')
+	}).then(function(ghostServer) {
+		app.use('/blog', ghostServer.rootApp);
+		ghostServer.start(app);
+		keystone.start(events);
+	});
+} else {
+	ghost({
+		config: path.join(__dirname, 'ghostconfig.js')
+	}).then(function(ghostServer) {
+		app.use('/blog', ghostServer.rootApp);
+		ghostServer.start(app);
+		keystone.start(events);
+	});
+}
