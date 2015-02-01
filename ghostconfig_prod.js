@@ -25,7 +25,13 @@ config = {
 			},
 			debug: false
 		},
-		fileStorage: false
+		fileStorage: false,
+		server: {
+			// Host to be passed to node's `net.Server#listen()`
+			host: process.env.HOST,
+			// Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`
+			port: process.env.PORT
+		}
 	}
 };
 
