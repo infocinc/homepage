@@ -11,7 +11,7 @@ config = {
 	// ### Production
 	// When running Ghost in the wild, use the production environment
 	// Configure your URL and mail settings here
-	development: {
+	production: {
 		url: 'http://infocinc.com/blog',
 		mail: {},
 		database: {
