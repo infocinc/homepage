@@ -93,7 +93,7 @@ exports = module.exports = function(app) {
 		res.send("<script>top.location='https://www.facebook.com/infocinc/app_712675532159199'</script>");
 	});
 	app.get('/', function(req,res) {
-		res.redirect(301,'/fr/home');
+		res.redirect(301,'/en/home');
 	});
 
 	app.get('/welcome.html', function(req,res) {
