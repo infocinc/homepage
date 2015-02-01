@@ -148,8 +148,8 @@ if (keystone.get('env') === 'production') {
 		config: path.join(__dirname, 'ghostconfig_prod.js')
 	}).then(function(ghostServer) {
 		app.use('/blog', ghostServer.rootApp);
-		ghostServer.start(app);
 		keystone.start(events);
+		ghostServer.start(app);
 	});
 } else {
 	ghost({
