@@ -142,21 +142,10 @@ var events = {
 	}
 };
 
-if (keystone.get('env') === 'production') {
-	console.log('production');
-	ghost({
-		config: path.join(__dirname, 'ghostconfig_prod.js')
-	}).then(function(ghostServer) {
-		app.use('/blog', ghostServer.rootApp);
-		keystone.start(events);
-		ghostServer.start(app);
-	});
-} else {
-	ghost({
-		config: path.join(__dirname, 'ghostconfig.js')
-	}).then(function(ghostServer) {
-		app.use('/blog', ghostServer.rootApp);
-		ghostServer.start(app);
-		keystone.start(events);
-	});
-}
+ghost({
+	config: path.join(__dirname, 'ghostconfig.js')
+}).then(function(ghostServer) {
+	app.use('/blog', ghostServer.rootApp);
+	keystone.mount(events);
+	ghostServer.start(app);
+});
