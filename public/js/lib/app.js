@@ -32,6 +32,7 @@ var app_config = {
 	'screenwidth-tag': '#media-state',
 	'side-menu': true,
 	'menu': {
+		'nav': '#menu',
 		'side': 'right',
 		'anchor': '.menu-link',
 		'minisize': '250px',
@@ -123,6 +124,7 @@ function init_sidemenu() {
 	link.off('click.SideMenu');
 	$(document).off('click.SideMenu');
 	var sidemenu = new SideMenu({
+		'nav': menu['nav'],
 		'side': side,
 		'width': size
 	});

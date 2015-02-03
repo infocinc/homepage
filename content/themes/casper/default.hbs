@@ -15,6 +15,8 @@
     <link rel="shortcut icon" href="{{asset "/favicon.ico"}}">
 
     {{! Styles'n'Scripts }}
+	<script type="text/javascript" src="/js/vendor/modernizr-2.6.2.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/blog.css" /> 
     <link rel="stylesheet" type="text/css" href="{{asset "css/screen.css"}}" />
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
 
@@ -22,12 +24,25 @@
     {{ghost_head}}
 </head>
 <body class="{{body_class}}">
-
+	<nav id="menu" class="bar-items ">
+	  <button type="button" id="remove-btn"><span class="glyphicon glyphicon-remove"></span></button>
+	  <ul class="principal">
+	    <li><a href="/en/home" class="nav-item">HOME</a></li>
+	    <li><a href="/en/services" class="nav-item">SERVICES</a></li>
+	    <li><a href="/en/projects" class="nav-item">PORTFOLIO</a></li>
+	    <li><a href="/en/contact" class="nav-item">CONTACT</a></li>
+	  </ul>
+	  <ul class="menu-footer">
+	    <li id="social-icons" class="clearfix"><a target="_blank" href="//twitter.com/InfoCinc"> <img src="/images/twitterlogo.png" alt="twitter logo"/></a><a target="_blank" href="//facebook.com/Infocinc"><img src="/images/facebooklogo.png" alt="facebook logo"/></a><a target="_blank" href="//plus.google.com/+Infocinc1"> <img src="/images/googlepluslogo.png" alt="googleplus logo"/></a><a target="_blank" href="//www.linkedin.com/company/infocinc"> <img src="/images/linkedin.png" alt="linkedin logo"/></a></li>
+	    <li class="nav-item"><a href="/en/terms">Terms and Conditions</a></li>
+	    <li class="nav-item"><span>&copy;2014</span><img id="menu-logo" src="/images/infocinc-logo-white.png" alt="Infocinc Logo"/></li>
+	  </ul>
+	</nav>
     {{! Everything else gets inserted here }}
     {{{body}}}
 
-    <footer class="site-footer clearfix">
-         <section class="copyright"><a href="{{@blog.url}}">{{@blog.title}}</a> &copy; {{date format="YYYY"}}</section>
+    <footer class="site-footer clearfix push">
+         <section class="copyright"><a href="{{@blog.url}}">{{@blog.title}}</a> &copy; Infocinc {{date format="YYYY"}}</section>
          <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
     </footer>
 
@@ -36,7 +51,9 @@
 
     {{! The main JavaScript file for Casper }}
     <script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
+
     <script type="text/javascript" src="{{asset "js/index.js"}}"></script>
+    <script type="text/javascript" src="/js/dist/blog.min.js"></script>
 
 </body>
 </html>

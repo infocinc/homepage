@@ -36,8 +36,9 @@ function translate3DX(w) {
 SideMenu.prototype.open = function() {
 	this.state = 'open';
 
-	this.nav.removeClass('invisible');
 	this.push.css(translate3DX('-' + this.width));
+	this.nav.css(translate3DX('0'));
+
 	this.toggle.addClass(this.activeBtn);
 
 	this.push.bind('touchmove', function(e) {
@@ -55,6 +56,7 @@ SideMenu.prototype.close = function() {
 	this.state = 'closed';
 
 	this.push.css(translate3DX('0'));
+	this.nav.css(translate3DX(this.width));
 	this.toggle.removeClass(this.activeBtn);
 	this.push.unbind('touchmove');
 
@@ -92,7 +94,9 @@ function SideMenu(options) {
 		'opacity': '0',
 		'cursor': 'auto'
 	});
+	this.nav.css(translate3DX(this.width));
 	this.push.css(animateSlide);
+	this.nav.css(animateSlide);
 	this.push.css(translate3DX('0'));
 }
 
