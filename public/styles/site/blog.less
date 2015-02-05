@@ -1,0 +1,65 @@
+
+@import "../ifc-toolkit/components/side-menu";
+@import "../bootstrap/mixins";
+@import "../bootstrap/variables";
+@import "../bootstrap/scaffolding";
+@import "../bootstrap/glyphicons";
+
+@kjs-img: "../../images";
+
+
+.invisible {
+	opacity: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+button {
+  padding: 0;
+  border: none;
+}
+button:focus {
+  outline: 0;
+}
+#menu a {
+  text-decoration: none !important;
+  color: #4A4A4A;
+}
+
+a, button
+{
+    -ms-touch-action: manipulation; /* IE10  */
+    touch-action: manipulation;     /* IE11+ */
+}
+
+.post-template .menu-toggle {
+	.menu-toggle(@text-color: black, @invert-color: white);
+	padding: 6px 10px;
+	&:hover {
+		.menu {
+			color: white !important;
+		}
+		#hamburger .icon-bar {
+			background: white !important;
+		}
+		background: black !important;
+	}
+}
+.post-template	.menu-open {
+	.menu-color(@bg-color: black; @text-color:white)
+}
+
+#menu {
+	.side-menu-mobile(@bg:'@{kjs-img}/infocinc-desktop.png',@width:250px,@font:'Open Sans Condensed',@font-size:18px);
+ ul {
+ 	padding-left: 0 !important;
+ }
+}
+
+@media screen and (min-width:@screen-sm-min) {
+	#menu {
+		.side-menu-full();
+	}
+}
