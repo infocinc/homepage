@@ -1,5 +1,6 @@
 
 @import "../ifc-toolkit/components/side-menu";
+@import (reference) "../ifc-toolkit/mixins/animate";
 @import "../bootstrap/mixins";
 @import "../bootstrap/variables";
 @import "../bootstrap/scaffolding";
@@ -24,9 +25,15 @@ button {
 button:focus {
   outline: 0;
 }
-#menu a {
-  text-decoration: none !important;
-  color: #4A4A4A;
+#menu {
+	line-height: 1.42857143;
+	a {
+		text-decoration: none !important;
+		color: #4A4A4A;
+	}
+	li {
+		margin: 0 !important;
+	}
 }
 
 a, button
