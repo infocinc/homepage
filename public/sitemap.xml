@@ -1,49 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
-      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+			xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+			xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+			xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+						http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 <url>
-  <loc>http://www.infocinc.com/fr/home</loc>
-  <changefreq>weekly</changefreq>
+	<loc>http://www.infocinc.com/en/home</loc>
+	<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>http://www.infocinc.com/fr/services</loc>
-  <changefreq>weekly</changefreq>
+	<loc>http://www.infocinc.com/blog/</loc>
+	<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>http://www.infocinc.com/fr/projects</loc>
-  <changefreq>weekly</changefreq>
+	<loc>http://www.infocinc.com/en/services</loc>
+	<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>http://www.infocinc.com/fr/contact</loc>
-  <changefreq>weekly</changefreq>
+	<loc>http://www.infocinc.com/en/projects</loc>
+	<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>http://www.infocinc.com/en/home</loc>
-  <changefreq>weekly</changefreq>
+	<loc>http://www.infocinc.com/en/contact</loc>
+	<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>http://www.infocinc.com/fr/terms</loc>
-  <changefreq>weekly</changefreq>
+	<loc>http://www.infocinc.com/fr/home</loc>
+	<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>http://www.infocinc.com/en/services</loc>
-  <changefreq>weekly</changefreq>
+	<loc>http://www.infocinc.com/en/terms</loc>
+	<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>http://www.infocinc.com/en/projects</loc>
-  <changefreq>weekly</changefreq>
+	<loc>http://www.infocinc.com/blog/ce-blog-est-propulse-par-ghost/</loc>
+	<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>http://www.infocinc.com/en/contact</loc>
-  <changefreq>weekly</changefreq>
+	<loc>http://www.infocinc.com/blog/author/nicdutil/</loc>
+	<changefreq>daily</changefreq>
 </url>
 <url>
-  <loc>http://www.infocinc.com/en/terms</loc>
-  <changefreq>weekly</changefreq>
+	<loc>http://www.infocinc.com/blog/powered-by-ghost/</loc>
+	<changefreq>daily</changefreq>
+</url>
+<url>
+	<loc>http://www.infocinc.com/fr/services</loc>
+	<changefreq>daily</changefreq>
+</url>
+<url>
+	<loc>http://www.infocinc.com/fr/projects</loc>
+	<changefreq>daily</changefreq>
+</url>
+<url>
+	<loc>http://www.infocinc.com/fr/contact</loc>
+	<changefreq>daily</changefreq>
+</url>
+<url>
+	<loc>http://www.infocinc.com/fr/terms</loc>
+	<changefreq>daily</changefreq>
 </url>
 </urlset>
