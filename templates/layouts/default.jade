@@ -118,7 +118,7 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
                 s.parentNode.insertBefore(po, s);
             })();
         //- NAV
-        nav#menu.bar-items
+        nav#menu.bar-items.invisible
             button(type="button")#remove-btn
                 span.glyphicon.glyphicon-remove
             ul.principal
@@ -192,8 +192,10 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
             //- var section = !{JSON.stringify(section)}
 
         //- Add scripts that are globally required by your site here.
-        script(src="/js/dist/" + section + '.min.js' )
-
+        if (section)
+            script(src="/js/dist/" + section + '.min.js' )
+        else
+            script(src='/js/dist/error.min.js')
 
         //- Include template-specific javascript files by extending the js block
         block js
