@@ -184,6 +184,7 @@ body {
     -webkit-font-feature-settings: 'kern' 1;
     -moz-font-feature-settings: 'kern' 1;
     -o-font-feature-settings: 'kern' 1;
+    background: white;
 }
 
 ::-moz-selection {
@@ -430,7 +431,10 @@ margin on the iframe, cause it breaks stuff. */
 }
 
 .post-head .menu-link {
-	background: #2C2C2C;
+	background: rgba(0,0,0,0.4);
+}
+.post-head .menu-link:hover {
+	background: #ccc !important;
 }
 /* ==========================================================================
    3. Utilities - These things get used a lot

@@ -38,7 +38,7 @@ SideMenu.prototype.open = function() {
 
 	this.push.css(translate3DX('-' + this.width));
 	this.nav.css(translate3DX('0'));
-
+	this.nav.removeClass('invisible');
 	this.toggle.addClass(this.activeBtn);
 
 	this.push.bind('touchmove', function(e) {
@@ -97,6 +97,7 @@ function SideMenu(options) {
 	this.nav.css(translate3DX(this.width));
 	this.push.css(animateSlide);
 	this.nav.css(animateSlide);
+
 	this.push.css(translate3DX('0'));
 }
 

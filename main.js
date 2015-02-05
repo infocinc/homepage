@@ -149,3 +149,6 @@ ghost({
 	keystone.mount(events);
 	ghostServer.start(app);
 });
+process.on('uncaughtException', function(err) {
+	console.log('Caught Exception: ' + err);
+});
