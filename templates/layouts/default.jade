@@ -118,7 +118,7 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
                 s.parentNode.insertBefore(po, s);
             })();
         //- NAV
-        nav#menu.bar-items.invisible
+        nav#menu.bar-items(class=(section === undefined) ? 'invisible': '')
             button(type="button")#remove-btn
                 span.glyphicon.glyphicon-remove
             ul.principal
@@ -167,7 +167,7 @@ html.no-js(lang=lang, prefix="og: http://ogp.me/ns#")
         //- MAIN CONTENT WRAPPER
         #main.push
             .overlay.overlay-menu-open
-            .menu-link.menu-toggle
+            .menu-link.menu-toggle(class= (section === undefined ) ? 'invisible':'')
                 span.menu= t('app.menu')
             
                 #hamburger

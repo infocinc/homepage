@@ -93,8 +93,6 @@ exports.start = function(options) {
 	
 	scaler.img.onload = function() {
 		scaleImage(1, 0, 0);
-
-// 		resizeHeight();
 		setTimeout(function() {
 			animate(new Date().getTime());
 		}, 500);
