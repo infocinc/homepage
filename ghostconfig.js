@@ -78,7 +78,7 @@ config = {
 		paths: {
 			contentPath: path.join(__dirname, '/content/')
 		}
-	}
+	},
 
 	// **Developers only need to edit below here**
 
@@ -104,7 +104,7 @@ config = {
 
 	// ### Testing MySQL
 	// Used by Travis - Automated testing run through GitHub
-/*
+
 	'testing-mysql': {
 		url: 'http://127.0.0.1:2369',
 		database: {
@@ -144,7 +144,6 @@ config = {
 		},
 		logging: false
 	}
-*/
 };
 
 // Export config
