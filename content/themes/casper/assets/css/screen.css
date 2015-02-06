@@ -1589,7 +1589,7 @@ body:not(.post-template) .post-title {
     }
 
     .page-title {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 
     .post-excerpt p {
@@ -1597,7 +1597,7 @@ body:not(.post-template) .post-title {
     }
 
     .page-description {
-        font-size: 1.6rem;
+        font-size: 1.2rem;
     }
 
     h1, h2, h3,

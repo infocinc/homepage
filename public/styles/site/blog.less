@@ -13,7 +13,13 @@
 .invisible {
 	opacity: 0;
 }
-
+.overlay {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+}
 ul {
   list-style: none;
   padding: 0;
@@ -69,5 +75,11 @@ a, button
 @media screen and (min-width:@screen-sm-min) {
 	#menu {
 		.side-menu-full();
+	}
+}
+
+@media screen and (max-width:500px) {
+	.home-template .menu-toggle {
+		padding: 11px 10px;
 	}
 }
