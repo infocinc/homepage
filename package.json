@@ -12,6 +12,10 @@
     "keystone": "0.2.38",
     "underscore": "~1.7.0"
   },
+  "repository": {
+    "type": "git",
+    "url" : "git://github.com/infocinc/homepage.git"
+  },
   "browser": {
     "scrollTo": "./public/js/vendor/scrollTo.js",
     "bootstrap": "./public/js/vendor/bootstrap.js",
