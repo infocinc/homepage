@@ -41,9 +41,7 @@
   position: relative;
   background: @white;
   text-align: center;
-  a:nth-child(2) {
-	margin-top: 35px;
-  }
+  padding-top: 35px;
 }
 
 .white-box {
@@ -67,15 +65,6 @@
 }
 
 // MIN WIDTHS
-@media screen and (min-width:@screen-iphone-min) {
-}
-@media screen and (min-width:@screen-xs-min) {
-  #service-links {
-    a:nth-child(3) {
-      margin-top: 35px;
-    }
-  }
-}
 
 @media screen and (min-width:@screen-sm-min) {
   #hero {
@@ -117,11 +106,8 @@
 
   #service-links {
     padding-bottom: 40px;
-    a {
+    .service-link {
       margin-bottom: 15px;
-    }
-    a:nth-child(2),a:nth-child(3) {
-      margin-top: 25px;
     }
   }
   .white-box {
@@ -146,13 +132,6 @@
 	top: -30px;
 	margin-left: -30px;
   }
-
-  #service-links {
-    padding-top: 35px;
-    a:nth-child(2),a:nth-child(3) {
-      margin-top: 0;
-    }
-  }
 }
 
 @media screen and (min-width:@screen-lg-min) {
@@ -162,8 +141,6 @@
 
 }
 
-@media screen and (min-width:@screen-wide-min) {
-}
 
 @media screen and (min-width:@screen-superhigh-min) {
   #hero {
