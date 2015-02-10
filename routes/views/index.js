@@ -32,6 +32,7 @@ exports = module.exports = function(req, res) {
 
 
     if (_.contains(['fr', 'en'], lng) == false || _.contains(keystone.get('sections'), section) == false) {
+        locals['section'] = null;
         return res.render('errors/404');
     }
 
