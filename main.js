@@ -104,19 +104,18 @@ keystone.set('email locals', {
 
 // env specific configuration of keystone
 if (keystone.get('env') === 'production') {
-	keystone.set('secure signin', 'https://infocinc.herokuapp.com/keystone/signin');
-	keystone.set('signout redirect', 'http://www.infocinc.com/fr/home');
-	keystone.set('back url', 'https://infocinc.herokuapp.com/fr/home');
-	keystone.set('secure admin', 'https://infocinc.herokuapp.com');
-
-// specific to heroku 
-	app.use('/keystone', function(req, res, next) {
+	var secureHeroku = function(req,res,next) {
 		if (req.header('x-forwarded-proto') !== 'https') {
 			res.redirect(keystone.get('secure signin'));
 		}
-		next();
-	} );
+		next();		
+	}
 
+	keystone.set('secure signin', 'https://infocinc.herokuapp.com/keystone/signin');
+	keystone.set('back url', 'https://infocinc.herokuapp.com/fr/home');
+
+// specific to heroku 
+	app.use('/keystone', secureHeroku);
 }
 
 
