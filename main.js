@@ -42,6 +42,7 @@ keystone.init({
 
 keystone.import('models');
 
+
 // Setup common locals for your templates. The following are required for the
 // bundled templates and layouts. Any runtime locals (that should be set uniquely
 // for each request) should be added to ./routes/middleware.js
@@ -107,6 +108,15 @@ if (keystone.get('env') === 'production') {
 	keystone.set('signout redirect', 'http://www.infocinc.com/fr/home');
 	keystone.set('back url', 'https://infocinc.herokuapp.com/fr/home');
 	keystone.set('secure admin', 'https://infocinc.herokuapp.com');
+
+// specific to heroku 
+	app.use(/^\/keystone($|\/.*)/, function(req, res, next) {
+		if (req.header('x-forwarded-proto') !== 'https') {
+			res.redirect(keystone.get('secure signin'));
+		}
+		next();
+	} );
+
 }
 
 
