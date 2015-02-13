@@ -110,7 +110,7 @@ if (keystone.get('env') === 'production') {
 	keystone.set('secure admin', 'https://infocinc.herokuapp.com');
 
 // specific to heroku 
-	app.use(/^\/keystone($|\/.*)/, function(req, res, next) {
+	app.use('/keystone', function(req, res, next) {
 		if (req.header('x-forwarded-proto') !== 'https') {
 			res.redirect(keystone.get('secure signin'));
 		}
