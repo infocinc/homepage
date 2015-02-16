@@ -13,6 +13,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link rel="shortcut icon" href="{{asset "/favicon.ico"}}">
+	{{! Highlight.js stylesheet}}
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/monokai_sublime.min.css">
 
     {{! Styles'n'Scripts }}
 	<script type="text/javascript" src="/js/vendor/modernizr-2.6.2.min.js"></script>
@@ -55,6 +57,10 @@
 
     <script type="text/javascript" src="{{asset "js/index.js"}}"></script>
     <script type="text/javascript" src="/js/dist/blog.min.js"></script>
+
+	{{! Highlight.js}}
+	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+	<script> hljs.initHighlightingOnLoad();</script>
 
 </body>
 </html>
