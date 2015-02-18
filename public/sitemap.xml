@@ -35,6 +35,10 @@
   <changefreq>daily</changefreq>
 </url>
 <url>
+	<loc>http://www.infocinc.com/blog/integrating-ghost-with-keystonejs/</loc>
+	<changefreq>daily</changefreq>
+</url>
+<url>
   <loc>http://www.infocinc.com/blog/deploy-keystonejs-to-heroku/</loc>
   <changefreq>daily</changefreq>
 </url>
