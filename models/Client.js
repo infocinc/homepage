@@ -11,6 +11,7 @@ Client.add({
 	image_url: {type: Types.Url},
 	index: {type: Types.Number},
 	tags: {type: Types.Text},
+	description: {type: Types.Textarea},
 	timestamp: {type: Date, default: Date.now, format: "Do MMM YYYY, LT", noedit: true}
 });
 

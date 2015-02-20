@@ -6,16 +6,16 @@ include ../mixins/service-link
 
 mixin header(section)
 	header
-		canvas(id="bg-canvas-1" class="parallax" width="100" height="100")
-		canvas(id="bg-canvas-2" class="parallax" width="100" height="100")
-		canvas(id="bg-canvas-3" class="parallax" width="100" height="100")
-		canvas(id="bg-canvas-4" class="parallax" width="100" height="100")
-		canvas(id="fg-canvas-1" class="overlay ticker" width="100" height="100")
-		p.ticker-text.hide=t('portfolio:msg-1')
-		p.ticker-text.hide=t('portfolio:msg-2')
-		p.ticker-text.hide=t('portfolio:msg-3')
-		p.ticker-text.hide=t('portfolio:msg-4')
-		.overlay.overlay-black
+		//- canvas(id="bg-canvas-1" class="parallax" width="100" height="100")
+		//- canvas(id="bg-canvas-2" class="parallax" width="100" height="100")
+		//- canvas(id="bg-canvas-3" class="parallax" width="100" height="100")
+		//- canvas(id="bg-canvas-4" class="parallax" width="100" height="100")
+		//- canvas(id="fg-canvas-1" class="overlay ticker" width="100" height="100")
+		//- p.ticker-text.hide=t('portfolio:msg-1')
+		//- p.ticker-text.hide=t('portfolio:msg-2')
+		//- p.ticker-text.hide=t('portfolio:msg-3')
+		//- p.ticker-text.hide=t('portfolio:msg-4')
+		//- .overlay.overlay-black
 		if block
 			block
 
@@ -26,21 +26,37 @@ block css
 	link(href="/styles/site/projects.min.css", rel="stylesheet")
 block content
 	+logo
-	+header('portfolio')
-	section.intro.clearfix
-		h1!=t('portfolio:h1')
-		h2!=t('portfolio:intro')
-	.portfolio.clearfix
-		each client in clients 
-			.col-lg-4.client
-				a.client-link(href=client.image_url, target="_blank")
-					img.client-bg(src=client.image.secure_url, alt=client.name)
-					.client-descriptor-wrapper
-						.client-descriptor
-							p.client-label=client.name
-							each tag_image in client.tag_images 
-								img(src=tag_image.secure_url, alt='service icon')
-							p.client-tags= t('portfolio:' + client.key + '-tags')
-							p.client-more= t('portfolio:more')
+	.page-content: .container
+		.timeline
+			.timeline-path
+			.timeline-item--offset
+			each client, i in clients
+				.timeline-item(class=i % 2 == 1 ? 'timeline-item--even' : 'timeline-item--odd')
+					.timeline-item-node
+					a(href=client_image_url).timeline-item-inner
+						h6.text-caps.text-danger: 2014-05-12  
+						h4= client.name
+						!=utils.cropString( utils.htmlToText(client.description), 240, '...', true )
+						//- !=utils.htmlToText(meetup.description)
+		
+		//- if !upcomingMeetup && !pastMeetups.length
+		//- 	h3.text-muted There are no meetups yet.
+
+	//- +header('portfolio')
+	//- section.intro.clearfix
+	//- 	h1!=t('portfolio:h1')
+	//- 	h2!=t('portfolio:intro')
+	//- .portfolio.clearfix
+	//- 	each client in clients 
+	//- 		.col-lg-4.client
+	//- 			a.client-link(href=client.image_url, target="_blank")
+	//- 				img.client-bg(src=client.image.secure_url, alt=client.name)
+	//- 				.client-descriptor-wrapper
+	//- 					.client-descriptor
+	//- 						p.client-label=client.name
+	//- 						each tag_image in client.tag_images 
+	//- 							img(src=tag_image.secure_url, alt='service icon')
+	//- 						p.client-tags= t('portfolio:' + client.key + '-tags')
+	//- 						p.client-more= t('portfolio:more')
 
 	include ../layouts/footer.jade

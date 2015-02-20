@@ -1,5 +1,5 @@
-// CLIENT SAMPLES 
-// OVERLAYS 
+// CLIENT SAMPLES
+// OVERLAYS
 
 var app = require('../lib/app.js'),
 	$ = require('jquery'),
@@ -77,16 +77,16 @@ function registerHandlers() {
 $(document).ready(function() {
 	app.init();
 	registerHandlers();
-	var parallax = new Parallax(options.parallax);
-	parallax.play();
-
-	$('.ticker-text').each(function() {
-		headlines.push($(this).text());
-	});
-	options.ticker.headlines = headlines;
-	var ticker = new Ticker(options.ticker);
-	ticker.play();
-
-	offsetOverlay();
-	$(window).on('resize', offsetOverlay);
+	// var parallax = new Parallax(options.parallax);
+	// parallax.play();
+	//
+	// $('.ticker-text').each(function() {
+	// 	headlines.push($(this).text());
+	// });
+	// options.ticker.headlines = headlines;
+	// var ticker = new Ticker(options.ticker);
+	// ticker.play();
+	//
+	// offsetOverlay();
+	// $(window).on('resize', offsetOverlay);
 });

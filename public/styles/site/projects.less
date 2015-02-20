@@ -1,5 +1,6 @@
 @import (reference) "../ifc-toolkit/presets/electro.less";
-
+@import "../ifc-toolkit/components/timeline.less";
+@import (reference) "../bootstrap/bootstrap.less";
 
 @root: '@{kjs-img}/portfolio';
 
@@ -22,23 +23,23 @@
 // NON-LAYOUT
 // ---------------
 
-.intro {
-	border: 15px solid #111;
-	background: #222;
-	a {
-		.transition(@property:background;@delay:300ms);
-	}
-	h1 {
-		color: white;
-		font-size: 2.6em;
-	}
-	h2 {
-		font-size: 1.8em;
-		color: #fcfcfc;
-		letter-spacing: 0.1em;
-		line-height: 1.2;
-	}
-}
+// .intro {
+// 	border: 15px solid #111;
+// 	background: #222;
+// 	a {
+// 		.transition(@property:background;@delay:300ms);
+// 	}
+// 	h1 {
+// 		color: white;
+// 		font-size: 2.6em;
+// 	}
+// 	h2 {
+// 		font-size: 1.8em;
+// 		color: #fcfcfc;
+// 		letter-spacing: 0.1em;
+// 		line-height: 1.2;
+// 	}
+// }
 
 .more-btn(@color1,@color2) {
 	.btn-wide {
@@ -57,13 +58,17 @@
 
 // LAYOUT
 // ----------------------
+//
+// .intro {
+// 	padding: 25px 20px;
+// 	text-align: center;
+// 	h1 {
+// 		padding: 0px 15px 15px 15px;
+// 	}
+// }
 
-.intro {
-	padding: 25px 20px;
-	text-align: center;
-	h1 {
-		padding: 0px 15px 15px 15px;
-	}
+.page-content {
+	background: #222;
 }
 
 .portfolio {
@@ -114,7 +119,7 @@
 .client-descriptor-wrapper {
 	background: rgba(20,20,20,0.9);
 	color: white;
-	.transition(@property:all);
+//	.transition(@property:all);
 	text-align: center;
 	p {
 		margin: 0;
@@ -144,7 +149,7 @@
 
 
 //////////////////////
-// VERY SMALL DEVICES 
+// VERY SMALL DEVICES
 //////////////////////
 @media screen and (max-width:(@screen-nano-max)) {
 
@@ -214,7 +219,7 @@
 		max-width: 1200px;
 		margin: 0 auto !important;
 	}
-	
+
 	.project-dim(100%,584px,250px,0px);
 	.hidden-info(1.7em;@img-width:70px;@label-pad-bottom:15px;@padding-y:25px)
 }
@@ -226,4 +231,3 @@
 	.project-dim(100%,584px,292px,0px);
 	.hidden-info(1.8em;@img-width:70px;@label-pad-bottom:20px;@padding-y:25px)
 }
-
