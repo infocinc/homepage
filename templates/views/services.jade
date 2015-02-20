@@ -32,11 +32,11 @@ block css
 	link(href='/styles/site/footer.min.css', rel="stylesheet")
 	link(href="/styles/site/services.min.css", rel="stylesheet")
 block head
-	link(href='//fonts.googleapis.com/css?family=Bubblegum+Sans' rel='stylesheet' type='text/css')
+	link(href='//fonts.googleapis.com/css?family=Titillium+Web:200italic' rel='stylesheet' type='text/css')
 block content
 	+logo
 	+header('services')
-	section.intro.clearfix
+	section.intro.clearfix.container
 		h2=t('services:intro')
 		each service in services
 			+service-link(service)

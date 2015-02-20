@@ -25,7 +25,7 @@ var velocities = [{
 
 var options = {
 	'parallax': {
-		'background-color': '#281928',
+		'background-color': '#101010',
 		'sourceSet': [
 			'/images/portfolio/bg-desktop.png'
 		],

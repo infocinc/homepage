@@ -144,12 +144,16 @@
 // SIDE MENU 
 ////////////////////////////////////////////////////////////////////////////////////
 
-.side-menu-mobile(@bg;@width:200px;@side:right;@text-color:white;@font;@font-size;@hover-color:#C8E3E4) {
+.side-menu-mobile(@bg:0;@width:200px;@side:right;@text-color:white;@font;@font-size;@hover-color:#C8E3E4) {
   position: fixed;
   z-index:  0;
   overflow-y: auto;
   width: @width;
-  .bg(@bg);
+  
+  & when not(@bg = 0) {
+   .bg(@bg);
+  }
+
   height: 100%;
   padding-left: 40px;
 
@@ -265,4 +269,3 @@
     width: 85px;
   }
 }
-
