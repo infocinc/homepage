@@ -155,6 +155,7 @@ var events = {
 ghost({
 	config: path.join(__dirname, 'ghostconfig.js')
 }).then(function(ghostServer) {
+	debug('mounting ghost sever on blog path');
 	app.use('/blog', ghostServer.rootApp);
 	keystone.mount(events);
 	ghostServer.start(app);
