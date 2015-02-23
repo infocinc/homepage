@@ -8,7 +8,8 @@ var express = require('express'),
 	ghost = require('ghost'),
 	path = require('path'),
 	keystone = require('keystone').connect(app),
-	i18n = require('i18next');
+	i18n = require('i18next'),
+	debug = require('debug')('main');
 
 
 // Initialise keystone with your project's configuration.
@@ -39,7 +40,7 @@ keystone.init({
 	'mandrill username': process.env.MANDRILL_USERNAME
 });
 
-
+debug('loading models');
 keystone.import('models');
 
 
