@@ -1,1 +1,1 @@
-web: node main.js
+web: DEBUG=main node main.js
