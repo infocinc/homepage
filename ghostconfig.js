@@ -37,6 +37,32 @@ config = {
 		}
 	},
 
+	staging: {
+		url: 'http://infocinc-staging.herokuapp.com/blog',
+		mail: {},
+		database: {
+			client: 'postgres',
+			connection: {
+				host: process.env.POSTGRES_HOST,
+				user: process.env.POSTGRES_USER,
+				password: process.env.POSTGRES_PASSWORD,
+				database: process.env.POSTGRES_DATABASE,
+				port: '5432'
+			},
+			debug: false
+		},
+		fileStorage: false,
+		server: {
+			// Host to be passed to node's `net.Server#listen()`
+			host: '0.0.0.0',
+			// Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`
+			port: process.env.PORT
+		},
+		paths: {
+			contentPath: path.join(__dirname, '/content/')
+		}
+	},
+
 	// ### Development **(default)**
 	development: {
 		// The url to use when providing links to the site, E.g. in RSS and email.
