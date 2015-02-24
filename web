@@ -2,10 +2,10 @@
 echo "Starting app in $NODE_ENV mode"
 if [ "$NODE_ENV" = "development" ] 
 then
-	DEBUG=main node main.js
+	DEBUG=main,routes node main.js
 elif [ "$NODE_ENV" = "staging" ] 
 then
-	DEBUG=main node main.js
+	DEBUG=main,routes node main.js
 else 
   	node main.js
 fi

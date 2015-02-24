@@ -22,6 +22,7 @@ var _ = require('underscore'),
 	keystone = require('keystone'),
 	i18n = require('i18next'),
 	middleware = require('./middleware'),
+	debug = require('debug')('routes'),
 	importRoutes = keystone.importer(__dirname);
 
 
@@ -41,9 +42,10 @@ keystone.set('404', 'errors/404');
 keystone.set('500', function(err,req,res,next) { res.err(err,req,res);});
 
 
-
 // Setup Route Bindings
 exports = module.exports = function(app) {
+
+	debug('app route bindings');
 
 	function isAuth(req,res) {
 		if (!req.user || !req.user.canAccessKeystone) {
@@ -75,6 +77,17 @@ exports = module.exports = function(app) {
 		authenticated: isAuth
 	});
 	
+
+
+	app.all('/canvas-redirect/:canvas', function(req,res) {
+		var canvas = req.params.canvas || 'homepage';
+		debug('canvas redirect %s',canvas);
+		if (canvas === 'blog') {
+			res.redirect(303,'/blog');
+		} else {
+			res.send("<script>top.location='https://www.facebook.com/infocinc/app_712675532159199'</script>");
+		}
+	});
 	
 	// Views
 	app.all('/:lng/contact', function(req,res) {
@@ -89,9 +102,6 @@ exports = module.exports = function(app) {
 		routes.views.index(req,res);
 	});
 
-	app.all('/canvas-redirect', function(req,res) {
-		res.send("<script>top.location='https://www.facebook.com/infocinc/app_712675532159199'</script>");
-	});
 	app.get('/', function(req,res) {
 		res.redirect(301,'/en/home');
 	});
