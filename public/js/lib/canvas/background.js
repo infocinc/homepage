@@ -30,16 +30,14 @@ Background.prototype.loadImages = function(sourceSet, refresh) {
 ///////////////////////////////////////////////
 // Resize canvas based upon container dimension
 ///////////////////////////////////////////////
-Background.prototype.resize = function(tag) {
-	var h = parseInt($(tag).css('height'), 10),
-		w = $(tag).width();
+Background.prototype.resize = function(container) {
+	var h = $(container).height(),
+		w = $(container).width();
 
-	this.canvas.each(function(i) {
-		$(this).attr({
-			'width': w,
-			'height': h
+	this.canvas.attr({
+			width: w,
+			height: h
 		});
-	});
 }
 
 ///////////////////////////
