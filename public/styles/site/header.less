@@ -31,12 +31,14 @@
   }
 }
 
+// min-height === height when display: table
 header {
    position: relative;
    display: table;
    text-align: center;
    width: 100%;
-   min-height: 480px;
+   height: 480px;
+   overflow: hidden;
 }
 
 ///////////////////////////////////////////
@@ -50,12 +52,12 @@ header {
 
 @media screen and (max-width:(@screen-nano-max)) {
 	header { 
-		min-height: 480px;
+		height: 480px;
 	}
 }
 @media screen and (min-width:@screen-iphone-min) {
   header {
-    min-height: 400px;
+    height: 400px;
   }
   .hero-text-wrapper h1 {
     max-width: 320px;

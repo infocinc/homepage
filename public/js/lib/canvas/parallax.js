@@ -4,20 +4,28 @@ var $ = require('jquery'),
 
 
 Parallax.prototype.resize = function(canvas, container) {
-	var w = container.width(),
+	var w = parseInt(container.css('width'),10),
 		h = parseInt(container.css('height'), 10);
 
-	canvas.each(function(i) {
-		$(this).attr({
-			'width': w,
-			'height': h / $(canvas).length
-		});
+	canvas.attr({
+		width: w,
+		height: h / canvas.length
 	});
+
 	this.dim = {
 		'w': w,
 		'h': h
 	};
 };
+
+// workaround for canvas clearing bug in stock android browser
+
+function bug_workaround(canvas) {
+  canvas.style.opacity = 0.99;
+  setTimeout(function() {
+  canvas.style.opacity = 1;
+  }, 1);
+}
 
 Parallax.prototype.repaint = function(index, c, ct, lastTime, refresh) {
 	var now = new Date().getTime();
@@ -27,7 +35,7 @@ Parallax.prototype.repaint = function(index, c, ct, lastTime, refresh) {
 	if (typeof refresh === "function") {
 		var v = refresh(index, c, ct, now, lastTime);
 	}
-
+	bug_workaround(c);
 	this.draw(index, c, ct, v.tx);
 
 	utils.requestAnimFrame(function() {

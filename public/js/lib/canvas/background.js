@@ -30,16 +30,14 @@ Background.prototype.loadImages = function(sourceSet, refresh) {
 ///////////////////////////////////////////////
 // Resize canvas based upon container dimension
 ///////////////////////////////////////////////
-Background.prototype.resize = function(tag) {
-	var h = parseInt($(tag).css('height'), 10),
-		w = $(tag).width();
+Background.prototype.resize = function(container) {
+	var h = $(container).height(),
+		w = $(container).width();
 
-	this.canvas.each(function(i) {
-		$(this).attr({
-			'width': w,
-			'height': h
+	this.canvas.attr({
+			width: w,
+			height: h
 		});
-	});
 }
 
 ///////////////////////////
@@ -119,6 +117,15 @@ Background.prototype.draw = function(index, c, ct, tx, ty) {
 	}
 }
 
+// workaround for canvas clearing bug in stock android browser
+function bug_workaround(canvas) {
+  canvas.style.opacity = 0.99;
+  setTimeout(function() {
+  canvas.style.opacity = 1;
+  }, 1);
+}
+
+
 //////////////////////////////////////
 // refresh canvas
 //////////////////////////////////////
@@ -126,10 +133,11 @@ Background.prototype.repaint = function(index, c, ct, lastTime, refresh) {
 	var now = new Date().getTime();
 
 	ct.clearRect(0, 0, c.width, c.height);
+	bug_workaround(c);
+
 	if (typeof refresh === "function") {
 		var v = refresh(index, c, ct, now, lastTime);
 	}
-
 	this.draw(index, c, ct, v.tx, v.ty);
 
 	utils.requestAnimFrame(function() {

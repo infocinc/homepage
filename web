@@ -1,0 +1,11 @@
+#!/bin/sh
+echo "Starting app in $NODE_ENV mode"
+if [ "$NODE_ENV" = "development" ] 
+then
+	DEBUG=main,routes node main.js
+elif [ "$NODE_ENV" = "staging" ] 
+then
+	DEBUG=main,routes node main.js
+else 
+  	node main.js
+fi
