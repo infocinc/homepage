@@ -11,63 +11,81 @@
     ],
     "intro": "Comment pouvons-nous aider vos affaires ? ",
     "design": {
-        "title": "CRÉATION<br> DE SITE WEB",
-        "brief": [
-            "Commencez petit et grandissez avec nous. ",
-            "Nos conceptions webs utilisents des technologies ",
-            "qui permettent de répondre à une demande grandissante ",
-            "de votre site web."
-        ],
+        "title": "CRÉATION<BR>DE SITE WEB",
+        "brief": "Infocinc utilise de la technologie haute performance pour votre site web. Voulez-vous offrir une expérience interactive sans latence sur votre site ? Infocinc optimise votre site web avec diverses technologies telles que Node.js et MongoDB.",
         "question": "POURQUOI CHOISIR INFOCINC POUR <br> VOUS CONSTRUIRE UN SITE WEB ?",
         "bubbles": {
-            "1": "Contrôle de la qualité",
-            "2": "Expertise technique",
-            "3": "Design fonctionnel et élégant",
-            "4": "Relation avec nos clients"
+            "0": "Contrôle de la qualité",
+            "1": "Expertise professionnelle",
+            "2": "Projet sur mesure",
+            "3": "Coopération"
         },
         "features": {
-            "p": "NOS SOLUTIONS INCLUENT",
+            "p": "QUELQUES CARACTÉRISTIQUES DE <BR> NOTRE SERVICE SITE WEB:",
             "items": {
-                "1": "Design de templates sur mesure",
-                "2": "Design adaptatif (mobiles, tablettes et ordinateurs de bureau",
-                "3": "Prise de photos et retouches",
-                "4": "CMS (Content Management System",
-                "5": "Intégration des réseaux sociaux",
-                "6": "Internationalisation",
-                "7": "Serveurs http asyhnchrones",
-                "8": "Base de données",
-                "9": "Déploiement sur un nuage"
+                "1": "Serveurs Web haute performance Node.js",
+                "2": "Design responsive",
+                "3": "Site Web multilingue",
+                "4": "CMS sur mesure (KeystoneJS, Ghost)",
+                "5": "Équilibrage de charge (load balancing)",
+                "6": "Technologies infonuagiques",
+                "7": "Service technique après-vente",
+                "8": "Mise à jour",
+                "9": "Analyse comportementale"
             }
-        }
+        },
+        "calltoaction": "CONTACTEZ-NOUS"
     },
-    "social": {
-        "title": "RÉSEAUX<br>SOCIAUX",
-        "brief": [
-            "Est-ce que votre engagement et l'intégration de vos ",
-            "activités sur les réseaux sociaux sont vitales pour le bon ",
-            "fonctionnement de votre compagnie ? Infocinc vous offre son expertise ",
-            " avec les outils de développement disponible sur la plateforme Facebook"
-        ],
-        "question": " COMMENT INFOCINC PEUT-IL VOUS AIDER <br> A EXPLOITER LA PLATEFORME FACEBOOK ?",
+    "advice": {
+        "title": "CONSEILS <br> TECHNIQUES",
+        "brief": "Utiliser nos connaissances des technologies Web et du domaine de l'informatique.  Infocinc offre un service de consultation pour vous aider à prendre des meilleures décisions dans vos projets informatiques.",
+        "question": "QUELS SONT LES SERVICES DE <BR> CONSULTATION OFFERTS PAR INFOCINC ?",
         "bubbles": {
-            "1": "Apps",
-            "2": "Publicités",
-            "3": "Surveillance",
-            "4": "Analyse de données"
+            "0": "Formations techniques",
+            "1": "Avis d'expert",
+            "2": "Prototypage",
+            "3": "Analyse de données"
         },
         "features": {
-            "p": "NOTRE GAMME <br> DE SERVICES",
+            "p": "NOS SERVICES DE <BR> CONSULTATION EN DÉTAIL:",
             "items": {
-                "1": "Création de apps reliés à vos pages",
-                "2": "Gestion de vos audiences et publicités avec le Ads API",
-                "3": "Campagne publicitaire et re-marketing avec Atlas",
-                "4": "Collecte et analyse de données à l'aide du Graph API",
-                "5": "Rapport sur mesure qui va au-dela des insights de base",
-                "6": "Intégration de plugins et pixel de conversion",
-                "7": "Formation sur la plateforme Facebook",
+                "1": "Formation: développeur Web (HTML, CSS, Javascript)",
+                "2": "Formation: développeur de services (Node.js)",
+                "3": "Formation: base de données financières (KDB+, Q)",
+                "4": "Prototypage et preuve de concept",
+                "5": "Analyse et modélisation de données  (R, Excel, Matlab) ",
+                "6": "Minage de données Web",
+                "7": "Consultation Web",
                 "8": "",
                 "9": ""
             }
-        }
+        },
+        "calltoaction": "PRENDRE UN RENDEZ-VOUS"
+    },
+    "webapp": {
+        "title": "DÉVELOPPEMENT <br> D'APPLICATIONS WEB",
+        "brief": "Faites découvrir vos services et produits à l'aide d'une application exécutée par le navigateur web de l'ordinateur client. Infocinc vous offre une alternative au développement d'applications natives.",
+        "question": "QUELS SONT LES AVANTAGES <br> D'UNE APPLICATION WEB ?",
+        "bubbles": {
+            "0": "Accessible à partir de vos appareils",
+            "2": "Visibilité sur les moteurs de recherches",
+            "3": "Hyperliens directs vers vos applications",
+            "4": "Coût de production diminué"
+        },
+        "features": {
+            "p": "QUELQUES CARACTÉRISTIQUES DE <BR> NOTRE SERVICE APP WEB:",
+            "items": {
+                "1": "Services Web (REST API)",
+                "2": "Technologie Node.js",
+                "3": "Possibilité de croite la puissance à l'aide de l'infonuagique",
+                "4": "Framework MVC AngularJS, Ionic",
+                "5": "Design responsive",
+                "6": "Design d'interface utilisateur",
+                "7": "Intégration avec la plateforme Facebook",
+                "8": "Base de données NoSQL",
+                "9": "Analyse de données utilisateurs"
+            }
+        },
+        "calltoaction": "CONTACTEZ-NOUS"
     }
 }

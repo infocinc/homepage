@@ -1,7 +1,6 @@
 var keystone = require('keystone'),
-	Types = keystone.Field.Types;
-
-var Service = new keystone.List("Service", {nocreate: false, track: true});
+	Types = keystone.Field.Types,
+	Service = new keystone.List('Service', {nocreate: false, track: true});
 
 
 Service.add({
@@ -10,7 +9,7 @@ Service.add({
 	bubbles: {type: Types.CloudinaryImages},
 	row: {type: Types.Number},
 	target: {type: Types.Url},
-	timestamp: {type: Date, default: Date.now, format: "Do MMM YYYY, LT", noedit: true}
+	timestamp: {type: Date, 'default': Date.now, format: 'Do MMM YYYY, LT', noedit: true}
 });
 
 Service.defaultSort = '-timestamp';

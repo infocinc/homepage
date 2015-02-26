@@ -1,29 +1,18 @@
 {
     "catchphrase": "TERMS AND CONDITIONS",
-    "title": "Impact Media Web | Terms and Conditions",
+    "title": "Infocinc | Terms and Conditions",
     "description": "Terms and conditions of our website.",
     "p1": "Our website uses different technologies to provide a better user experience. Some of these technologies feature data collection mechanisms that are used by us.",
+    "p2": "A visit on our website entails the transmission of data about your browser to our servers. This data is automatically obtained and stored by us or third parties in our name. Some of the data we collect includes:",
+    "p3": "In general, this data does not contain any personal information about the user. The technologies for data collection require the use of web beacons and <strong>cookies</strong>.",
+    "p4": "Our website uses cookies: <strong>small text files stored on the hard drive of your computer or mobile device via a web browser.</strong>Cookies help us understand how visitors interact with our site. By default, browsers allow the use of cookies, but this feature can also be disabled. You can also manually delete cookies after use, using your web browser. Infocinc is not aware of cases where cookies have damaged a computer or mobile device, or contributed to the viral infection.",
+    "p5": "The following links offers more browser-specific information about cookies:",
+    "p6": "Analytics services used by our website come from <a href='http://www.google.com/analytics'>Google Analytics</a> and <a href='http://www.facebook.com/'>Facebook</a>. This means that when you visit our website, a cookie from Google Analytics or Facebook is stored on your browser or mobile phone, unless the settings from your browser disables the use of cookies.",
+    "p7": "Moreover, when you are visiting our website, data supplied by invisible pixels and cookies are sent to Google Analytics and Facebook in order to be analyzed by Infocinc.",
+    "p8": "Google Analytics and Facebook Custom Audience are services that Infocinc uses and only Infocinc determines how the data will be used. Google Analytics and Facebook cannot reveal the information to third parties (unless required by law).",
+    "p9": "You can find more information on the relationship between Infocinc and Google Analytics in the privacy policy of Google Analytics at the following address: <a href='http://www.google.com/intl/en/policies/privacy'> http://www.google.com/intl/en/policies/privacy/.</a>",
     "h2": "Types of data",
     "h3": "Cookies",
-    "p2": "A visit on our website entails the transmission of data about your browser to our servers. This data is automatically obtained and stored by us or third parties in our name. Some of the data we collect includes:",
-    "p3": "In general, this data does not contain any personal information about the user. The technologies for data collection require the use of <strong>cookies.</strong>",
-    "p4": "    Our website uses cookies: <strong>small text files stored on the hard drive of your computer or mobile device via a web browser.</strong>Cookies help us understand how visitors interact with our site. By default, browsers allow the use of cookies, but this feature can also be disabled. You can also manually delete cookies after use, using your web browser. Impact media web is not aware of cases where cookies have damaged a computer or mobile device, or contributed to the viral infection."
-        ,
-    "p5": 
-        "The following links offers more browser-specific information about cookies:"
-    ,
-    "p6": 
-        "Analytics services used by our website come from <a href='http://www.google.com/analytics'>Google Analytics</a> and <a href='http://www.impactmediaweb.com/'>Impact media web</a>. This means that when you visit our website, a cookie from Google Analytics or Impact media web is stored on your browser or mobile phone, unless the settings from your browser disables the use of cookies."
-        ,
-    "p7": 
-        "Moreover, when you are visiting our website, data supplied by invisible pixels and cookies are sent to Google Analytics in order to be analyzed by Impact media web."
-    ,
-    "p8": 
-        "Google Analytics is a service that Impact media web uses and only Impact media web determines how the data will be used. Google Analytics cannot reveal the information to third parties (unless required by law).", 
-    "p9": "You can find more information on the relationship between Impact media web and Google Analytics in the privacy policy of Google Analytics at the following address: <a href='http://www.google.com/intl/en/policies/privacy'> http://www.google.com/intl/en/policies/privacy/.</a>",
-    "p10": 
-        "If you do not want information about your visits to our website to be collected and evaluated by Google Analytics, you can prevent it. This means that Google Analytics will make anonymous information it collects (but will continue to collect) or cease to collect information about your visit, depending on the type of opposition that you have chosen. This opposition requires you to accept a cookie is placed on your computer by Google Analytics. You can ask to object by clicking on the link provided for this purpose in the part of the Google Analytics website that contains the Privacy Policy link. (<a href='https://tools.google.com/dlpage/gaoptout'>https://tools.google.com/dlpage/gaoptout</a>)."
-    ,
     "li-1": "Your IP address",
     "li-2": "The local datetime of your visit",
     "li-3": "Geo-location information",

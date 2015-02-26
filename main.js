@@ -3,11 +3,11 @@
 require('dotenv').load();
 
 // Require keystone
-var express = require('express'),
-	app = express(),
+var keystone = require('keystone'),
+	app = keystone.express(),
 	ghost = require('ghost'),
 	path = require('path'),
-	keystone = require('keystone').connect(app),
+	jquery = require('jquery'),
 	i18n = require('i18next'),
 	debug = require('debug')('main');
 
@@ -24,9 +24,10 @@ keystone.init({
 	'views': 'templates/views',
 	'compress': true,
 	'view engine': 'jade',
-	'sections': ['contact', 'home', 'projects', 'services', 'terms'],
+	'sections': ['contact', 'home', 'timeline', 'services', 'terms'],
 	'emails': 'templates/emails',
 	'auto update': true,
+	'app': app,
 	'session': true,
 	'signout redirect': '/fr/home',
 	'signin redirect': '/fr/home',
@@ -41,7 +42,9 @@ keystone.init({
 });
 
 debug('loading models');
+/* jshint ignore:start */
 keystone.import('models');
+/* jshint ignore:end */
 
 
 // Setup common locals for your templates. The following are required for the
@@ -59,18 +62,18 @@ var options = {
 	ns: {
 		namespaces: [
 			'app', 'home', 'form', 'services',
-			'footer', 'portfolio', 'terms',
-			'contact', 'projects'
+			'footer', 'terms','contact', 'timeline'
 		],
 		defaultNs: 'app'
 	},
 	preload: ['en', 'fr'],
 	supportedLngs: ['en', 'fr'],
+	setJqueryExt: false,
 	load: 'unspecific',
 	resSetPath: 'locales/__lng__/__ns__.json',
 	detectLngFromPath: 0,
 	forceDetectLngFromPath: true,
-	fallbackLng: 'fr',
+	fallbackLng: 'en',
 	debug: true
 };
 
@@ -81,6 +84,7 @@ keystone.set('routes', require('./routes'));
 
 // Setup common locals for your emails. The following are required by keystone's
 // default email templates, you may remove them if you're using your own.
+/* jshint ignore:start */
 keystone.set('email locals', {
 	logo_src: '/images/logo-email.gif',
 	logo_width: 194,
@@ -95,6 +99,7 @@ keystone.set('email locals', {
 		}
 	}
 });
+/* jshint ignore:end*/
 
 // Setup replacement rules for emails, to automate the handling of differences
 // between development a production.
@@ -110,7 +115,7 @@ if (keystone.get('env') === 'production') {
 			res.redirect(keystone.get('secure signin'));
 		}
 		next();		
-	}
+	};
 
 	keystone.set('secure signin', 'https://infocinc.herokuapp.com/keystone/signin');
 	keystone.set('back url', 'https://infocinc.herokuapp.com/fr/home');
@@ -133,14 +138,12 @@ keystone.set('email tests', require('./routes/emails'));
 
 // Configure the navigation bar in keystone's Admin UI
 keystone.set('nav', {
-	'posts': ['posts', 'post-categories'],
 	'users': 'users',
-	'clients': 'clients',
+	'timeline': 'TimeItem',
 	'services': 'services',
 	'enquiries': 'enquiries',
 	'images': 'images'
 });
-
 
 
 // Start keystone to connect to your database and initialise the web server
@@ -151,7 +154,6 @@ var events = {
 		i18n.registerAppHelper(app);
 	}
 };
-
 ghost({
 	config: path.join(__dirname, 'ghostconfig.js')
 }).then(function(ghostServer) {
@@ -160,6 +162,6 @@ ghost({
 	keystone.mount(events);
 	ghostServer.start(app);
 });
-process.on('uncaughtException', function(err) {
-	console.log('Caught Exception: ' + err);
-});
+// process.on('uncaughtException', function(err) {
+// 	console.log('Caught Exception: ' + err);
+// });

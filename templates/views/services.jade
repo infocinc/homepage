@@ -19,10 +19,10 @@ mixin service-descr(service,i)
 	p.brief!=t('services:' + name + '.brief')
 	if (target && target.indexOf('http') === 0)
 		a(href=target).btn-wide 
-			span=t('services:'+name+'-calltoaction')
+			span=t('services:'+name+'.calltoaction')
 	else 
 		a(href='/'+lang+'/'+target).btn-wide
-			span=t('services:'+name+'-calltoaction')
+			span=t('services:'+name+'.calltoaction')
 	button(type="button",data-toggle="collapse" data-target='#hidden-row-' + i).btn-wide
 		span.hide=t('services:close')
 		span=t('services:learnmore')

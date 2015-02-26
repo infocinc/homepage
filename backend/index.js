@@ -8,7 +8,6 @@ module.exports = {
 
     saveResourceSet: function($lng, $ns, resourceSet, cb) {
         var toSave = {
-            _id : $ns + '_' + $lng,
             ns : $ns,
             lng : $lng,
             resource: JSON.stringify(resourceSet)
@@ -39,7 +38,6 @@ module.exports = {
     },
 
     fetchOne: function(lng, ns, cb) {
-        var _oid = ns + '_' + lng;
         var self = this;
 
 
@@ -53,7 +51,7 @@ module.exports = {
                 if (!obj) {
                     cb(null, {});
                 } else {
-                    self.functions.log('loaded from mongoDb: ' + _oid);
+                    self.functions.log('loaded from mongoDb: ' + lng + ':' + ns);
                     cb(null, JSON.parse(obj[0].resource));
                 }
             }

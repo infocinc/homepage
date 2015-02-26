@@ -3,11 +3,10 @@
         "sronly": "Toggle Navigation",
         "switchlng": "fr",
         "switchlng-label": "Français",
-        "signout": "Sign out",
-        "signin" : "Sign in",
         "home" : "HOME",
         "blog" : "BLOG",
-        "portfolio": "PORTFOLIO",
+        "terms": "Terms and Conditions",
+        "portfolio": "PROJECTS",
         "services" : "SERVICES",
         "contact" : "CONTACT",
         "about" : "ABOUT",
@@ -15,7 +14,7 @@
         "admin": "ADMIN",
         "signin" : "SIGN IN",
         "signout" : "SIGN OUT",
-        "404-title": "Page non trouvée",
-        "404-msg": "Retourner à la page d'accueil"
+        "404-title": "PAGE NOT FOUND",
+        "404-msg": "GO BACK TO HOME PAGE"
     }
 }

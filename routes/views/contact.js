@@ -33,7 +33,7 @@ exports = module.exports = function(req,res) {
 					fromName: 'Infocinc',
 					fromEmail: 'info@infocinc.com',
 					to: 'ndutil79@gmail.com'
-				}, function(err,info) {
+				}, function(err) {
 					if (err)
 						console.log(err);
 					
@@ -43,4 +43,4 @@ exports = module.exports = function(req,res) {
 		});
 	});
 	view.render('contact');
-}
+};

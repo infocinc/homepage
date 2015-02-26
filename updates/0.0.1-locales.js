@@ -1,27 +1,21 @@
-var fs = require('fs'),
-	keystone = require('keystone');
+var fs = require('fs');
 
 var namespaces = [
 		'app','home','form','services',
-		'footer','portfolio','terms',
-		'contact','projects'
+		'footer','terms','contact','timeline'
 	],
 	lngs = ['fr', 'en'],
 	resources = [];
-
-
 
 function loadResource($ns,$lng) {
 	var data = fs.readFileSync('./locales/' + $lng +'/' + $ns + '.json', 'utf8');
 
 	return {
-		_id: $ns + '_' + $lng,
 		ns: $ns,
 		lng:  $lng,
 		resource: JSON.stringify(JSON.parse(data)) 
-	}
+	};
 }
-
 
 // create tuples of ns, lng
 namespaces.forEach(function(ns) {
@@ -34,6 +28,3 @@ console.log(resources);
 exports.create = {
 	LocaleResource: resources
 };
-
-
-

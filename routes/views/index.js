@@ -9,18 +9,18 @@ function taskFactory(key, options) {
     return function(callback) {
         var q = keystone.list(key).model.find();
         if (options && options.ref) {
-            q = q.populate(options.ref)
+            q = q.populate(options.ref);
         }
         q.exec(function(err, results) {
             if (err) {
-                callback(err)
+                callback(err);
             }
             if (options && options.postprocess) {
                 results = options.postprocess(results);
             }
-            callback(null, results)
+            callback(null, results);
         });
-    }
+    };
 }
 
 exports = module.exports = function(req, res) {
@@ -31,28 +31,28 @@ exports = module.exports = function(req, res) {
         lng = locals.lang = req.params.lng || 'fr';
 
 
-    if (_.contains(['fr', 'en'], lng) == false || _.contains(keystone.get('sections'), section) == false) {
-        locals['section'] = null;
+    if (_.contains(['fr', 'en'], lng) === false || _.contains(keystone.get('sections'), section) === false) {
+        locals.section = null;
         return res.render('errors/404');
     }
 
     switch (section) {
-        case 'projects':
+        case 'timeline':
             async.parallel([
-                    taskFactory('Client', {
+                    taskFactory('TimeItem', {
                         'postprocess': function(results) {
                             return _.sortBy(results, function(s) {
-                                return s.index
+                                return s.index;
                             });
                         }
                     })
                 ],
                 function(err, results) {
                     if (err) {
-                        console.log('something wrong happened while querying the db')
+                        console.log('something wrong happened while querying the db');
                     }
                     view.render(section, {
-                        clients: results[0]
+                        timeItems: results[0]
                     });
                 });
             break;
@@ -64,14 +64,14 @@ exports = module.exports = function(req, res) {
                     taskFactory('Service', {
                         'postprocess': function(results) {
                             return _.sortBy(results, function(s) {
-                                return s.row
+                                return s.row;
                             });
                         }
                     })
                 ],
                 function(err, results) {
                     if (err) {
-                        console.log('something wrong happened while querying the db')
+                        console.log('something wrong happened while querying the db');
                     }
                     view.render(section, {
                         services: results[0]

@@ -65,13 +65,12 @@ exports = module.exports = function(app) {
 			languages: ['fr','en'],
 			namespaces: [
 				'app','home','form','services',
-				'footer','portfolio','terms',
-				'contact','projects'
+				'footer','terms','contact','timeline'
 			],
 			resGetPath: 'locales/resources.json?lng=__lng__&ns=__ns__',
 			resChangePath: 'locales/change/__lng__/__ns__',
 			resRemovePath: 'locales/remove/__lng__/__ns__',
-			fallbackLng: 'fr',
+			fallbackLng: 'en',
 			dynamicLoad: true
 		},
 		authenticated: isAuth
@@ -109,11 +108,4 @@ exports = module.exports = function(app) {
 	app.get('/welcome.html', function(req,res) {
 		res.redirect(301,'/en/home');
 	});
-	
-
-
-//	app.get('/blog/:category?', routes.views.blog);
-//	app.get('/blog/post/:post', routes.views.post);
-	// NOTE: To protect a route so that only admins can see it, use the requireUser middleware:
-	// app.get('/protected', middleware.requireUser, routes.views.protected);
 };

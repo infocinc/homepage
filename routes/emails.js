@@ -30,7 +30,6 @@ module.exports = {
 			phone: '+61 2 1234 5678',
 			message: 'Nice enquiry notification.'
 		});
-		
 		callback(null, {
 			admin: 'Admin User',
 			enquiry: newEnquiry,
@@ -38,5 +37,4 @@ module.exports = {
 		});
 		
 	}
-	
 };

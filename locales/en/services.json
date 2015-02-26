@@ -1,33 +1,83 @@
 {
-    "catchphrase": "La mission de Infocinc: <br> offrir des services de qualité",
-    "title": "Infocinc | Nos Services",
-    "close": "FERMER LA SECTION",
-    "learnmore": "EN APPRENDRE PLUS",
-    "description": [
-         "Infocinc offre une variété de services informatiques dont la ",
-         "création de sites et applications web, intégration Facebook ",
-         "services conseils."
-       ],
-    "intro": "Comment pouvons-nous aider vos affaires ? ",
-    "service-1" : {
-        "title": "Création de sites web",
-        "brief" : [
-            "Commencez petit et grandissez avec nous. ",
-            "Nos conceptions webs utilisents des technologies ",
-            "qui permettent de répondre à une demande grandissante ",
-            "de votre site web grâce à l'infonuagique."
-        ],
-        "extra" : "Pourquoi nous choisir ?"
+    "catchphrase": "The mission of Infocinc: <br> to provide services of high quality.",
+    "title": "Infocinc | Our Services | 438 496-6886",
+    "close": "MINIMIZE THIS SECTION",
+    "learnmore": "LEARN MORE",
+    "description": "Infocinc offers a variety of services including web design, application development, social media integration and consulting.",
+    "intro": "How can we help your business?",
+    "design" : {
+        "title": "WEBSITE <BR> DESIGN",
+        "brief" : "Infocinc wants to build you a high performance website. We use technologies such as Node.js and MongoDB to construct scalable websites that can offer smooth realtime experiences to your users.",
+        "bubbles": {
+            "0": "Quality Control",
+            "1": "Technical Expertise",
+            "2": "Custom Solution",
+            "3": "Cooperation",
+            "4": "Client Relationship"
+        },
+        "features": {
+            "items":  {
+              "1": "High Performance Node.js Web Servers",
+              "2": "Responsive Design",
+              "3": "Multilingual Website",
+              "4": "Customized CMS (based on KeystoneJS, Ghost)",
+              "5": "Load Balancing",
+              "6": "Cloud Hosting",
+              "7": "Technical Support",
+              "8": "Upgrades",
+              "9": "Behavioral Analytics"
+            },
+            "p": "SOME OF THE FEATURES <BR> OF OUR WEBSITE SERVICE:"
+        },
+        "question": "WHY SHOULD YOU CHOOSE INFOCINC <br> TO BUILD YOUR WEBSITE? ",
+        "calltoaction" : "GET IN TOUCH"
     },
-    "service-2" : {
-        "title": "Réseaux sociaux",
-        "brief" : [
-            "Est-ce que votre engagement et l'intégration de vos ",
-            "activités sur les réseaux sociaux sont vitales pour le bon ",
-            "fonctionnement de votre compagnie ? Infocinc offre des services ",
-            "d'intégration de vos activités sur la plateforme Facebook."
-        ],
-        "extra" : "Pourquoi nous choisir ?"
+    "advice" : {
+        "title": "CONSULTING <BR> SERVICES",
+        "brief" : "Our knowledge about data and technology at your service. Infocinc offers various consulting services to help you acquire new skills and improve the quality of your current projects.",
+        "bubbles": {
+            "0": "Technical Training",
+            "1": "Expert Advice",
+            "2": "Prototyping, Proof of Concepts",
+            "3": "Data Analysis"
+        },
+        "features": {
+            "items":  {
+              "1": "Training: HTML, CSS, Javascript",
+              "2": "Training: Back-end Web Development (Node.JS)",
+              "3": "Training: Financial Database (KDB+, Q)",
+              "4": "Prototyping and Proof of concepts",
+              "5": "Data Analysis and Modeling (R, Excel, Matlab)",
+              "6": "Web Data Scraping"
+            },
+            "p": "OUR CONSULTING <BR> SERVICES IN DETAIL:"
+        },
+        "question": "WHAT KIND OF CONSULTING SERVICES <br> ARE OFFERED BY INFOCINC ?",
+        "calltoaction" : "SCHEDULE A MEETING"
+    },
+    "webapp" : {
+        "title": "WEBSITE <BR> DESIGN",
+        "brief": "Introduce your services and products to the world with an application that executes directly within the web browser. Infocinc offers an alternative to the development of native applications.",
+        "bubbles": {
+            "0": "Accessible on all your devices",
+            "1": "Visibility on searhc engines",
+            "2": "Direct links to your applications",
+            "3": "Decreased cost of production"
+        },
+        "features": {
+            "items":  {
+              "1": "Web Services (REST API)",
+              "2": "Node.js Technology",
+              "3": "Scalability using the cloud",
+              "4": "Framework MVC AngularJS, Ionic",
+              "5": "UX Design",
+              "6": "Facebook Integration",
+              "7": "Databases (MongoDB, Redis)",
+              "8": "User Behavior Data Analysis"
+            },
+            "p": "SOME OF THE FEATURES <BR> OF OUR WEB APP SERVICE:"
+        },
+        "question": "WHAT ARE THE ADVANTAGES <br> OF A WEB APPLICATION?",
+        "calltoaction" : "CONTACT US"
     }
-
 }

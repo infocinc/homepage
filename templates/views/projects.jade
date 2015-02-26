@@ -30,13 +30,13 @@ block content
 		.timeline
 			.timeline-path
 			.timeline-item--offset
-			each client, i in clients
+			each item, i in timeItems
 				.timeline-item(class=i % 2 == 1 ? 'timeline-item--even' : 'timeline-item--odd')
 					.timeline-item-node
-					a(href=client_image_url).timeline-item-inner
+					a(href=item.url).timeline-item-inner
 						h6.text-caps.text-danger: 2014-05-12  
-						h4= client.name
-						!=utils.cropString( utils.htmlToText(client.description), 240, '...', true )
+						h4= item.name
+						!=utils.cropString( utils.htmlToText(t('timeline.'+utils.slug(item.name)+'-description')), 240, '...', true )
 						//- !=utils.htmlToText(meetup.description)
 		
 		//- if !upcomingMeetup && !pastMeetups.length
