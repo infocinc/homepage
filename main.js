@@ -3,11 +3,11 @@
 require('dotenv').load();
 
 // Require keystone
-var keystone = require('keystone'),
-	app = keystone.express(),
+var express = require('express'),
+	app = express(),
+	keystone = require('keystone').connect(app),
 	ghost = require('ghost'),
 	path = require('path'),
-	jquery = require('jquery'),
 	i18n = require('i18next'),
 	debug = require('debug')('main');
 
@@ -27,7 +27,6 @@ keystone.init({
 	'sections': ['contact', 'home', 'timeline', 'services', 'terms'],
 	'emails': 'templates/emails',
 	'auto update': true,
-	'app': app,
 	'session': true,
 	'signout redirect': '/fr/home',
 	'signin redirect': '/fr/home',

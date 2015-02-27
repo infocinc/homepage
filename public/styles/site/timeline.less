@@ -1,25 +1,37 @@
 @import (reference) "../ifc-toolkit/presets/electro.less";
-@import "../ifc-toolkit/components/timeline.less";
 @import (reference) "../bootstrap/bootstrap.less";
+@import "../ifc-toolkit/components/timeline.less";
 
-@root: '@{kjs-img}/portfolio';
+@root: '@{kjs-img}/timeline';
 
-@seriousgreen: #495C5D;
-@lightgreen: rgba(73,92,93,0.5);
 
 ///////////////////////////////////////////
 // HEADER BG
 ///////////////////////////////////////////
-/*header {
-	.bg('@{root}/bg-mobile.jpg');
+header {
+	
 }
-*/
-
-///////////////////////////////////////////
-// SERVICES
-///////////////////////////////////////////
 
 
+.page-content {
+	position: relative;
+	//.bg('@{root}/shattered-dark.png',@pattern:repeat,@size:default,@fallback:#000);
+  .bg('@{root}/m1.jpg',@y:top);
+
+}
+
+.page-title {
+  position: relative;
+  text-align: center;
+  width: 100%; 
+  padding-top: 8em;
+  padding-bottom: 3em;
+
+}
+
+.hero-text-wrapper {
+	display: block;
+}
 // NON-LAYOUT
 // ---------------
 
@@ -67,14 +79,6 @@
 // 	}
 // }
 
-.page-content {
-	background: #222;
-}
-
-.portfolio {
-	background: white;
-	padding: 25px 0px;
-}
 
 .client {
 	margin-bottom: 40px;
@@ -177,6 +181,9 @@
 // IPAD PORTRAIT
 //////////////////
 @media screen and (min-width:@screen-sm-min) {
+	header {
+		.bg('@{root}/bg-tablet.jpg');
+	}
 	.intro {
 		padding-left: 40px;
 		padding-right: 40px;
@@ -215,6 +222,11 @@
 // LARGE SCREEN - LAPTOP
 /////////////////////////
 @media screen and (min-width:@screen-lg-min) {
+	.page-content {
+		position: relative;
+  		.bg('@{root}/m1.jpg');
+	}
+
 	.intro h2 {
 		max-width: 1200px;
 		margin: 0 auto !important;

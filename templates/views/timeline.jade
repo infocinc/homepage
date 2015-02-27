@@ -1,0 +1,58 @@
+extends ../layouts/default
+include ../mixins/header
+include ../mixins/logo
+include ../mixins/service-link
+
+
+
+block css
+	link(href="/styles/site/header.min.css", rel="stylesheet")
+	link(href='/styles/site/footer.min.css', rel="stylesheet")
+	link(href="/styles/site/timeline.min.css", rel="stylesheet")
+	link(href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css')
+block content
+	+logo
+	.page-content
+		.overlay.overlay-black
+		.overlay.overlay-tvnoise
+		.page-title.hero-text-wrapper
+			h1.front!=t(section + ':catchphrase')
+		.timeline.container
+			.timeline-path
+			.timeline-item--offset
+			each item, i in timeItems
+				.timeline-item(class=i % 2 == 1 ? 'timeline-item--even' : 'timeline-item--odd')
+					.timeline-item-node
+					.timeline-item-inner
+						- var m = item._.date.moment(); m.locale(lang);
+						- var slug = utils.slug(item.name);
+						h6.text-caps.timeline-item-inner-date= m.format('MMMM YYYY')
+						h4.timeline-item-inner-title= t('timeline:'+slug+'.title-1')
+						.timeline-item-inner-text!=utils.cropString(t('timeline:'+slug+'.brief-1'), 240, '...', true )
+						.timeline-item-inner-media.clearfix
+							a(href=item.url)
+								img(src=item.image.secure_url alt=item.name).timeline-item-inner-media-image 
+							a(href=item.url).timeline-item-inner-media-link=t('timeline:'+slug+'.link-1')
+							- if (item.facebook)
+								a(href=item.facebook).timeline-item-inner-media-link facebook
+
+						h4.timeline-item-inner-title.timeline-item-inner-title--smaller!=t('timeline:'+slug+'.title-2')
+						.timeline-item-inner-text!=t('timeline:'+slug+'.brief-2')
+
+	//- section.intro.clearfix
+	//- 	h1!=t('portfolio:h1')
+	//- 	h2!=t('portfolio:intro')
+	//- .portfolio.clearfix
+	//- 	each client in clients 
+	//- 		.col-lg-4.client
+	//- 			a.client-link(href=client.image_url, target="_blank")
+	//- 				img.client-bg(src=client.image.secure_url, alt=client.name)
+	//- 				.client-descriptor-wrapper
+	//- 					.client-descriptor
+	//- 						p.client-label=client.name
+	//- 						each tag_image in client.tag_images 
+	//- 							img(src=tag_image.secure_url, alt='service icon')
+	//- 						p.client-tags= t('portfolio:' + client.key + '-tags')
+	//- 						p.client-more= t('portfolio:more')
+
+	include ../layouts/footer.jade

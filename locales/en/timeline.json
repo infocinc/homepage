@@ -1,4 +1,47 @@
 {
-    "title": "Infocinc | Projects | 438 496-6886",
-    "description": "Infocinc wants to help communities, individuals and companies accomplish great things. Contact us at 438 496-6886 to discuss your projects."
+    "title": "Infocinc | Our Timeline | 438 496-6886",
+    "description": "Infocinc wants to help communities, individuals and companies accomplish great things. Contact us at 438 496-6886 to discuss your projects.",
+    "catchphrase": "Timeline of Infocinc:<BR> past and current events",
+    "centre-dentaire-martin-dutil": {
+        "title-1": "Centre Dentaire Martin Dutil",
+        "brief-1": "The Centre Dentaire Martin Dutil is a well established dental clinic in Ahuntsic since 1988. Martin Dutil Dental Centre offers several professional services such as general dentistry, teeth whitening , cosmetic dentistry as well as bridges and crowns.",
+        "link-1":  "website",
+        "title-2": "Our role:",
+        "brief-2": "We have completely rebuilt the foundations of the website with the <a href='bootstrap.org'> Bootstrap 3.0 </a> framework. It is now one of the few dental clinics in Quebec to offer its desktop content on phones and tablets. Infocinc is the webmaster and makes periodic updates to the site."
+    },
+    "nuayre": {
+        "title-1": "Nuayre",
+        "brief-1": "NuAyre is a company from Quebec that sells odor eliminators. Nuayre products are available at selected IGA, BMR and AVRIL Supermarché Santé",
+        "link-1":  "website",
+        "title-2": "Our involvement",
+        "brief-2": "Nuayre wanted a brand new website for promoting its line of products. We created a one page 'scroller' that would serve as a landing page. At the same time, we also helped Nuayre with its Facebook profile and created a photo ad, which has been seen by over 150K people in the Quebec area."
+    },
+    "node-school-event": {
+        "title-1": "NodeSchool MTL Workshop",
+        "brief-1": "In order to stimulate the Node.js community in the Montreal area, Infocinc is organizing the first NodeSchool.io workshop in Montreal. It is intended for people (juniors, students, old timers..) that wants to learn more about this emerging technology.",
+        "link-1":  "website",
+        "title-2": "How do I reserve my spot?",
+        "brief-2": "Details to come."
+    },
+    "infocinc-blog": {
+        "title-1": "Blog of Infocinc",
+        "brief-1": "Are you a coder or a fan of the latest trends in web technologies ? Check out our blog for posts about Node.js, KeystoneJS, Ghost and other interesting bits of technology.", 
+        "link-1":  "blog",
+        "title-2": "Is it a Wordpress site?",
+        "brief-2": "No. We use Ghost as our blogging platform. It runs on Node.js and is 100% open-source and supported by a growing community of developers."
+    },
+    "infocinc-website": {
+        "title-1": "Infocinc website",
+        "brief-1": "Our brand new website. Re-designed from scratch and built for the future.", 
+        "link-1":  "home",
+        "title-2": "What's new in it ?",
+        "brief-2": "Our previous website was more or less a simple one pager. This website features multiple sections and is powered by KeystoneJS, an open-source CMF written entirely in javascript that runs on Node.js. It's also grounds for experimentation: a cool sliding side menu and some slick canvas overlay animations."
+    },
+    "infocinc-birth": {
+        "title-1": "Infocinc",
+        "brief-1": "Birth of Infocinc: web development and consulting services.", 
+        "link-1":  "home",
+        "title-2": "What is our mission ?",
+        "brief-2": "Offer services of high quality. Infocinc specializes in high performance web technologies. We offer consulting services. For more detail, see our <a href='/en/services'>services</a> section." 
+    }
 }

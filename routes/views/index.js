@@ -41,9 +41,7 @@ exports = module.exports = function(req, res) {
             async.parallel([
                     taskFactory('TimeItem', {
                         'postprocess': function(results) {
-                            return _.sortBy(results, function(s) {
-                                return s.index;
-                            });
+                            return _.sortBy(results, 'date');
                         }
                     })
                 ],
@@ -52,7 +50,7 @@ exports = module.exports = function(req, res) {
                         console.log('something wrong happened while querying the db');
                     }
                     view.render(section, {
-                        timeItems: results[0]
+                        timeItems: results[0].reverse()
                     });
                 });
             break;

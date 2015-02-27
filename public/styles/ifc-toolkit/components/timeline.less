@@ -20,10 +20,10 @@
 // Common
 // ------------------------------
 
-@timeline-path:         .50em;
+@timeline-path:         1em;
 @timeline-offset:       3em;
-@timeline-node:         1em;
-@timeline-alphaomega:   @timeline-node;
+@timeline-node:         2em;
+@timeline-alphaomega:   3em;
 
 .timeline {
 	.clearfix();
@@ -35,16 +35,15 @@
 .timeline-path {
 	bottom: 0;
 	left: 50%;
-	background-color: rgba(0,0,0,0.4);
+	background-color: @white;
 	margin-left: -(@timeline-path / 2);
 	position: absolute;
 	top: 0;
 	width: @timeline-path;
 	z-index: 1;
-	&:before,
-	&:after {
+	&:before {
 		.square( @timeline-alphaomega );
-		background-color: rgba(0,0,0,0.1);
+		background-color: @white;
 		border-radius: 50%;
 		content: "";
 		left: 50%;
@@ -53,10 +52,10 @@
 		z-index: 3;
 	}
 	&:before {
-		top: -@timeline-alphaomega;
+		top: -@timeline-alphaomega/2;
 	}
 	&:after {
-		bottom: -@timeline-alphaomega;
+		bottom: -@timeline-alphaomega/2;
 	}
 }
 
@@ -64,17 +63,16 @@
 // nodes
 
 .timeline-item-node {
-	.size(10%,1px);
-	background-color: rgba(0,0,0,0.1);
+	.size(10%,3px);
+	background-color: @red;
 	position: absolute;
 	top: 25px;
-	@body-bg: #222;
 
 	&:after {
-		.box-shadow( 0 0 0 4px @body-bg );
+		.box-shadow( 0 0 0 4px rgba(0,0,0,0) );
 		.square( @timeline-node );
-		background-color: @body-bg;
-		border: 1px solid rgba(0,0,0,0.2);
+		background-color: @red;
+//		border: 1px solid rgba(0,0,0,0.2);
 		border-radius: 50%;
 		content: "";
 		margin-top: -(@timeline-node / 2);
@@ -86,11 +84,13 @@
 
 // items
 
+
 .timeline-item-inner {
 	.tile-base();
 	color: @gray;
 	display: block;
 	padding: 1em;
+	font-family: 'Roboto', sans-serif;
 
 	&:hover,
 	&:focus {
@@ -101,6 +101,39 @@
 		h3 {
 			text-decoration: underline;
 		}
+	}
+	&-date {
+		font-family: 'Lato', sans-serif;
+		font-weight: bold;
+		font-size: 1em;
+		color: @red;
+		padding: 10px 0px;
+	}
+	&-title {
+		font-family: 'Lato', sans-serif;
+		font-size: 1.2em;
+		padding: 5px 0px;
+		&--smaller {
+			font-size: 1em;
+		}
+	}
+	&-media {
+
+		&-image {
+			width: 100%;
+			padding: 10px 0 5px 0;
+		}
+		&-link {
+			float: right;
+			font-size: 0.8em;
+			padding-left: 15px;
+			font-weight: bold;
+			color: #424242;
+			text-decoration: underline !important;
+		}
+	}
+	&-text {
+		padding: 5px 0;
 	}
 }
 

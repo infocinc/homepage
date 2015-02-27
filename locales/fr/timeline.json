@@ -1,4 +1,47 @@
 {
-    "title": "Infocinc | Projets | 438 496-6886",
-    "description": "Infocinc est à la recherche de nouveaux défis. Consultez nos projets en cours et nos réalisations. Contactez-nous au 438 496-6886 pour discuter de vos projets."
+    "title": "Infocinc | Nouvelles | 438 496-6886",
+    "description": "Infocinc est à la recherche de nouveaux défis. Consultez nos projets en cours et nos réalisations. Contactez-nous au 438 496-6886 pour discuter de vos projets.",
+    "catchphrase": "Actualités de Infocinc:<BR> événements passés et à venir.",
+    "centre-dentaire-martin-dutil": {
+        "title-1": "Centre Dentaire Martin Dutil",
+        "brief-1": "Le Centre Dentaire Martin Dutil est une clinique dentaire bien établie dans le quartier Ahuntsic depuis 1988. Le Centre Dentaire Martin Dutil offre plusieurs services professionnels tels que la dentisterie générale, le blanchiment des dents, la dentisterie esthétique ainsi que les ponts et couronnes.",
+        "link-1":  "site web",
+        "title-2": "Notre rôle",
+        "brief-2": "Nous avons reconstruit complètement les fondations du site web à l'aide du framework <a href='bootstrap.org'>Bootstrap 3.0</a>. C'est maintenant l'un des seuls centres dentaires au Québec à offrir le contenu  intégral de sa version <i>bureau</i> sur téléphones et tablettes. Infocinc s'occupe de maintenir le site à jour et de surveiller son bon fonctionnement."
+    },
+    "nuayre": {
+        "title-1": "Nuayre",
+        "brief-1": "NuAyre est une compagnie québécoise qui vend des produits pour éliminer les odeurs naturellement. NuAyre est certifié EcoLogo UL",
+        "link-1":  "site web",
+        "title-2": "Notre implication:",
+        "brief-2": "Infocinc a créer un site web style 'flyer' pour les produits Nuayre. En parallèle, nous avons aussi travailler avec Nuayre sur un publi-postage Facebook qui a été vu par plus de 150K personnes de la region du Québec. "
+    },
+    "node-school-event": {
+        "title-1": "Atelier de travail Node.js",
+        "brief-1": "Dans le but de stimuler la communauté Node.js dans la région de Montréal, Infocinc organise un premier atelier de travail Node.js pour tout ceux qui désire en apprendre plus sur cette technologie émergente.", 
+        "link-1":  "site web",
+        "title-2": "Comment réserver sa place ?",
+        "brief-2": "Détails à venir."
+    },
+    "infocinc-blog": {
+        "title-1": "Blog de Infocinc",
+        "brief-1": "Passionné de programmation et de technologies web ? Consultez notre blog pour des articles sur les dernières tendances en technologies Web comme Node.js, KeystoneJS, Ghost et autres. ", 
+        "link-1":  "blog",
+        "title-2": "Est-ce que c'est propulsé par Wordpress ?",
+        "brief-2": "Non. Notre blog utilise Ghost, une nouvelle plateforme de bloggage bâtit sur Node.js. Ghost est 100% open-source et supporté par une communauté grandissante."
+    },
+    "infocinc-website": {
+        "title-1": "Site web de Infocinc",
+        "brief-1": "Notre nouveau site web. Entièrement repensé et bâtit pour le future. ", 
+        "link-1":  "accueil",
+        "title-2": "Quelles sont les nouveautés ?",
+        "brief-2": "Plus de contenu, de multiple sections, des animations canvas et un blog à venir. Notre site web est propulsé par KeystoneJS, un CMF open-source écrit en javascript et qui fonctionne sur Node.js."
+    },
+    "infocinc-birth": {
+        "title-1": "Infocinc",
+        "brief-1": "Naissance de Infocinc: dévelopement web et consultation informatique.", 
+        "link-1":  "accueil",
+        "title-2": "Quelle est notre mission ?",
+        "brief-2": "Offrir des services de qualité. Infocinc se spécialise dans les technologies Web et de haute performance. Nous offrons des services de consultations informatiques. Pour plus de détails, consulter notre section <a href='/fr/services'>service</a>." 
+    }
 }

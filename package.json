@@ -10,7 +10,8 @@
     "ghost": "^0.5.8",
     "i18next": "^1.7.10",
     "jade": "~1.7.0",
-    "keystone": "0.2.38",
+    "keystone": "0.2.42",
+    "moment": "^2.9.0",
     "underscore": "~1.7.0"
   },
   "repository": {
