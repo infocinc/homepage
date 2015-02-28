@@ -5,81 +5,80 @@
       xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
-
 <url>
   <loc>http://www.infocinc.com/en/home</loc>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>http://www.infocinc.com/blog/</loc>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>http://www.infocinc.com/en/services</loc>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>http://www.infocinc.com/en/projects</loc>
-  <changefreq>daily</changefreq>
+  <loc>http://www.infocinc.com/en/timeline</loc>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>http://www.infocinc.com/en/contact</loc>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>http://www.infocinc.com/fr/home</loc>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>http://www.infocinc.com/en/terms</loc>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
-	<loc>http://www.infocinc.com/blog/integrating-ghost-with-keystonejs/</loc>
-	<changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.infocinc.com/blog/deploy-keystonejs-to-heroku/</loc>
-  <changefreq>daily</changefreq>
+  <loc>http://www.infocinc.com/blog/integrating-ghost-with-keystonejs/</loc>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>http://www.infocinc.com/blog/author/nicdutil/</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.infocinc.com/blog/tag/heroku/</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.infocinc.com/blog/tag/keystonejs/</loc>
-  <changefreq>daily</changefreq>
-</url>
-<url>
-  <loc>http://www.infocinc.com/blog/ce-blog-est-propulse-par-ghost/</loc>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>http://www.infocinc.com/blog/tag/ghost-platform/</loc>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://www.infocinc.com/blog/tag/heroku/</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://www.infocinc.com/blog/tag/keystonejs/</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://www.infocinc.com/blog/deploy-keystonejs-to-heroku/</loc>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://www.infocinc.com/blog/ce-blog-est-propulse-par-ghost/</loc>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>http://www.infocinc.com/blog/powered-by-ghost/</loc>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>http://www.infocinc.com/fr/services</loc>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
-  <loc>http://www.infocinc.com/fr/projects</loc>
-  <changefreq>daily</changefreq>
+  <loc>http://www.infocinc.com/fr/timeline</loc>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>http://www.infocinc.com/fr/contact</loc>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 <url>
   <loc>http://www.infocinc.com/fr/terms</loc>
-  <changefreq>daily</changefreq>
+  <changefreq>weekly</changefreq>
 </url>
 </urlset>
