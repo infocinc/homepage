@@ -12,11 +12,14 @@ block css
 	link(href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css')
 block content
 	+logo
+	// Background:Montreal skyline by author Taxiarchos228
 	.page-content
 		.overlay.overlay-black
 		.overlay.overlay-tvnoise
 		.page-title.hero-text-wrapper
 			h1.front!=t(section + ':catchphrase')
+		// Thanks to Thinkmill (www.thinkmill.com.au) for the timeline css component.
+		// some modifications by Infocinc, 2015
 		.timeline.container
 			.timeline-path
 			.timeline-item--offset
