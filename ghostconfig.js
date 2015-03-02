@@ -67,7 +67,7 @@ config = {
 	development: {
 		// The url to use when providing links to the site, E.g. in RSS and email.
 		// Change this to your Ghost blogs published URL.
-		url: 'http://192.168.1.5:3000/blog',
+		url: 'http://192.168.1.2:3000/blog',
 
 		// Example mail config
 		// Visit http://support.ghost.org/mail for instructions
@@ -97,7 +97,7 @@ config = {
 		},
 		server: {
 			// Host to be passed to node's `net.Server#listen()`
-			host: '192.168.1.5',
+			host: '192.168.1.2',
 			// Port to be passed to node's `net.Server#listen()`, for iisnode set this to `process.env.PORT`
 			port: '3000'
 		},
