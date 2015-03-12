@@ -17,11 +17,11 @@
 //  Initialization
 //////////////////////////////////////////////////////////////////////
 
-// GLOBAL
-require('modernizr');
+
 
 var utils = require('./app-utils.js'),
 	SideMenu = require('./sidemenu.js'),
+	enquire = require('enquire.js'),
 	$ = require('jquery');
 
 var MEDIA_STATE = {},
@@ -93,21 +93,21 @@ function configure_enquire() {
 	});
 }
 
-function detect_features(complete) {
-	var load = [{
-		test: window.matchMedia,
-		nope: "/js/vendor/matchMedia.min.js"
-	}, {
-		test: window.matchMedia.addListener,
-		nope: "/js/vendor/matchMedia.addListener.min.js"
-	}, {
-		both: ['/js/vendor/enquire.min.js'],
-		complete: function() {
-			complete();
-		}
-	}];
-	Modernizr.load(load);
-}
+// function detect_features(complete) {
+// 	var load = [{
+// 		test: window.matchMedia,
+// 		nope: "/js/vendor/matchMedia.min.js"
+// 	}, {
+// 		test: window.matchMedia.addListener,
+// 		nope: "/js/vendor/matchMedia.addListener.min.js"
+// 	}, {
+// 		both: ['/js/vendor/enquire.min.js'],
+// 		complete: function() {
+// 			complete();
+// 		}
+// 	}];
+// 	Modernizr.load(load);
+// }
 
 ///////////////////////////////
 // detectIE
@@ -161,13 +161,15 @@ exports.init = function() {
 		case utils.SCREEN_WIDTHS.XSMALL:
 		case utils.SCREEN_WIDTHS.MOBILE:
 		case utils.SCREEN_WIDTHS.MOBILE_LANDSCAPE:
-			detect_features(configure_enquire);
+			configure_enquire();
 			break;
 		case utils.SCREEN_WIDTHS.TABLET:
-			detect_features(configure_enquire);
+			configure_enquire();
+			// detect_features(configure_enquire);
 			break;
 		default:
-			detect_features(configure_enquire);
+			configure_enquire();
+			// detect_features(configure_enquire);
 	}
 	//    init_scrolldepth();
 }

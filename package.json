@@ -11,6 +11,7 @@
     "i18next": "^1.7.10",
     "jade": "~1.7.0",
     "keystone": "0.2.42",
+    "modernizr": "^3.0.0-alpha.3",
     "moment": "^2.9.0",
     "underscore": "~1.7.0"
   },
@@ -28,7 +29,6 @@
   },
   "browserify-shim": {
     "jquery": "$",
-    "modernizr": "global:Modernizr",
     "bootstrap": {
       "depends": [
         "jquery:$"
@@ -59,8 +59,10 @@
   "devDependencies": {
     "browserify": "^8.0.3",
     "browserify-shim": "^3.8.2",
+    "browsernizr": "^1.0.2",
     "chai": "*",
     "chalk": "^0.5.1",
+    "enquire.js": "^2.1.1",
     "gulp": "^3.8.10",
     "gulp-jshint": "^1.9.0",
     "gulp-mocha": "^2.0.0",
