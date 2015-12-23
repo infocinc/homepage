@@ -1,12 +1,15 @@
 
 var app = require('../lib/app.js'),
-	$ = require('jquery'),
-	registerLinks = require('./servicelink.js');
+	$ = require('jquery');
 
 
 
 
 $(document).ready(function() {
 	app.init();
-	registerLinks();
+	// sets hero background image to the height of the window.
+	$('#hero').height($(window).height());
+	$(window).on('resize', function(e) {
+		$('#hero').height($(this).height());		
+	});
 });
