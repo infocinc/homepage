@@ -1,5 +1,5 @@
 mixin service-link(service,section)
-	a.col-md-6(href=(section ? section : '')  + '#' + service.name).service-link
+	a.col-md-12(href=(section ? section : '')  + '#' + service.name).service-link
 		.icon-logo
 			img(src='/images/home/'+service.name+'.png' alt=t('home:' + service.name))
 		.icon-text!=t('home:'+service.name)
