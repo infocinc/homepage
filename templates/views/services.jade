@@ -38,8 +38,6 @@ block content
 	+header('services')
 	section.intro.clearfix.container
 		h2=t('services:intro')
-		each service in services
-			+service-link(service)
 	#services-wrapper 
 		each service,i in services
 			-var prefix = 'services:' + service.name
