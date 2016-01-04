@@ -65,10 +65,10 @@ block content
 						a(href="mailto:info@infocinc.com")
 							| info@infocinc.com
 				#social-icons-wrapper
-					-var img = ['twitterlogo','facebooklogo','googlepluslogo','linkedin']
-					-var href = [ '//twitter.com/Infocinc','//facebook.com/Infocinc', '//plus.google.com/+Infocinc1','//linkedin.com/company/infocinc']
+					-var img = ['facebooklogo','googlepluslogo','linkedin']
+					-var href = ['//facebook.com/Infocinc', '//plus.google.com/+Infocinc1','//linkedin.com/company/infocinc']
 					-var i = 0
-					while i < 4
+					while i < 3
 						a(target="_blank",href=href[i])
 							img(src="/images/" + img[i] + '.png' alt=img[i])
 						-i++
@@ -76,5 +76,3 @@ block content
 		#gmap.col-md-10.col-md-offset-1
 			#map_canvas
 	include ../layouts/footer
-
-

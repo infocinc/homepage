@@ -24,8 +24,8 @@ footer
 				li
 					span=t('footer:city')
 		+footer-block('social')
-			-var social = ['Facebook','Google+','Twitter','LinkedIn']
-			-var href = ['//facebook.com/Infocinc', '//plus.google.com/+Infocinc1','//twitter.com/Infocinc','//linkedin.com/company/infocinc']
+			-var social = ['Facebook','Google+','LinkedIn']
+			-var href = ['//facebook.com/Infocinc', '//plus.google.com/+Infocinc1','//linkedin.com/company/infocinc']
 			-var i = 0
 			ul
 				while i < 2
@@ -33,7 +33,7 @@ footer
 							a(target="_blank",href=href[i])=social[i]
 					-i++
 			ul
-				while i < 4
+				while i < 3
 					li
 							a(target="_blank",href=href[i])=social[i]
 					-i++
@@ -46,6 +46,6 @@ footer
 			p=t('footer:cookies')
 					a(href='/' + lang + '/terms' )
 						=t('footer:learn-more')
-			p=t('footer:keystone-powered') 
-				a(href="//keystonejs.com") KeystoneJS
-
+			p=t('footer:keystone-powered')
+					a(href="//keystonejs.com")
+							| KeystoneJS
