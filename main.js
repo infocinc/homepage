@@ -35,7 +35,7 @@ keystone.init({
 	'user model': 'User',
 	'cookie secret': ']>.N%h]>4H_e=(Sifsks!NUPe_tsv=qAGZbqNfI_`B%h:T^JL2r^~)GOdf3/-XU;',
 	'model prefix': 'infocinc',
-	'mongo': process.env.MONGOHQ_URL,
+	'mongo': process.env.MONGODB_URI,
 	'mandrill api key': process.env.MANDRILL_API_KEY,
 	'mandrill username': process.env.MANDRILL_USERNAME
 });
