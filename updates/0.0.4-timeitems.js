@@ -5,7 +5,7 @@ exports.create = {
 		{
 			name: 'Infocinc Birth',
 			date: moment('04-01-2014','MM-DD-YYYY'),
-			url: 'http://www.infocinc.com'
+			url: 'https://www.infocinc.com'
 		}
 	]
 };

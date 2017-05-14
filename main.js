@@ -116,8 +116,8 @@ if (keystone.get('env') === 'production') {
 		next();		
 	};
 
-	keystone.set('secure signin', 'https://infocinc.herokuapp.com/keystone/signin');
-	keystone.set('back url', 'https://infocinc.herokuapp.com/fr/home');
+	keystone.set('secure signin', 'https://www.infocinc.com/keystone/signin');
+	keystone.set('back url', 'https://www.infocinc.com/fr/home');
 
 // specific to heroku 
 	app.use('/keystone', secureHeroku);
@@ -126,10 +126,10 @@ if (keystone.get('env') === 'production') {
 
 keystone.set('email rules', [{
 	find: '/images/',
-	replace: keystone.get('env') === 'production' ? 'http://infocinc.herokuapp.com/images/' : 'http://192.168.1.5:3000/images/'
+	replace: keystone.get('env') === 'production' ? 'https://www.infocinc.com/images/' : 'http://192.168.1.5:3000/images/'
 }, {
 	find: '/keystone/',
-	replace: keystone.get('env') === 'production' ? 'http://infocinc.herokuapp.com/keystone/' : 'http://192.168.1.5:3000/keystone/'
+	replace: keystone.get('env') === 'production' ? 'https://www.infocinc.com/keystone/' : 'http://192.168.1.5:3000/keystone/'
 }]);
 
 // Load your project's email test routes
