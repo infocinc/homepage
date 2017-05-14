@@ -109,9 +109,10 @@ keystone.set('email locals', {
 
 // env specific configuration of keystone
 if (keystone.get('env') === 'production') {
-	var secureHeroku = function(req,res,next) {
+	var secureSSL = function(req,res,next) {
 		if (req.header('x-forwarded-proto') !== 'https') {
-			res.redirect(keystone.get('secure signin'));
+      var sslUrl = ['https://', req.host, req.originalUrl].join('');
+      return res.redirect(sslUrl);
 		}
 		next();		
 	};
@@ -120,7 +121,7 @@ if (keystone.get('env') === 'production') {
 	keystone.set('back url', 'https://www.infocinc.com/fr/home');
 
 // specific to heroku 
-	app.use('/keystone', secureHeroku);
+	app.use(secureSSL);
 }
 
 
