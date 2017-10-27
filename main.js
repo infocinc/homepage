@@ -5,7 +5,7 @@ require('dotenv').load();
 // Require keystone
 var express = require('express'),
 	app = express(),
-	keystone = require('keystone').connect(app),
+	keystone = require('keystone'),
 	ghost = require('ghost'),
 	path = require('path'),
 	i18n = require('i18next'),
@@ -35,9 +35,7 @@ keystone.init({
 	'user model': 'User',
 	'cookie secret': ']>.N%h]>4H_e=(Sifsks!NUPe_tsv=qAGZbqNfI_`B%h:T^JL2r^~)GOdf3/-XU;',
 	'model prefix': 'infocinc',
-	'mongo': process.env.MONGODB_URI,
-	'mandrill api key': process.env.MANDRILL_API_KEY,
-	'mandrill username': process.env.MANDRILL_USERNAME
+	'mongo': process.env.MONGODB_URI
 });
 
 debug('loading models');
@@ -125,13 +123,13 @@ if (keystone.get('env') === 'production') {
 }
 
 
-keystone.set('email rules', [{
-	find: '/images/',
-	replace: keystone.get('env') === 'production' ? 'https://www.infocinc.com/images/' : 'http://192.168.1.5:3000/images/'
-}, {
-	find: '/keystone/',
-	replace: keystone.get('env') === 'production' ? 'https://www.infocinc.com/keystone/' : 'http://192.168.1.5:3000/keystone/'
-}]);
+// keystone.set('email rules', [{
+// 	find: '/images/',
+// 	replace: keystone.get('env') === 'production' ? 'https://www.infocinc.com/images/' : 'http://192.168.1.5:3000/images/'
+// }, {
+// 	find: '/keystone/',
+// 	replace: keystone.get('env') === 'production' ? 'https://www.infocinc.com/keystone/' : 'http://192.168.1.5:3000/keystone/'
+// }]);
 
 // Load your project's email test routes
 keystone.set('email tests', require('./routes/emails'));
@@ -147,20 +145,19 @@ keystone.set('nav', {
 
 
 // Start keystone to connect to your database and initialise the web server
-var events = {
-	'onMount': function() {
-		i18n.backend(require('./backend'));
-		i18n.init(options);
-		i18n.registerAppHelper(app);
-	}
-};
 ghost({
 	config: path.join(__dirname, 'ghostconfig.js')
 }).then(function(ghostServer) {
 	debug('mounting ghost sever on blog path');
 	app.use('/blog', ghostServer.rootApp);
-	keystone.mount(events);
-	ghostServer.start(app);
+  console.log('env is ' + keystone.get('env'));
+  keystone.initExpressApp(app);
+	keystone.openDatabaseConnection(function() {
+    i18n.backend(require('./backend'));
+		i18n.init(options);
+		i18n.registerAppHelper(app);  
+    ghostServer.start(app);
+  });
 });
 // process.on('uncaughtException', function(err) {
 // 	console.log('Caught Exception: ' + err);
