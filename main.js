@@ -144,21 +144,23 @@ keystone.set('nav', {
 });
 
 
-// Start keystone to connect to your database and initialise the web server
-ghost({
-	config: path.join(__dirname, 'ghostconfig.js')
-}).then(function(ghostServer) {
-	debug('mounting ghost sever on blog path');
-	app.use('/blog', ghostServer.rootApp);
-  console.log('env is ' + keystone.get('env'));
-  keystone.initExpressApp(app);
-	keystone.openDatabaseConnection(function() {
-    i18n.backend(require('./backend'));
-		i18n.init(options);
-		i18n.registerAppHelper(app);  
-    ghostServer.start(app);
-  });
+keystone.initExpressApp(app);
+keystone.openDatabaseConnection(function() {
+i18n.backend(require('./backend'));
+	i18n.init(options);
+	i18n.registerAppHelper(app);  
+	keystone.start();
+// ghostServer.start(app);
 });
+
+// // Start keystone to connect to your database and initialise the web server
+// ghost({
+// 	config: path.join(__dirname, 'ghostconfig.js')
+// }).then(function(ghostServer) {
+// 	debug('mounting ghost sever on blog path');
+// 	app.use('/blog', ghostServer.rootApp);
+//   console.log('env is ' + keystone.get('env'));
+// });
 // process.on('uncaughtException', function(err) {
 // 	console.log('Caught Exception: ' + err);
 // });
