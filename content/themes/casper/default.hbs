@@ -1,97 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{@site.lang}}">
 <head>
-    {{! Document Settings }}
+
+    {{!-- Document Settings --}}
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    {{! Page Meta }}
+    {{!-- Base Meta --}}
     <title>{{meta_title}}</title>
-    <meta name="description" content="{{meta_description}}" />
-
     <meta name="HandheldFriendly" content="True" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="shortcut icon" href="{{asset "/favicon.ico"}}">
-	{{! Highlight.js stylesheet}}
-	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/monokai_sublime.min.css">
+    {{!-- Styles'n'Scripts --}}
+    <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}" />
 
-    {{! Styles'n'Scripts }}
-    <link rel="stylesheet" type="text/css" href="/css/blog.css" /> 
-    <link rel="stylesheet" type="text/css" href="{{asset "css/screen.min.css"}}" />
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
-
-    {{! Ghost outputs important style and meta data with this tag }}
+    {{!-- This tag outputs SEO meta+structured data and other important settings --}}
     {{ghost_head}}
+
 </head>
 <body class="{{body_class}}">
-	<script>
-	  window.fbAsyncInit = function() {
-	    FB.init({
-	      appId      : '804597002968420',
-	      xfbml      : true,
-	      version    : 'v2.2'
-	    });
-	  };
 
-	  (function(d, s, id){
-	     var js, fjs = d.getElementsByTagName(s)[0];
-	     if (d.getElementById(id)) {return;}
-	     js = d.createElement(s); js.id = id;
-	     js.src = "//connect.facebook.net/en_US/sdk.js";
-	     fjs.parentNode.insertBefore(js, fjs);
-	   }(document, 'script', 'facebook-jssdk'));
-        (function(i, s, o, g, r, a, m) {
-        i['GoogleAnalyticsObject'] = r;
-        i[r] = i[r] || function() {
-        (i[r].q = i[r].q || []).push(arguments)
-        }, i[r].l = 1 * new Date();
-        a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0];
-        a.async = 1;
-        a.src = g;
-        m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-        ga('create', 'UA-52538854-1', 'auto');
-        ga('require', 'linkid', 'linkid.js');
-        ga('require', 'displayfeatures');
-        ga('send', 'pageview');
+    <div class="site-wrapper">
+
+        {{!-- All the main content gets inserted here, index.hbs, post.hbs, etc --}}
+        {{{body}}}
+
+        {{!-- The footer at the very bottom of the screen --}}
+        <footer class="site-footer outer">
+            <div class="site-footer-content inner">
+                <section class="copyright"><a href="{{@site.url}}">{{@site.title}}</a> &copy; {{date format="YYYY"}}</section>
+                <nav class="site-footer-nav">
+                    <a href="{{@site.url}}">Latest Posts</a>
+                    {{#if @site.facebook}}<a href="{{facebook_url @site.facebook}}" target="_blank" rel="noopener">Facebook</a>{{/if}}
+                    {{#if @site.twitter}}<a href="{{twitter_url @site.twitter}}" target="_blank" rel="noopener">Twitter</a>{{/if}}
+                    <a href="https://ghost.org" target="_blank" rel="noopener">Ghost</a>
+                </nav>
+            </div>
+        </footer>
+
+    </div>
+
+    {{!-- The big email subscribe modal content --}}
+    {{#if @labs.members}}
+    <div class="subscribe-success-message">
+        <a class="subscribe-close" href="javascript:;"></a>
+        You've successfully subscribed to {{@site.title}}!
+    </div>
+
+    <div id="subscribe" class="subscribe-overlay">
+        <a class="subscribe-close" href="#"></a>
+        <div class="subscribe-overlay-content">
+            {{#if @site.logo}}
+                <img class="subscribe-overlay-logo" src="{{@site.logo}}" alt="{{@site.title}}" />
+            {{/if}}
+            <div class="subscribe-form">
+                <h1 class="subscribe-overlay-title">Subscribe to {{@site.title}}</h1>
+                <p class="subscribe-overlay-description">Stay up to date! Get all the latest & greatest posts delivered straight to your inbox</p>
+                <form data-members-form="subscribe">
+                    <div class="form-group">
+                        <input class="subscribe-email" data-members-email placeholder="youremail@example.com"
+                            autocomplete="false" />
+                        <button class="button primary" type="submit">
+                            <span class="button-content">Subscribe</span>
+                            <span class="button-loader">{{> "icons/loader"}}</span>
+                        </button>
+                    </div>
+                    <div class="message-success">
+                        <strong>Great!</strong> Check your inbox and click the link to confirm your subscription.
+                    </div>
+                    <div class="message-error">
+                        Please enter a valid email address!
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    {{/if}}
+
+    {{!-- jQuery, required for fitvids --}}
+    <script
+        src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+        crossorigin="anonymous">
     </script>
-	<nav id="menu" class="bar-items invisible">
-	  <button type="button" id="remove-btn"><span class="glyphicon glyphicon-remove"></span></button>
-	  <ul class="principal">
-	    <li><a href="/en/home" class="nav-item">HOME</a></li>
-	    <li><a href="/blog" class="nav-item">BLOG</a></li>
-	    <li><a href="/en/services" class="nav-item">SERVICES</a></li>
-	    <li><a href="/en/timeline" class="nav-item">TIMELINE</a></li>
-	    <li><a href="/en/contact" class="nav-item">CONTACT</a></li>
-	  </ul>
-	  <ul class="menu-footer">
-	    <li id="social-icons" class="clearfix"><a target="_blank" href="//twitter.com/InfoCinc"> <img src="/images/twitterlogo.png" alt="twitter logo"/></a><a target="_blank" href="//facebook.com/Infocinc"><img src="/images/facebooklogo.png" alt="facebook logo"/></a><a target="_blank" href="//plus.google.com/+Infocinc1"> <img src="/images/googlepluslogo.png" alt="googleplus logo"/></a><a target="_blank" href="//www.linkedin.com/company/infocinc"> <img src="/images/linkedin.png" alt="linkedin logo"/></a></li>
-	    <li class="nav-item"><a href="/en/terms">Terms and Conditions</a></li>
-	    <li class="nav-item"><span>&copy;2014</span><img id="menu-logo" src="/images/infocinc-logo-white.png" alt="Infocinc Logo"/></li>
-	  </ul>
-	</nav>
-    {{! Everything else gets inserted here }}
-    {{{body}}}
+    {{!-- Fitvids (for responsive video embeds), infinite scroll, floating header, and gallery card support --}}
+    <script src="{{asset "built/casper.js"}}"></script>
 
-    <footer class="site-footer clearfix push">
-         <section class="copyright"><a href="{{@blog.url}}">{{@blog.title}}</a> &copy; Infocinc {{date format="YYYY"}}</section>
-         <section class="poweredby">Proudly published with <a href="https://ghost.org">Ghost</a></section>
-    </footer>
+    {{!-- Scripts for Members subscription --}}
+    <script>
+        // Parse the URL parameter
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, "\\$&");
+            var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+                results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            return decodeURIComponent(results[2].replace(/\+/g, " "));
+        }
 
-    {{! Ghost outputs important scripts and data with this tag }}
+        // Give the parameter a variable name
+        var action = getParameterByName('action');
+
+        $(document).ready(function () {
+            if (action == 'subscribe') {
+                $('body').addClass("subscribe-success");
+            }
+
+            $('.subscribe-success-message .subscribe-close').click(function () {
+                $('.subscribe-success-message').addClass('close');
+            });
+
+            // Reset form on opening subscrion overlay
+            $('.subscribe-button').click(function() {
+                $('.subscribe-overlay form').removeClass();
+                $('.subscribe-email').val('');
+            });
+        });
+    </script>
+
+    {{!-- The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in post.hbs, but it needs to be included down here, after jQuery has already loaded. --}}
+    {{{block "scripts"}}}
+
+    {{!-- Ghost outputs important scripts and data with this tag - it should always be the very last thing before the closing body tag --}}
     {{ghost_foot}}
-
-    {{! The main JavaScript file for Casper }}
-    <script type="text/javascript" src="{{asset "js/jquery.fitvids.js"}}"></script>
-
-    <script type="text/javascript" src="{{asset "js/index.js"}}"></script>
-    <script type="text/javascript" src="/js/dist/blog.min.js"></script>
-
-	{{! Highlight.js}}
-	<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-	<script> hljs.initHighlightingOnLoad();</script>
 
 </body>
 </html>
