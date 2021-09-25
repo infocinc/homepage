@@ -6,7 +6,6 @@ require('dotenv').load();
 var express = require('express'),
 	app = express(),
 	keystone = require('keystone'),
-	ghost = require('ghost'),
 	path = require('path'),
 	i18n = require('i18next'),
 	debug = require('debug')('main');
@@ -148,6 +147,7 @@ keystone.openDatabaseConnection(function() {
 		i18n.init(options);
 		i18n.registerAppHelper(app);  
 });
+keystone.start()
 
 // Start keystone to connect to your database and initialise the web server
 // ghost().then(function(ghostServer) {

@@ -11,6 +11,7 @@
     "i18next": "^1.7.10",
     "jade": "~1.7.0",
     "keystone": "~4.2.0",
+    "keystone-email": "^1.1.0",
     "modernizr": "^3.0.0-alpha.3",
     "moment": "^2.9.0",
     "underscore": "~1.7.0"
