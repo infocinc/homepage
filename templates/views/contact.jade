@@ -6,7 +6,6 @@ block css
 	link(href="/styles/site/header.min.css", rel="stylesheet")
 	link(href="/styles/site/contact.min.css", rel="stylesheet")
 block head
-	script(src="https://maps.google.com/maps/api/js?sensor=false")
 	script.
 		window._fbq.push(['track', '6021411515317', {'value':'0.00','currency':'CAD'}]);
 		var required = !{JSON.stringify(t('contact:required'))},
@@ -65,14 +64,11 @@ block content
 						a(href="mailto:info@infocinc.com")
 							| info@infocinc.com
 				#social-icons-wrapper
-					-var img = ['facebooklogo','googlepluslogo','linkedin']
-					-var href = ['//facebook.com/Infocinc', '//plus.google.com/+Infocinc1','//linkedin.com/company/infocinc']
+					-var img = ['facebooklogo','linkedin']
+					-var href = ['//facebook.com/Infocinc','//linkedin.com/company/infocinc']
 					-var i = 0
 					while i < 3
 						a(target="_blank",href=href[i])
 							img(src="/images/" + img[i] + '.png' alt=img[i])
 						-i++
-	//- #gmap-wrapper.container-fluid
-	//- 	#gmap.col-md-10.col-md-offset-1
-	//- 		#map_canvas
 	include ../layouts/footer

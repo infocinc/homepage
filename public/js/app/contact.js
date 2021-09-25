@@ -1,6 +1,6 @@
 var app = require('../lib/app.js'),
 	$ = require('jquery'),
-	gmap = require('./gmap.js'),
+	// gmap = require('./gmap.js'),
 	Background = require('../lib/canvas/background.js');
 
 require('jquery-placeholder');
@@ -63,7 +63,7 @@ $(document).ready(function() {
 	var latitude = 45.714745,
 		longitude = -73.679500;
 
-	gmap.init('map_canvas', 'Infocinc', gmap.flatGreenStyle, latitude, longitude);
+	// gmap.init('map_canvas', 'Infocinc', gmap.flatGreenStyle, latitude, longitude);
 
 	$('#formContact').validate({
 		messages: {
